@@ -327,7 +327,6 @@
     font-size: 15px;
     color: black;
     text-align: justify;
-    text-align-last: justify;
     line-height: 1.5;
     font-family: 'Roboto', sans-serif;
 }
@@ -335,6 +334,15 @@
 .headpara {
     font-size: 15px;
     width:100%;
+    color: black;
+    line-height: 1.5;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+}
+
+.headpara-1 {
+    font-size: 15px;
+    width:97%;
     color: black;
     line-height: 1.5;
     text-align: justify;
@@ -365,7 +373,6 @@
 .prod_pics {
   border: 5px solid #f1f1f1;
   height: 400px;
-  margin-left: 35px;
 }
 
 #prod_h3 {
@@ -428,6 +435,14 @@
     margin: 10px;
     text-decoration: underline;
 }
+
+.minihead-1 {
+    color:darkblue;
+    font-size: 20px;
+    margin: 10px 10px 10px 30px;
+    text-decoration: underline;
+}
+
 #headrow1 {
     margin: 10px 20px 10px 30px;
     text-align: justify;
@@ -824,6 +839,26 @@
       margin-right: 15px;
     }
 
+    .headpara-1 {
+        font-size: 20px;
+        width:100%;
+        color: black;
+        line-height: 1.5;
+        text-align: justify;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .fou_img {
+      border: 5px solid #f1f1f1;
+      height: 300px;
+    }
+
+    .prod_pics {
+      border: 5px solid #f1f1f1;
+      height: 400px;
+      margin-left: 35px;
+    }
+
     .prod_types {
       color: #333;
       font-size: 20px;
@@ -857,6 +892,15 @@
         text-decoration: underline;
         font-family: 'Raleway', sans-serif;;
     }
+
+    .minihead-1 {
+        color:darkblue;
+        margin: 50px 100px 10px 200px;
+        font-size: 30px;
+        text-decoration: underline;
+        font-family: 'Raleway', sans-serif;;
+    }
+
     .mainheading {
         text-align: center;
         color: black;
