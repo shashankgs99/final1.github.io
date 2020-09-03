@@ -1,0 +1,128 @@
+<div layout="column" layout-align="center center" class="margin-t-3">
+    <div layout="column" class="main-card" flex>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-content class="text-align-justify">
+                    <div layout="column" ng-if="type == 'inventory'">
+                        <div layout="row" layout-margin>
+                            <p class="md-subhead">Inventory</p>
+                        </div>
+                        <div layout="row" class="margin-l-2">
+                            <ol type="a">
+                                <li>
+                                    Once a GRN is made for a PO, the Material details and the quantity are reflected in
+                                    the inventory. The
+                                    material is received by default in default inward store.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div layout="column" ng-if="type == 'material-requistion'">
+                        <div layout="row" layout-margin>
+                            <p class="md-subhead">Material Requisition</p>
+                        </div>
+                        <div layout="column" class="margin-l-2">
+                            <div layout="row">
+                                <p>Material requisition is a Request to transfer material , issue material for
+                                    production or
+                                    for sale. They are classified as Material issue and Delivery notes.</p>
+                            </div>
+                            <div layout="row">
+                                <ol type="a">
+                                    <li>
+                                        <b>Material issue:</b> Material requests for material movement within the
+                                        organisation are referred to as Material issue. They are further classified as :
+                                        <ol type="i">
+                                            <li>Material Requisition (Transfers)</li>
+                                            <li> Material Requisition (Processing)</li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <b>Delivery notes:</b>Material requests for material movement outside the
+                                        organisation are referred to as Delivery
+                                        Notes. They are further classified as :
+                                        <ol type="i">
+                                            <li>Delivery Notes ( Sale): <br>
+                                                Delivery notes created to supply material to Customer against a sales
+                                                order
+                                                and invoiced to receive a
+                                                payment against Supply.
+                                            </li>
+                                            <li> Delivery Notes ( Non-Billable)<br>
+                                                <ol type="1">
+                                                    <li>
+                                                        Delivery Notes ( Non-Billable, Returnable) <br>
+                                                        Delivery notes created to supply material to Customer/
+                                                        Sub-vendor
+                                                        not for the purpose of sale, with an expectation to receive the
+                                                        material back after the intended use.
+                                                    </li>
+                                                    <li>
+                                                        Delivery Notes ( Non-Billable, Non- Returnable) <br>
+                                                        Delivery notes created to supply material to Customer/
+                                                        Sub-vendor
+                                                        not for the purpose of sale, with no expectations to receive the
+                                                        material back. These could be accessories which are billed as
+                                                        part
+                                                        of the main order that are sent separately and hence not
+                                                        required to
+                                                        be billed.
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" ng-if="type == 'stores'">
+                        <div layout="row" layout-margin>
+                            <p class="md-subhead">Stores</p>
+                        </div>
+                        <div layout="row" class="margin-l-2">
+                            <ol type="a">
+                                <li>
+                                    <b>Inward store:</b> Inward stores are the stores where raw material received from
+                                    Suppliers is kept. Users can add multiple inward stores and select a store as
+                                    default. Raw materials received will be placed in this store.
+                                </li>
+                                <li>
+                                    <b>Production stores :</b> Production stores are the places where raw materials are
+                                    processed. Users can add multiple Production units. They can choose a Production
+                                    unit while issuing materials for production.In Production units Raw material is
+                                    consumed and a processed finished goods are Produced in Production stores , which
+                                    are then sent to appropriate inward stores.
+
+                                </li>
+                                <li>
+                                    <b>Stores (others):</b> stores are the stores where finished goods are kept to be
+                                    billed.
+                                    Customers can add multiple stores.
+                                </li>
+                                <li>
+                                    <b>Sub Vendors: </b>Raw Materials / Semi-processed goods are sent to a Sub-vendor
+                                    for
+                                    operations (processing or value addition) which are beyond the inhouse capabilities.
+                                    Users can select Suppliers as a Sub-vendor store. They can choose a Sub-vendor while
+                                    creating Delivery note to dispatch material. Material sent to Sub-Vendors might
+                                    return to the stores or be billed to Customer directly from Sub vendor store. The
+                                    appropriate option to be selected while creating a delivery note.Sub-vendor store
+                                    need not be created and is generated automatically.
+
+                                </li>
+                                <li>
+                                    <b>Customers :</b> Customers of users are part of this group by default. USers can
+                                    Select a
+                                    Customer while creating a delivery note to indicate sale or send materials to
+                                    customer
+
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+"use strict";!function(){var app=angular.module("app");app.controller("directory.list.controller",["$scope","$stateParams",function($scope,$stateParams){$scope.itemType="directory",$stateParams.inventory&&($scope.itemType="inventory"),$stateParams.rental&&($scope.itemType="rental"),$scope.directory_data={},$scope.directory_data.filters={}}])}();

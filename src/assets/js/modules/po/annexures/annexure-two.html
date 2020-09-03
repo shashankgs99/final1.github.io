@@ -1,0 +1,51 @@
+<md-dialog aria-label="Item Details-Annexure-I" flex-gt-xs="75" flex-gt-sm="70">
+    <form ng-cloak name="annexureTwoForm" ng-submit="annexureTwoForm.$valid && submit(annexureTwo)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Annexure-II</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" class="md-title md-margin md-padding md-cr-input-section" layout-xs="column" layout-sm="column">
+                    <div flex="30">References</div>
+                    <div flex="20"></div>
+                    <div flex="40">
+                        <div layout-margin flex layout-xs class="m-l-15">
+                            <div class="md-cr-input-block">
+                                <md-checkbox ng-model="vm.employment.isCurrentEmployment" aria-label="Current employment">
+                                    Not applicable
+                                </md-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="10"></div>
+                </div>
+                <div layout="row" class="md-margin md-padding md-cr-input-section" layout-xs="column" layout-sm="column">
+                    <div flex="70" class="md-cr-input-block ml-margin-r-4" flex>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm="">
+                                <label class="md-caption">References</label>
+                                <textarea id="Message" required name="Message" ng-model="vm.announcements.message" rows="5"> </textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div flex="30"></div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

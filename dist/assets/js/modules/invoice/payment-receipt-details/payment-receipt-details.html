@@ -1,0 +1,130 @@
+<md-dialog flex="40">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add Details</span></h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-margin md-padding">
+            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                <div layout-margin flex ng-if="showState">
+                    <md-input-container class="md-block">
+                        <label>Status</label>
+                        <md-select ng-model="data.invoice_state">
+                            <md-option ng-repeat="record in statusList" ng-value="record.id">
+                                {[{record.name}]}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Document</label>
+                        <input type="text" ng-model="data.document" />
+                    </md-input-container>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Date</label>
+                        <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="data.document_date">
+                        </md-datepicker>
+                    </md-input-container>
+                </div>
+                <div layout-margin flex ng-if="!showState">
+                    
+                </div>
+            </div>
+            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Currency</label>
+                        <md-select ng-model="data.currency">
+                            <md-option ng-repeat="currency in currencyTypeList" ng-value="currency.id">
+                                {[{currency.currency_type_name}]}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>value</label>
+                        <input type="text" ng-model="data.value" />
+                    </md-input-container>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Type</label>
+                        <md-select ng-model="data.payment_type">
+                            <md-option ng-repeat="type in paymentTypes" ng-value="type.id">
+                                {[{type.name}]}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Supplier Bank Details</label>
+                        <md-select ng-model="data.supplier_bank_details">
+                            <md-option ng-repeat="record in supplierbankList" ng-value="record.id">
+                                {[{record.account_number+","+record.bank_name+","+record.branch_address}]}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-margin flex="10" flex-xs="20">
+                    <i class="fa fa-plus-square-o fa-lg m-t-10" aria-hidden="true" title="Add Bank Details"
+                        ng-model="create_client" ng-click="AddBankDetails($event,'supplier')"></i>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Customer Bank Details</label>
+                        <md-select ng-model="data.customer_bank_details">
+                            <md-option ng-repeat="record in bankList" ng-value="record.id">
+                                {[{record.account_number+","+record.bank_name+","+record.branch_address}]}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-margin flex="10" flex-xs="20">
+                    <i  class="fa fa-plus-square-o fa-lg m-t-10" aria-hidden="true" title="Add Bank Details"
+                        ng-model="create_client" ng-click="AddBankDetails($event,'customer')"></i>
+                </div>
+            </div>
+            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Bank Charges</label>
+                        <input type="text" ng-model="data.bank_charges" />
+                    </md-input-container>
+                </div>
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Bank Charges Notes</label>
+                        <input type="text" ng-model="data.bank_charges_notes" />
+                        <!-- <textarea ng-model="data.bank_charges_notes" rows="2"></textarea> -->
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                <div layout-margin flex>
+                    <md-input-container class="md-block">
+                        <label>Remarks</label>
+                        <textarea ng-model="data.remarks" rows="5"></textarea>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button type="submit" ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button type="submit" ng-click="save(data)">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

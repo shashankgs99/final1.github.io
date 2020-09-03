@@ -1,0 +1,112 @@
+<div layout="column" layout-align="start center" ng-cloak>
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <md-content>
+            <md-button ng-click="ListPage()" class="md-icon-button">
+                <md-icon class="material-icons managecustomericon" title="Back to list">keyboard_backspace</md-icon>
+            </md-button>
+            <md-tabs md-dynamic-height md-border-bottom class="md-margin" md-selected="tabIndex" md-center-tabs="true">
+                <md-tab label="MR-No#{[{MR.id}]}">
+                    <div layout="column" layout-align="start center" class="md-padding md-margin">
+                        <div layout="column" class="list-cards" flex track by $index>
+                            <div layout="row" class="layout-padding md-title">
+                                <span flex> </span>
+                                <md-button class="md-raised md-primary" ng-click="save('Issued ')">
+                                    Issued
+                                </md-button>
+                                <md-button class="md-raised md-primary" ng-click="save('Returned')">
+                                    Returned
+                                </md-button>
+                            </div>
+                            <div layout="row">
+                                <div layout="column" flex>
+                                    <md-card md-theme-watch>
+                                        <md-card-content>
+                                            <div layout="column">
+                                                <div layout="row" flex layout-margin layout-xs="column">
+                                                    <div flex>
+                                                        <label class="md-caption">Request Type</label>
+                                                        <p class="md-body-1" ng-bind="MR.request_type.name">
+                                                    </div>
+                                                    <div flex>
+                                                        <label class="md-caption">Purpose</label>
+                                                        <p class="md-body-1" ng-bind="MR.purpose.name"></p>
+                                                    </div>
+                                                    <div flex>
+                                                        <label class="md-caption">Source Type</label>
+                                                        <p class="md-body-1" ng-bind="MR.source_type.name"></p>
+                                                    </div>
+                                                </div>
+                                                <div layout="row" flex layout-margin layout-xs="column">
+                                                    <div flex>
+                                                        <label class="md-caption">Source Detail</label>
+                                                        <p class="md-body-1" ng-bind="MR.source_detail"></p>
+                                                    </div>
+                                                    <div flex>
+                                                        <label class="md-caption">Destination Type</label>
+                                                        <p class="md-body-1" ng-bind="MR.destination_type.name"></p>
+                                                    </div>
+                                                    <div flex>
+                                                        <label class="md-caption">Destination Detail</label>
+                                                        <p class="md-body-1" ng-bind="MR.destination_detail"></p>
+                                                    </div>
+                                                </div>
+                                                <div layout="row" flex layout-margin layout-xs="column">
+                                                    <div flex>
+                                                        <label class="md-caption">Status</label>
+                                                        <p class="md-body-1">{[{MR.mr_status.name}]}</p>
+                                                    </div>
+                                                    <div flex>
+                                                        <div ng-if="MR.request_type.name == 'Delivery Note'">
+                                                            <label class="md-caption">Contact Person</label>
+                                                            <p class="md-body-1">{[{MR.contact_person.firstname}]}
+                                                                {[{MR.contact_person.lastname}]}
+                                                        </div>
+                                                    </div>
+                                                    <div flex>
+
+                                                    </div>
+                                                </div>
+                                                <div layout="row" flex layout-margin
+                                                    ng-if="MR.request_type.name == 'Delivery Note'" layout-xs="column">
+                                                    <div flex>
+                                                        <label class="md-caption">Address</label>
+                                                        <p class="md-body-1">
+                                                            {[{MR.location.nameofaddress ? MR.location.nameofaddress+","
+                                                            :
+                                                            ''}]}<br />
+                                                            {[{MR.location.addressline1 ?
+                                                            MR.location.addressline1+",":''}]}<br />
+                                                            {[{MR.location.addressline2 ?
+                                                            MR.location.addressline2+",":''}]}
+                                                            {[{MR.location.cityname ?
+                                                            MR.location.cityname+",":''}]}{[{MR.location.state ?
+                                                            MR.location.state+",":''}]}{[{MR.location.country ?
+                                                            MR.location.country+",":''}]}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div layout="row" flex layout-margin layout-xs="column">
+                                                    <div flex>
+                                                        <label class="md-caption">Remarks</label>
+                                                        <p class="md-body-1" ng-bind="MR.remarks"></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+                            </div>
+                            <div layout-margin flex>
+                                <p class="md-title">ITEM DETAILS</p>
+                                <div layout="column" class="m-l-0.5">
+                                    <div id="items-grid" ui-grid="itemsGridOptions" class="grid mr-items-grid" flex flex-xs="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

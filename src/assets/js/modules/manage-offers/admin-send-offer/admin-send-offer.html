@@ -1,0 +1,135 @@
+<!-- <style>
+    .input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style> -->
+<md-dialog flex>
+        <md-toolbar>
+            <div class="md-toolbar-tools">  
+                <h2>Send Offer</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="send-offer" class="md-margin md-padding">
+                    <div layout="row" layout-xs="column">
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>To</label>
+                                <input type="text" class="input" id="to" ng-model="offer.to" ng-blur="checkEmail(offer.to,$event)">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row" layout-xs="column">
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>Subject</label>
+                                <input id="subject" type="text" ng-model="offer.subject">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row" layout-xs="column">
+                        <div flex>
+                            <label class="md-title">Message to buyer</label><br><br>
+                            <textarea id="messageToBuyer" ui-tinymce="tinymceOptions" ng-model="offer.messages_text"></textarea>
+                        </div>
+                    </div>
+                    <div layout="row" flex layout-margin layout-xs="column">
+                        <!-- <div flex>
+                            <label class="md-caption send-offer-p">Supplier Offer</label>
+                            <p class="md-body-1">{[{offer.supplier_offer_number ? offer.supplier_offer_number : 'NA'}]}</p>
+                        </div> -->
+                        <div flex>
+                            <label class="md-caption send-offer-p">Offer Number</label>
+                            <p class="md-body-1"> {[{offer.offer_number ? offer.offer_number : 'NA'}]} {[{offer.revision_number ?
+                                ('Rev: '+offer.revision_number) : ''}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Date</label>
+                            <p class="md-body-1">{[{offer.created_date ? offer.created_date : 'NA'}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Validity</label>
+                            <p class="md-body-1"> {[{offer.expiry_date ? offer.expiry_date : 'NA'}]}</p>
+                        </div>
+                    </div>
+                    <div layout-margin ng-if="offer.description" layout-xs="column">
+                        <label class="md-caption send-offer-p">Offer Details </label><br>
+                        <p class="md-body-1" ng-bind-html="offer.description"></p>
+                    </div>
+                    <div layout="row" flex layout-margin layout-xs="column">
+                        <div flex>
+                            <label class="md-caption send-offer-p">Attachments</label>
+                            <p ng-if="!offer.attachments.length" class="send-offer-p">NA</p>
+                            <p ng-repeat="image in offer.attachments" class="send-offer-p">
+                                <a href="{[{image}]}" target="_blank">{[{image.split('/').pop()}]}</a>
+                            </p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Remarks</label>
+                            <p class="md-body-1"> {[{offer.remarks ? offer.remarks : 'NA'}]} {[{offer.revision_number ? ('Rev:
+                                '+offer.revision_number) : ''}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Offer Created By</label>
+                            <p class="md-body-1"> {[{offer.owner.first_name}]}  {[{offer.owner.last_name}]}</p>
+                        </div>
+                    </div>
+                    <div layout="row" flex layout-margin layout-xs="column">
+                        <div flex>
+                            <label class="md-caption send-offer-p">Customer</label>
+                            <p class="md-body-1" ng-if="offer.enquiry">{[{offer.customer ? offer.customer : 'NA'}]}</p>
+                            <p class="md-body-1" ng-if="offer.project">{[{offer.project.customer ? offer.project.customer.name : 'NA'}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Project</label>
+                            <p class="md-body-1" ng-if="offer.enquiry">{[{offer.parent_project ? offer.parent_project:'NA'}]}</p>
+                            <p class="md-body-1">{[{offer.project.name ? offer.project.name:'NA'}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Enquiry Type</label>
+                            <p class="md-body-1">{[{offer.project_type ? offer.project_type : 'NA'}]}</p>
+                        </div>
+                    </div>
+                    <div layout="row" flex layout-margin layout-xs="column">
+                        <div flex>
+                            <label class="md-caption send-offer-p">Enquiry Number</label>
+                            <p class="md-body-1"> {[{offer.enquiry_number ? offer.enquiry_number : 'NA'}]} {[{offer.revision_number
+                                ? ('Rev: '+offer.revision_number) : ''}]}</p>
+                        </div>
+                        <div flex>
+                            <label class="md-caption send-offer-p">Enquiry Date</label>
+                            <p class="md-body-1"> {[{offer.project.due_date ? offer.project.due_date : 'NA'}]} </p>
+                        </div>
+                        <div flex></div>
+                    </div>
+                    <div layout-margin ng-if="offer.message" layout-xs="column">
+                        <label class="md-caption send-offer-p">Message</label><br>
+                        <p class="md-body-1" ng-bind-html="offer.message"></p>
+                    </div>
+                </form>
+            </div>
+                        
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" id="send-offer"  ng-disabled="disable" ng-style="{ 'opacity' : (disable) ? '0.25' : '' }" ng-click="sendOffer(offer,messages_text)">
+                send offer
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>
+
+

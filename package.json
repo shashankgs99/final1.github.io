@@ -1,0 +1,88 @@
+{
+  "name": "foundation-zurb-template",
+  "version": "1.0.0",
+  "description": "Official ZURB Template for Foundation for Sites.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "start-local-compressed": "gulp --production",
+    "build": "gulp build --production",
+    "serve-on-aws": "node ./express/bin/www",
+    "deploy-to-aws-production": "gulp deploy --production",
+    "deploy-to-aws-staging": "gulp deploy --staging"
+  },
+  "author": "ZURB <foundation@zurb.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.7.2",
+    "body-parser": "^1.19.0",
+    "browser-sync": "^2.26.10",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.6.0",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-cli": "^1.2.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-extname": "^0.2.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-print": "^2.0.1",
+    "gulp-prompt": "^0.2.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-responsive": "^2.7.0",
+    "gulp-rsync": "0.0.9",
+    "gulp-sass": "^2.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-sitemap": "^4.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-ssh": "^0.7.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-uncss": "^1.0.1",
+    "gulp-util": "^3.0.8",
+    "handsontable": "^0.35.0",
+    "hbs": "^4.1.1",
+    "js-yaml": "^3.14.0",
+    "minimist": "^1.2.5",
+    "morgan": "^1.10.0",
+    "panini": "^1.7.0",
+    "rimraf": "^2.4.3",
+    "serve-favicon": "^2.4.5",
+    "sharp": "^0.17.2",
+    "style-sherpa": "^1.0.0",
+    "yargs": "^3.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zurb/foundation-zurb-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zurb/foundation-sites/issues",
+    "email": "foundation@zurb.com"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "angular-ui-grid": "^4.8.3",
+    "bower": "^1.8.8",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.6.0",
+    "forever": "^0.15.3",
+    "handlebars": "^4.7.6",
+    "node-sass": "^4.14.1",
+    "prerender-node": "^3.2.5",
+    "request": "^2.83.0",
+    "rimraf": "^2.4.3",
+    "sendgrid": "^5.2.3",
+    "serve-favicon": "^2.4.5"
+  }
+}

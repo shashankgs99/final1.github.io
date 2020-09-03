@@ -1,0 +1,1 @@
+"use strict";!function(){var app=angular.module("app");app.controller("annexure.two",["$scope","$window","$log","$state","$http","$mdDialog",function($scope,$log,$window,$state,$http,$mdDialog){$scope.cancel=function(){$mdDialog.cancel()}}])}();

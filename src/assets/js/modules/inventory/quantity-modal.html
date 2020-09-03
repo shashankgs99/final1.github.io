@@ -1,0 +1,35 @@
+<script type="text/ng-template" id="quantityPercent.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4 class="margin-0">Select quantity to show</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container">
+                    <form>
+                        <p>Please select how much <b>percentage</b> of available quantity should be visible to public.</p> 
+                        <p>Min: 0 and Max: 100</p>
+                        <input type="number" ng-model="quantityToShow">
+                        <p ng-if="error" class="qunatity-error">{[{error}]}</p>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button class="button4" ng-click="ok(quantityToShow)">Ok</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script>

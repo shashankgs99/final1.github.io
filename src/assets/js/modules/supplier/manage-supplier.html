@@ -1,0 +1,187 @@
+<div layout="column" layout-align="start center">
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" class="main-card" flex class="md-padding md-margin" ng-controller="layout.standard.filtersController">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Manage Suppliers
+                    </div>
+                    <span>
+                        <md-button class="md-icon-button" ng-click="SupplierFilters(filter)">
+                            <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="clear()">
+                            <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close</md-icon>
+                        </md-button>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column" layout-margin>
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Categories</label>
+                            <md-select ng-model="filter.category" ng-change="findSubCategory(filter.category)">
+                                <md-option ng-repeat="category in parentCategories track by $index" ng-value="category">
+                                    {[{category}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Sub-Categories</label>
+                            <md-select ng-model="filter.subcategory" ng-change="findSecondaryCategory(filter.subcategory)">
+                                <md-option ng-repeat="subcategory in supplierSubCategries track by $index" ng-value="subcategory">
+                                    {[{subcategory.subCategory}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Secondary Sub Category</label>
+                            <md-select ng-model="filter.secondaryCategory" ng-change="findTertiaryCategory(filter.secondaryCategory)">
+                                <md-option ng-repeat="category in supplierSecondaryCategories" ng-value="category">
+                                    {[{category}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Teritary Sub Category</label>
+                            <md-select ng-model="filter.tertiaryCategory">
+                                <md-option ng-repeat="category in supplierTertiaryCategories" ng-value="category">
+                                    {[{category}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="margin-l-18">
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Search By Name</label>
+                            <input type="text" ng-model="filter.name">
+                        </md-input-container>
+                    </div>
+                    <div flex></div>
+                    <div flex></div>
+                    <div flex></div>
+                </div>
+            </div>
+
+        </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+        <div layout="row" layout-align="end end" class="margin-top-2">
+            <div flex>
+                <!-- <md-checkbox ng-model="item.checked">Select all</md-checkbox> -->
+            </div>
+            <md-menu-bar>
+                <md-menu>
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
+                        <md-icon class="material-icons managecustomericon" title="Add">add</md-icon>
+                    </md-button>
+                    <md-menu-content width="2.5">
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addSupplier()">Add Supplier</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addMultiple(table_changes)">Add Multiple Suppliers</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addContacts()">Add Contacts</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addCategories()">Add Categories</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            <md-button class="md-icon-button" ng-click="editSupplier(suppliers)">
+                <md-icon class="material-icons managecustomericon" title="Edit">edit</md-icon>
+            </md-button>
+            <md-menu-bar>
+                <md-menu>
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
+                        <md-icon class="material-icons managecustomericon" title="View">visibility</md-icon>
+                    </md-button>
+                    <md-menu-content width="2.5">
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewCompany(suppliers)">View Supplier</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewOffers(suppliers)">View Offers</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewContacts(suppliers)">View Contacts</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewCategories(suppliers)">View Categories</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+                <md-button class="md-icon-button" ng-click="deleteSupplier(suppliers)">
+                <md-icon class="material-icons managecustomericon color-red" title="Delete Supplier">delete</md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>
+</div>
+<div layout="column" layout-align="start center" class="md-margin md-padding">
+    <div class="margin-r-55">Total
+        <b>{[{count}]}</b> records</div>
+    <div layout="column" class="list-cards" flex ng-repeat="supplier in suppliersList" track by $index>
+        <div layout="row">
+            <md-checkbox ng-model="supplier.selected" ng-change="selectedValue(supplier,$index,supplier.selected)"></md-checkbox>
+            <div layout="column" flex>
+                <md-card md-theme-watch ng-click="viewCompanyDetails(supplier)">
+                    <md-card-content>
+                        <div layout="row" layout-xs="column">
+                            <div layout="column" flex layout-margin layout-gt-xs="row">
+                                <div flex>
+                                    <label class="md-caption">Company</label>
+                                    <p class="md-body-1">{[{ supplier.name }]}
+                                    </p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Categories (Products)</label>
+                                    <p class="md-body-1" ng-if="supplier.categories[0].id">{[{supplier.categories[0].category_id}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Contacts</label>
+                                    <p class="md-body-1">{[{supplier.contacts[0].firstname}]} {[{supplier.contacts[0].lastname}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">City</label>
+                                    <p class="md-body-1">{[{supplier.addresses[0].cityname}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">State</label>
+                                    <p class="md-body-1">{[{supplier.addresses[0].state}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Country</label>
+                                    <p class="md-body-1">{[{supplier.addresses[0].country}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-align="center center">
+    <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)" boundary-links="true">
+    </pagination>
+</div>

@@ -1,0 +1,20 @@
+.fullscreen-image{
+    padding: 0;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    overflow: auto;
+    //background url & height (defaults to 100%) defined at the element
+    //style="background-image: url(http://placehold.it/600x800);height:800px"
+    //Ideally height should not be defined since the content can be padded
+    height: 100%;
+    &.make-dark{
+        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
+    }
+    &.make-primary-dark{
+        box-shadow: inset 0 0 0 1000px rgba(0,79,138,.6);
+    }
+    &.make-light-dark{
+        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+    }
+}

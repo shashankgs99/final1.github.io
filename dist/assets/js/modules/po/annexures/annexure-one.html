@@ -1,0 +1,69 @@
+<md-dialog aria-label="Item Details-Annexure-I" flex-gt-xs="75" flex-gt-sm="70">
+    <form ng-cloak name="annexureOneForm" ng-submit="annexureOneForm.$valid && submit(annexureOne)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Annexure-I</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                    <div flex="40">
+                        <md-input-container class="md-block">
+                            <label>Purchase Request</label>
+                            <md-select ng-model="offer.mtoproject" ng-change="subProjectFilter(project)">
+                                <md-option ng-repeat="purchaseRequest in purchaseRequest" ng-value="project">
+                                    {[{purchaseRequest.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex="20"></div>
+                    <div flex="20">
+                        <i class="fa fa-eye annexure-view" ng-click="ViewInfo(event,$index)"></i>
+                    </div>
+                    <div flex="20">
+                        <md-button type="submit" name="itemDetails" class="md-primary md-raised cr-md-primary" ng-click="itemDetails()">
+                            Item details
+                        </md-button>
+                    </div>
+                </div>
+                <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                    <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                        <div flex="40">
+                            <md-input-container class="md-block" flex-gt-sm="">
+                                <label class="md-caption">Item</label>
+                                <input type="text" required ng-model="item">
+                            </md-input-container>
+                        </div>
+                        <div flex="20"></div>
+                        <div flex="20"></div>
+                        <div flex="20"></div>
+                    </div>
+                </div>
+                <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                    <div layout-margin flex layout-xs>
+                        <div class="md-cr-input-block">
+                            <md-checkbox label="select All">
+                                Select all
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

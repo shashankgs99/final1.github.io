@@ -1,0 +1,104 @@
+<div ng-if="categoryDataLoaded">
+    <div handsontable-base api-service="InventoryService" read-only="true" exclude-fields="messages,shortlist,category,owner,unit_price,currency,a_b_c,dimension_a,unit_a,unit_b,dimension_b,unit_c,dimension_c,supplier,industry,manufacturer,status,created_date,updated_date,country,state,material,grade,standard,total_quantity,quantity_sold,available_quantity,unit_of_measure"
+        include-fields='{"name":"shortlist","type":"BooleanField","forced_write":true}' params='{[{params}]}' grid-options='{[{gridOptions}]}'
+        filter-type="inventory" height='500'>
+    </div>
+</div>
+<button class="button4" ng-click="open('large', message)">Send Enquiry</button>
+
+<script type="text/ng-template" id="popup.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h6 class="margin-0">Send Enquiry</h6>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div ng-if="!inventoryArr.length" class="col-md-12 padding-15 supplier-details-container">
+                    <h6 class="margin-0">Please select minimum one product to send enquiry</h6>
+                </div>
+                <div ng-if="inventoryArr.length" class="col-md-12 padding-15 supplier-details-container">
+                    <form>
+                        <div class="row" ng-show="showEmail">
+                            <div class="col-md-3">
+                                <label> Sender Email</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" placeholder="Sender Email" ng-model="sender_email">
+                            </div>
+                        </div>  <br />
+                        <div class="row" ng-show="showMobile">
+                            <div class="col-md-3">
+                                <label>Contact Number</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" placeholder="Sender Mobile"  ng-model="sender_mobile">
+    
+                            </div>
+                        </div>
+                        <div ng-repeat="item in inventoryArr" track by $index> 
+                            <h5>Message for {[{ item.inventories[0].supplier }]}</h5>
+                            <textarea id="mytextarea"+{[{$index}]} ui-tinymce="tinymceOptions" ng-model="item.message"></textarea><br>
+                        </div> 
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button ng-class="{dActiveButton:!inventoryArr.length, activeButton:inventoryArr.length}" class="button4" ng-click="SelectedRows(sender_email,sender_mobile,inventoryArr)">Send</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="col-md-12 modal-container download-attachments">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h6 class="margin-0">Download files</h6>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body padding-15">
+                <div class="col-md-12">
+                    <div class="col-md-8">
+                        <div class="col-md-12 padding-15" ng-repeat="filename in attachmentNames">
+                            <p>Download "{[{filename}]}"</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <div class="col-md-12 padding-t-b-15" ng-repeat="attachment in attachments track by $index">
+                                <a class="button" href="{[{attachment}]}" target="_blank" download>Download file</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear-fix"></div>
+            </div><!--  modal-body -->
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <a class="" ng-click="ok()">CLOSE</a>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+
+        <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</script>

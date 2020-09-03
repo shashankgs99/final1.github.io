@@ -1,0 +1,91 @@
+<div layout="row" class="md-padding md-margin">
+        <div layout="column" flex="80">
+                <div layout="row">
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Categories</label>
+                                        <md-select ng-model="filter.category" ng-change="findSubCategory(filter.category)">
+                                                <md-option ng-repeat="category in parentCategories track by $index" ng-value="category">
+                                                        {[{category}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Sub-Categories</label>
+                                        <md-select ng-model="filter.subcategory" ng-change="findSecondaryCategory(filter.subcategory)">
+                                                <md-option ng-repeat="subcategory in supplierSubCategries track by $index" ng-value="subcategory">
+                                                        {[{subcategory.subCategory}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Secondary Sub Category</label>
+                                        <md-select ng-model="filter.secondaryCategory" ng-change="findTertiaryCategory(filter.secondaryCategory)">
+                                                <md-option ng-repeat="category in supplierSecondaryCategories" ng-value="category">
+                                                        {[{category}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Teritary Sub Category</label>
+                                        <md-select ng-model="filter.tertiaryCategory">
+                                                <md-option ng-repeat="category in supplierTertiaryCategories" ng-value="category">
+                                                        {[{category}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                </div>
+                <div layout="row" class="adjust-row">
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label class="md-caption">Search By Name</label>
+                                        <input type="text" ng-model="filter.name">
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Country</label>
+                                        <md-select ng-model="filter.country" ng-change="findStates(filter.country)">
+                                                <md-option ng-repeat="country in totalCountries" ng-value="country">
+                                                        {[{country}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>State</label>
+                                        <md-select ng-model="filter.state" ng-change="findCities(filter.state)">
+                                                <md-option ng-repeat="state in supplierStates" ng-value="state">
+                                                        {[{state.state}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                        <label>Cities</label>
+                                        <md-select ng-model="filter.cities">
+                                                <md-option ng-repeat="city in supplierCities" ng-value="city">
+                                                        {[{city}]}
+                                                </md-option>
+                                        </md-select>
+                                </md-input-container>
+                        </div>
+
+                </div>
+        </div>
+        <div layout="column" flex="20">
+                <div layout="row" layout-align="end end">
+                        <md-button class="md-raised md-primary" id="apply-filters" ng-click="SupplierFilters(filter)">Apply Filters</md-button>
+                        <md-button class="md-raised md-primary" ng-click="clear()">Clear</md-button>
+                </div>
+        </div>
+</div>

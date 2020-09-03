@@ -1,0 +1,73 @@
+<div layout="column" layout-align="start center" class="md-padding md-margin" ng-cloak>
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" class="main-card" flex>
+        <md-card-content class="md-margin md-padding">
+            <div layout="column" class="md-margin md-padding margin-l-18">
+                <div layout="row" flex layout-margin layout-xs="column">
+                    <div flex>
+                        <label class="md-caption">Payment Request#</label>
+                        <p class="md-body-1">
+                            <p class="md-body-1" ng-bind="paymentData.internal_reference_number"></p>
+                        </p>
+                    </div>
+                    <div flex></div>
+                    <div flex>
+                        <label class="md-caption">Document Reference</label>
+                        <p class="md-body-1" ng-bind="paymentData.document_reference"></p>
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" flex layout-margin layout-xs="column">
+                    <div flex>
+                        <label class="md-caption">Document Date</label>
+                        <p class="md-body-1" ng-bind="paymentData.document_date"></p>
+                    </div>
+                    <div flex></div>
+                    <div flex>
+                        <label class="md-caption">Milestone Number</label>
+                        <p class="md-body-1">
+                            {[{paymentData.milestone_number.installment_number+","+paymentData.milestone_number.type+"="+paymentData.milestone_number.percentage+"%"}]}
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" flex layout-margin layout-xs="column">
+                    <div flex>
+                        <label class="md-caption">Milestone Date</label>
+                        <p class="md-body-1" ng-bind="paymentData.milestone_date"></p>
+                    </div>
+                    <div flex></div>
+                    <div flex>
+                        <label class="md-caption">Receipt Date</label>
+                        <p class="md-body-1">{[{paymentData.receipt_date}]}</p>
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" flex layout-margin layout-xs="column">
+                    <div flex>
+                        <label class="md-caption">Created By</label>
+                        <p class="md-body-1">{[{paymentData.owner.first_name+" "+paymentData.owner.last_name}]}</p>
+                    </div>
+                    <div flex></div>
+                    <div flex>
+
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" flex layout-margin layout-xs="column">
+                    <div flex>
+                        <label class="md-caption">Description</label>
+                        <p class="md-body-1">{[{paymentData.description}]}</p>
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+    </div>
+    <div flex>
+            <div id="grn-items-grid" ui-grid="grnGridOptions" class="grid" ui-grid-edit flex flex-xs="100"></div>
+    </div>
+</div>

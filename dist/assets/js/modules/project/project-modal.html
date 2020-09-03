@@ -1,0 +1,22 @@
+<md-dialog flex-gt-sm="60">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Create {[{title}]}</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div ng-include="'assets/js/modules/project/create-project/create-project.html'"></div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancelProjectInternal()">
+                Cancel
+            </md-button>
+            <md-button type="submit"  ng-click="saveProject(project,projectForm.$valid)">
+                save
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>

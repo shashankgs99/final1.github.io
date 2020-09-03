@@ -1,0 +1,1 @@
+"use strict";!function(){var app=angular.module("app");app.config(["$stateProvider",function($stateProvider){}])}();

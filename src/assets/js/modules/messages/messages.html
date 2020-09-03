@@ -1,0 +1,231 @@
+<div class="container messages-section general-form padding-15 margin-t-15">
+    <div class="content-body padding-15">
+        <div class="col-md-12">
+            <div class="tab">
+                <button ng-if="current_user.data.is_admin_supplier" id="received-messages" class="tablinks" ng-class="{active:isSet(1)}" ng-click="setTab(1)">
+                    <a>RECEIVED MESSAGES</a>
+                </button>
+                <button class="tablinks" ng-class="{active:isSet(2)}" id="sent-messages" ng-click="setTab(2)">
+                    <a>SENT MESSAGES</a>
+                </button>
+            </div>
+            <!-- RECEIVED MESSAGES -->
+            <div class="tabcontent padding-15" ng-show="isSet(1)">
+                <div ng-if="current_user.data.is_admin_supplier" ng-click="open('large', message)" class="col-md-12 list-item" ng-repeat="message in messagesData">
+                    <div class="col-md-12 item-details padding-15">
+                        <div class="col-md-12">
+                            <div class="col-md-12 name-block" ng-if="message.sender.first_name">
+                                <div class="col-md-12">
+                                    <label>Sender Name</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p> {[{message.sender.first_name}]} {[{message.sender.last_name}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                                <div class="col-md-4 mobile-block" 
+                                ng-if="message.sender_mobile || message.sender.contact_no">
+                               <div class="col-md-12">
+                                   <label>Sender Mobile</label>
+                               </div>
+                               <div class="col-md-12">
+                                   <p ng-if="message.sender.contact_no">{[{message.sender.country_code}]}-{[{message.sender_mobile || message.sender.contact_no}]}</p>
+                               </div>
+                           </div>
+                            <div class="col-md-4 email-block flex-50" 
+                                 ng-if="message.sender_email || message.sender.email">
+                                <div class="col-md-12">
+                                    <label>Sender Email</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p> {[{message.sender_email || message.sender.email}]} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 message-block">
+                            <div class="col-md-12">
+                                <label>Sender Message</label>
+                            </div>
+                            <div class="col-md-12 message-det">
+                                <div ng-bind-html="message.message"></div>
+                            </div>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </div>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <!-- SENT MESSAGES -->
+            <div class="tabcontent padding-15" ng-show="isSet(2)">
+                <div ng-click="open('large', message, '2')" class="col-md-12 list-item" ng-repeat="message in sentMessagesData">
+                    <div class="col-md-12 item-details padding-15">
+                        <div class="col-md-12">
+                            <!-- <div class="col-md-4 email-block">
+                                <div class="col-md-12">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p> {[{message.sender_email}]} </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mobile-block" ng-if="message.sender_mobile">
+                                <div class="col-md-12">
+                                    <label>Mobile</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>{[{message.sender_mobile}]}</p>
+                                </div>
+                            </div> -->
+
+                            <div class="col-md-4 supplier-name-block">
+                                <div class="col-md-12">
+                                    <label>Supplier</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>{[{message.supplier_company.company_name}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 message-block">
+                            <div class="col-md-12">
+                                <label>Message</label>
+                            </div>
+                            <div class="col-md-12 message-det">
+                                <div ng-bind-html="message.message"></div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12 message-block">
+                            <div class="col-md-12">
+                                <label>Attachment</label>
+                            </div>
+                            <div class="col-md-12 message-det">
+                                <a ng-href="message.attachments" download>Download attachment</a>
+                            </div>
+                        </div> -->
+                        <div ng-if="message.attachments[0]" class="col-md-12 readmore-block">
+                            <a title="Readmore"> <i class="fa fa-eye"></i> Read more</a>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </div>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+<script type="text/ng-template" id="popup.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4>Message Details</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container">
+                    <!-- <div class="col-md-12">
+                            <div class="col-md-4 email-block" 
+                                 ng-if="message.sender_email || message.sender.email">
+                                <div class="col-md-12">
+                                    <label>Sender Email</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p> {[{message.sender_email || message.sender.email}]} </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mobile-block" 
+                                 ng-if="message.sender_mobile || message.sender.contact_no">
+                                <div class="col-md-12">
+                                    <label>Sender Mobile</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <p ng-if="message.sender.contact_no">{[{message.sender.country_code}]}-{[{message.sender_mobile || message.sender.contact_no}]}</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    <div class="row">   
+                            <div class="col-md-12 detail-group column" ng-hide="secondTab">
+                                <div class="col-md-12">
+                                    <label ng-bind="selectedMessage.sender.first_name?'Sender Name':'Name'"></label>
+                                    <!-- {[{message.sender.first_name}]} {[{message.sender.last_name}]} -->
+                                </div>
+                                <div class="col-md-12">
+                                    <h6>{[{selectedMessage.first_name || selectedMessage.sender.first_name}]} {[{selectedMessage.last_name || selectedMessage.sender.last_name}]}</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-12 detail-group column" ng-hide="secondTab">
+                                <div class="col-md-12">
+                                    <label ng-bind="selectedMessage.sender.contact_no?'Sender Mobile':'Mobile'"></label>
+                                </div>
+                                <div class="col-md-12">
+                                        <h6>{[{selectedMessage.sender_mobile || selectedMessage.sender.contact_no}]}<h6>
+                                </div>
+                            </div>
+                    </div>    
+                    <div class="col-md-12 detail-group" ng-hide="secondTab">    
+                            <!-- <div > -->
+                                <div class="col-md-12">
+                                    <label ng-bind="selectedMessage.sender.email?'Sender Email':'Email'"></label>
+                                </div>
+                                <div class="col-md-12">
+                                        <h6>{[{selectedMessage.sender_email || selectedMessage.sender.email}]}<h6>
+                                </div>
+                            <!-- </div> -->
+                        </div>       
+                    <div class="col-md-12 detail-group" ng-hide="!secondTab">
+                        <div class="col-md-12"> <label>Supplier</label> </div>
+                        <div class="col-md-12"> <p>{[{selectedMessage.supplier_company.company_name}]}</p> </div>
+                    </div>
+                    <br/>
+                        <div class="col-md-12 detail-group" ng-if="!multipleProducts">
+                           <div class="col-md-12"> 
+                           <label>Item Details</label> </div>
+                           <p> Title : {[{ itemData.title }]}</p>
+                           <p> Description : {[{itemData.description }]}</p>
+                           <p> Category : {[{ itemData.category.category_id }]}</p>
+                           </h6>
+                        </div>
+                        <div class="col-md-12 detail-group" ng-if="multipleProducts" ng-repeat="itemData in itemData">
+                            <div class="col-md-12"> 
+                            <label>Item Details</label> </div>
+                            <p> Title : {[{ itemData.title }]}</p>
+                            <p> Description : {[{itemData.description }]}</p>
+                            <p> Category : {[{ itemData.category.category_id }]}</p>
+                            </h6>
+                         </div>
+                    <div class="col-md-12 detail-group">
+                        <div class="col-md-12">
+                            <label>Message</label>
+                        </div>
+                        <div class="col-md-12 overflow-auto">
+                            <div ng-bind-html="selectedMessage.message"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 detail-group general-form" ng-if="selectedMessage.attachments.length">
+                        <div class="col-md-12">
+                            <label>Attachment</label>
+                        </div>
+                        <div class="col-md-12 message-det attachments">
+                            <a href="{[{selectedMessage.attachments[0]}]}" ng-repeat="attachmentName in selectedMessage.attachments" target="_blank" download>
+                                {[{attachmentName}]}<br/>
+                            </a>
+                        </div> 
+                    </div>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="modal-footerr padding-15">
+                <button class="button5" ng-click="ok()">OK</button>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</script>

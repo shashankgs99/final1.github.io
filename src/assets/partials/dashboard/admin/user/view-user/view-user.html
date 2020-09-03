@@ -1,0 +1,238 @@
+<div class="container manage-company-section general-form padding-15 margin-t-15 overflow-h">
+    <!-- <div class="col-md-12 action-menu user-layout">
+        <div class="row">
+            <a ng-click="editUser(userData)">
+                <button class="button3" id="edit-user">
+                    Edit User
+                </button>
+            </a>
+         
+            <a ng-click="cancel()">
+                <button class="button3" id="edit-company-details">
+                    Cancel
+                </button>
+            </a>
+        </div>
+        <div class="clear-fix"></div>
+    </div> -->
+    <div layout="column">
+        <div layout="row" layout-align="end">
+                <md-button class="md-raised md-primary" ng-click="editUser(userData)">Edit User</md-button>
+                <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="content-body padding-15">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">First Name</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{userData.first_name ? userData.first_name:'NA'}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Last Name</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{userData.last_name ? userData.last_name:'NA'}]}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Contact Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{ userData.contact_country ? userData.contact_country : ''}]} {[{ userData.contact_no ? userData.contact_no
+                            : 'NA'}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Email_ID</label>
+                    </div>
+                    <div class="col-md-12 offer-remarks">
+                        <p class="label-r">{[{userData.email ? userData.email: 'NA'}]}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Location</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{userData.location_city}]} {[{userData.location_country ? userData.location_country :'NA'}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Role</label>
+                    </div>
+                    <!-- <div class="col-md-12">
+                                <p class="label-r">{[{userData.role_type.role_type_name ? role_type.role_type_name: 'NA'}]}</p>
+                            </div> -->
+                    <div class="col-md-12 roles">
+                        <p ng-if="userData.role_type.length" ng-repeat="item in userData.role_type">
+                            {[{$index===0?item.role_type_name:', '+item.role_type_name}]}
+                        </p>
+                        <p ng-if="!userData.role_type.length">
+                            N/A
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15">
+        <div class="col-md-12">
+            <h5>Company Information</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Company Name</label>
+                    </div>
+                    <div class="col-md-12">
+                       <!-- <a ng-href="{[{userCompany(userData.company)}]}"
+                       target="_blank"
+                       ng-bind="userData.company.company_name?userData.company.company_name:'NA'"
+                       ng-class="{noAnchor: anchortag == 'disableAnchortag'}">
+                       </a> -->
+                     <a  ng-click="viewCompanyPage(userData.company)" ng-bind="userData.company.company_name"></a> 
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Company Size</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{userData.company.company_type? userData.company.company_type :'NA'}]}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Year of Establishment</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{userData.company.establishment_year? userData.company.establishment_year :'NA'}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Establishment_Type</label>
+                    </div>
+                    <!-- <div class="col-md-12 roles">
+                        <p ng-if="companyData.role_type.length" ng-repeat="item in companyData.role_type">
+                            {[{$index===0?item.label:', '+item.label}]}
+                        </p>
+                        <p ng-if="!companyData.role_type.length">
+                            N/A
+                        </p>
+                    </div> -->
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{userData.company.establishment_type?userData.company.establishment_type:'NA'}]}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Web Site</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{userData.company.website?userData.company.website:'NA'}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">&nbsp
+
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15">
+        <div class="col-md-12">
+            <h5>User Access</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="superuser">Is_Superuser</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="userData.is_superuser">Yes</p>
+                        <p ng-if="!userData.is_superuser">No</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="adminSupplier">Is_Admin_Supplier</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="userData.is_admin_supplier">Yes</p>
+                        <p ng-if="!userData.is_admin_supplier">No</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="buyer">Is_Buyer</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="userData.is_buyer">Yes</p>
+                        <p ng-if="!userData.is_buyer">No</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="seller">Is_Seller</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="userData.is_seller">Yes</p>
+                        <p ng-if="!userData.is_seller">No</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="staff">Is_Staff</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="userData.is_staff">Yes</p>
+                        <p ng-if="!userData.is_staff">No</p>
+                    </div>
+                </div>
+                <div class="col-md-6">&nbsp
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15" ng-click="viewUserProducts(userData)">
+        <div class="col-md-12">
+            <div class="row user-button">Products Uploaded By User </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="clear-fix"></div>
+</div>

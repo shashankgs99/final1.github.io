@@ -1,0 +1,150 @@
+<div layout="column" layout-align="start center">
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" flex class="md-padding md-margin main-card" ng-if="showTable == 'listTable'">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Inventory List<md-button ng-click="toHelp()">
+                                          <md-icon class="material-icons fa fa-info-circle help-icon"></md-icon>
+                                      </md-button>
+                    </div>
+                    <span layout-xs="column">
+                        <div layout-xs="row" layout-align-xs="end">
+                            <md-button class="md-icon-button" ng-click="applyFilters(filter)">
+                                <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list
+                                </md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="clear()">
+                                <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">
+                                    close</md-icon>
+                            </md-button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Project</label>
+                            <md-select ng-model="filter.projectId">
+                                <md-option ng-repeat="project in projectList" ng-value="project.id">
+                                    {[{project.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>PO</label>
+                            <md-select ng-model="filter.poId" ng-change="filterGrn(filter.poId)">
+                                <md-option ng-repeat="po in POList" ng-value="po.id">
+                                    {[{po.po_number}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>GRN</label>
+                            <md-select ng-model="filter.grnId">
+                                <md-option ng-repeat="grn in grnList" ng-value="grn.id">
+                                    {[{grn.internal_reference_number}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+    </div>
+</div>
+<div layout="column" layout-align="start center">
+    <md-content class="md-padding md-margin main-card">
+        <div layout="row" layout-xs="column">
+            <div flex="70" flex-xs="100">
+                <md-button class="md-icon-button" ng-click="back()" ng-if="showTable != 'listTable'">
+                    <md-icon class="material-icons managecustomericon" title="Back to list">keyboard_backspace
+                    </md-icon>
+                </md-button>
+            </div>
+            <span flex flex-xs="100">
+                <div layout-xs="row" layout-align-xs="end">
+                    <md-button ng-click="itemDetails()" ng-if="showTable == 'listTable' && UiGridOptions.data.length"
+                        class="md-raised md-primary">
+                        Item Details
+                    </md-button>
+                </div>
+            </span>
+        </div>
+        <div ng-switch="showTable" layout-margin>
+            <div ng-switch-when="listTable">
+                <div layout="column" layout-align="center center">
+                    <div id="inventory-items-grid" ui-grid="UiGridOptions" class="grid inventory-grid" flex flex-xs="100"></div>
+                </div>
+            </div>
+            <div ng-switch-when="itemDetailTable">
+                <div layout="column" layout-align="start center">
+                    <div layout="column"  flex class="md-padding md-margin items-table">
+                        <div layout="row" flex>
+                            <div id="inventory-items1-grid" ui-grid="itemDetails1" class="grid items-grid" flex flex-xs="100"></div>
+                        </div>
+                        <div layout="row" class="margin-top-2">
+                            <div id="inventory-items2-grid" ui-grid="itemDetails2" class="grid items-grid" flex flex-xs="100"></div>
+                        </div>
+                        <div layout="row" ng-if="order.id" class="margin-top-2 margin-l-5" layout-xs="column">
+                            <div flex flex-xs="100" layout-xs="row">
+                                <p class="md-title"> PO #{[{order.po_number}]} Dated
+                                    {[{order.po_date}]}</p>
+                            </div>
+                            <div flex class="text-align-center" flex-xs="100" layout-xs="row">
+                                <p class="md-title">
+                                    Item#{[{(stockInfo[0].po_item.item_number.split("-").pop()).split("_").pop()}]}
+                                </p>
+                            </div>
+                            <div flex class="text-align-center" flex-xs="100" layout-xs="row">
+                                <p class="md-title"> Supplier:{[{order.supplier_name}]}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div layout="column" layout-align="start center">
+                                <div layout="column" class="items-table" flex>
+                                    <md-tabs md-dynamic-height md-border-bottom layout-margin md-center-tabs="true" flex flex-xs="100">
+                                        <md-tab label="GRN Info">
+                                            <md-content class="md-padding md-margin">
+                                                <div layout="column" layout-align="start center">
+                                                    <div id="grn-grid" ui-grid="grnGridOptions" class="grid grn-grid" flex flex-xs="100">
+                                                    </div>
+                                                </div>
+                                            </md-content>
+                                        </md-tab>
+                                        <md-tab label="Locations">
+                                            <md-content class="md-padding md-margin">
+                                                <div layout="column" layout-align="start center">
+                                                    <div id="location-grid" ui-grid="locationGridOptions" class="grid location-grid" flex flex-xs="100">                                                    </div>
+                                                </div>
+                                            </md-content>
+                                        </md-tab>
+                                        <md-tab label="MR">
+                                            <md-content>
+                                                <div id="MR-grid" ui-grid="mrGridOptions" class="grid mr-grid" flex flex-xs="100">
+                                                </div>
+                                            </md-content>
+                                        </md-tab>
+                                    </md-tabs>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>
+

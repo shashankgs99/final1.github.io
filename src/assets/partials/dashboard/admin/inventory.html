@@ -1,0 +1,54 @@
+<div class="row column align-center expanded padding-l-r-40 padding-xs-15">
+  <h3 class="margin-top-1 margin-bottom-1">Manage Inventories & Rental</h3>
+  <div class="primary-line margin-bottom-2 margin-0"></div>
+  <div ng-if="isCategoryLoaded">
+    <div ng-controller="layout.standard.filtersController" ng-include="'assets/js/modules/filters/inventory-filters.html'"></div>
+    <div class="clear-fix"></div>
+
+    <div layout="row" flex layout-align="end end" layout-xs="column">
+      <md-checkbox ng-model="selectAll" ng-click="checkAll(selectAll)">Select All</md-checkbox>
+      <span flex></span>
+      <md-button class="md-raised md-primary" ng-click="addInventory()">Add Inventory</md-button>
+      <md-button class="md-raised md-primary" ng-click="addInventories()">Add Multiple Inventories</md-button>
+      <md-button class="md-raised md-primary" ng-click="editInventory(table_changes)">Edit Details</md-button>
+      <md-button class="md-raised md-primary" ng-click="viewInventory(table_changes)">View Details</md-button>
+      <md-button class="md-raised md-primary" ng-click="openModal(table_changes, table_deletes, data,'quantity')">Manage Quantity</md-button>
+      <md-button class="md-raised md-primary" ng-click="openModal(table_changes, table_deletes, data, 'managePrice')">Manage Price</md-button>
+      <md-button class="md-raised md-primary" ng-click="openModal(table_changes, table_deletes, data,'manageItem')">Manage Item</md-button>
+      <md-button class="md-raised md-primary" ng-click="openModal(table_changes, table_deletes, data,'attachments')">Attach Files</md-button>
+      <md-button class="md-raised md-primary" ng-click="openModal(table_changes, table_deletes, data, 'manageSupplier')">Manage Supplier</md-button>
+      <md-button class="md-raised md-warn" ng-click="deleteData(table_changes, table_deletes, data)">Delete</md-button>
+    </div>
+    <div ng-include="'assets/js/modules/inventory/quantity-modal.html'"></div>
+    <div ng-include="'assets/js/modules/inventory/attachfiles-modal.html'"></div>
+    <div ng-include="'assets/js/modules/inventory/manage-price.html'"></div>
+
+    <div class="clear-fix"></div>
+    <br></br>
+    <div layout="row">
+      <ul>
+        <li>
+          <p class="margin-bottom-1 primary-color">Please remember to click on
+            <span class="filter-message">Clear</span> before applying filters.</p>
+        </li>
+        <li>
+          <p class="margin-bottom-1 primary-color">To permanently delete a record, right click on that record and press
+            <span class="filter-message">Remove row</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+
+    <div handsontable-django-fullaccess api-service="InventoryService" id="handsontableInventory" hot-id="guide_djangorest_User_readonly"
+      height='400' min-rows="0" min-spare-rows="0" exclude_fields="dimension_a,dimension_b,dimension_c,supplier,message,shortlist,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined,category_name,sub_category,sub_sub_category,sub_sub_sub_category,owner,attachments,product_images,a_b_c,unit_a,unit_b,unit_c,Supplier,Manufacturer"
+      params='{"mode":"{[{show.edit}]}"}'></div>
+  </div>
+  <div class="col-md-12" ng-if="editOne">
+    <button ng-click="cancelEdit()">
+      <i class="fa fa-angle-double-left"></i> Back to list</button>
+    <div ng-include="'assets/js/modules/inventory/add-inventory/add-inventory.html'"></div>
+  </div>
+
+
+</div>

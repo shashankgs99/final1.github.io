@@ -1,0 +1,89 @@
+<div ng-if="current_user.data.is_seller">
+  <div class="row column align-center expanded padding-l-r-40 padding-xs-15">
+        <div ng-if="isCategoryLoaded">
+          <div>
+            <div ng-controller="layout.standard.filtersController" ng-include="'assets/js/modules/filters/inventory-filters.html'"></div>
+            <div class="clear-fix"></div>
+            <section class="col-md-12 manage-products-section col-lg-12">
+              <div class="section-row">
+                <div class="col-md-12 p-t-15">
+                  <div class="col-md-12 col-xs-12 col-sm-12 float-right-xs fade padding-t-b-15 filters"  ng-if="hideMore">
+                      <button class="button2 col-sm-3 col-xs-4 float-right" ng-click="openModal(table_changes, table_deletes, data,'attachments')">Attach Files</button>
+                      <button class="button2 col-sm-3 col-xs-4 float-right" ng-click="openModal(table_changes, table_deletes, data,'manageItem')">Manage Item</button>
+                      <button class="button2 col-sm-3 col-xs-4 float-right" ng-click="openModal(table_changes, table_deletes, data, 'managePrice')">Manage Price</button>
+                      <button class="button2 col-sm-3 col-xs-4 float-right" ng-click="openModal(table_changes, table_deletes, data,'quantity')">Manage Quantity</button>
+                      <button class="button2 col-xs-6 float-right" ng-click="viewInventory(table_changes)">View Details</button>
+                      <button class="button2 col-xs-6 float-right" ng-click="editInventory(table_changes)">Edit Details</button>
+                      <button ng-if="showSupplierAdmin  === true" class="button2 col-sm-3 col-xs-4 float-right" ng-click="addMulInventories()">Add Multiple Inventories</button>
+                      <button ng-if="showSupplierAdmin  === true" class="button2 col-sm-3 col-xs-4 float-right" ng-click="addInventory()">Add Inventory</button>
+                    </div>
+                </div>
+              </div>
+              <div class="clear-fix"></div>
+            </section>
+            <div ng-include="'assets/js/modules/inventory/manage-price.html'"></div>
+
+            <div ng-include="'assets/js/modules/inventory/quantity-modal.html'"></div>
+            <div ng-include="'assets/js/modules/inventory/attachfiles-modal.html'"></div>
+            <div class="clear-fix"></div>
+            <div class="primary-line margin-top-1 margin-bottom-1 line-border line-border"></div>
+            <div class="clear-fix"></div>
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+              <ul>
+                <li><p class="margin-bottom-1 primary-color">Please remember to click on <span class="filter-message">Clear</span> before applying filters.</p></li>
+                <li><p class="margin-bottom-1 primary-color">To permanently delete a record, right click on that record and press <span class="filter-message">Remove row</span></p></li>
+              </ul>
+            </div>
+            
+            <div class="col-md-12" handsontable-django-fullaccess api-service="InventoryService" hot-id="guide_djangorest_User_readonly" height='400' min-rows="0" min-spare-rows="0" 
+            exclude_fields="message,shortlist,logentry,auth_token,social_auth,snippets,snippets_group,a_b_c,unit_a,unit_b,unit_c,material,grade,standard,country,state,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined,category_name,sub_category,sub_sub_category,sub_sub_sub_category,owner,supplier,attachments,product_images"  
+            params='{"supplier_company":"{[{current_user.data.company.id}]}"}'>
+            </div>
+          </div>
+        </div> 
+          <div class="col-md-12" ng-if="editOne">
+            <button ng-click="cancelEdit()"><i class="fa fa-angle-double-left"></i> Back to list</button>
+            <div ng-include="'assets/js/modules/inventory/add-inventory/add-inventory.html'"></div>
+          </div>
+  </div>
+</div>
+
+<div ng-if="!current_user.data.is_seller">
+  <div class="row expanded align-middle access-message">
+    <div class="column">
+      <h6>Hello <span class="bold" ng-bind="current_user.data.first_name"></span>
+        ! Please register as a <span class="bold alert-color">Supplier</span> to use this functionality. 
+        <br> You can register either as a Team member of an exisiting Supplier Group or you can start your own Supplier Group.
+      </h6>
+      <button class="button3">Register as a Supplier</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="instructionsModal.html">
+  <div class="col-md-12 modal-container">
+    <div class="col-md-12 modal-box">
+        <div class="col-md-12 modal-title">
+           <h4>Instructions:</h4>
+        </div>
+        <div class="modal-body">
+          <p>a. 'Stock' : For stockists to upload stock material </p> 
+          <p>b. 'Surplus' : For Contractors to upload surplus material</p>
+          <p>c. 'Used' : For used / old/ refurbished items or machinery</p>
+          <p>d. 'Scrap' : To sell the material as scrap</p>
+          <p>e. 'Rental' : To list the Rental equipment or machinery. Selecting 'Rental' automatically displays the items available in rental section.</p>
+        </div>
+        <div class="modal-footerr padding-15">
+            <button class="button5" ng-click="ok()">OK</button>
+        </div>
+        <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="userNoteModal.html">
+  <div ng-include="'assets/partials/dashboard/supplier/userNoteModal.html'"></div>
+</script>
+
+

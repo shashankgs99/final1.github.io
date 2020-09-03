@@ -1,0 +1,319 @@
+<div layout="column" layout-align="start center">
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <md-content>
+            <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="space-around" class="loader">
+                <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+            </div>
+            <div layout="column" layout-align="start center" layout-margin ng-if="order.id">
+                <p class="md-title"> SO #{[{order.so_number}]} Rev {[{order.revision_number}]} Dated {[{order.so_date}]}
+                </p>
+            </div>
+            <md-tabs md-dynamic-height md-border-bottom layout-margin md-selected="tabIndex">
+                <md-tab label="Sales Order">
+                    <md-content class="md-margin md-padding">
+                        <div layout="row" class="md-margin md-padding md-title" ng-if="order.id" layout-xs="column">
+                            <div flex>
+                                <span>SO Number : {[{order.so_number}]}</span>
+                            </div>
+                            <div flex>
+                                <span>Revision Number : {[{order.revision_number}]}</span>
+                            </div>
+                            <div flex>
+                                <md-button type="submit" name="editOrder" class="md-primary md-raised cr-md-primary"
+                                    ng-click="Edit()" ng-if="disabledOrder">
+                                    Edit
+                                </md-button>
+                            </div>
+                        </div>
+                        <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Supply Type</label>
+                                    <md-select ng-model="order.so_supply_type" ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="type in supplyTypes" ng-value="type.id">
+                                            {[{type.name}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Project*</label>
+                                    <md-select ng-model="order.project" ng-change="subProject(order.project)"
+                                        ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="project in projectNames" ng-value="project.id" required>
+                                            {[{project.label}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label class="md-caption">Date</label>
+                                    <md-datepicker type="date" layout="row" name="Date" id="datefrom"
+                                        ng-model="order.soDate">
+                                    </md-datepicker>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Sales Rep</label>
+                                    <md-select ng-model="order.supplierContactName"
+                                        ng-change="supplierDetails(order.supplierContactName)"
+                                        ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="supplierContact in suppliersContact"
+                                            ng-value="supplierContact">
+                                            {[{supplierContact.fullName}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Address*</label>
+                                    <md-select ng-model="order.supplier_address" ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="address in supplierAddress" ng-value="address.id">
+                                            {[{address.address}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Authorised By*</label>
+                                    <md-select ng-model="order.authorizedBy" ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="supplier in suppliersContact" ng-value="supplier">
+                                            {[{supplier.fullName}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                            <div layout-margin flex>
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label class="md-caption">Customer</label>
+                                    <md-select ng-model="order.customer" ng-change="FilterBuyerDetails(order.customer)"
+                                        ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="supplier in customers" ng-value="supplier">
+                                            {[{supplier.name}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Customer Contact</label>
+                                    <md-select ng-model="order.buyer_contact"
+                                        ng-change="buyerContactDetails(order.buyer_contact)"
+                                        ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="contact in buyerContact" ng-value="contact">
+                                            {[{contact.fullName}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Customer Address</label>
+                                    <md-select ng-model="order.buyer_address" ng-disabled="disabledOrder">
+                                        <md-option ng-repeat="address in buyerAddress" ng-value="address.id">
+                                            {[{address.address}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Price Basis</label>
+                                    <input type="text" ng-model="order.price_basis">
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Delivery Basis</label>
+                                    <input type="text" ng-model="order.delivery_basis">
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label class="md-caption">Delivery Date</label>
+                                    <md-datepicker type="date" layout="row" name="Date" id="datefrom"
+                                        ng-model="order.deliveryDate">
+                                    </md-datepicker>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                            <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Buyer PO#</label>
+                                    <input type="text" ng-model="order.buyer_po">
+                                </md-input-container>
+                            </div>
+                            <div layout-margin flex></div>
+                            <div layout-margin flex></div>
+                        </div>
+                        <div layout="row" class="md-margin md-padding md-cr-input-section" layout-xs="column"
+                            layout-sm="column">
+                            <div flex="75" class="md-cr-input-block ml-margin-r-4" flex-xs="100" flex>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label class="md-caption">References</label>
+                                        <textarea id="references" required name="references"
+                                            ng-model="order.so_reference" rows="5"> </textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div flex="25"></div>
+                        </div>
+                        <div layout="row" class="md-margin md-padding md-cr-input-section" layout-xs="column"
+                            layout-sm="column">
+                            <div flex="75" class="md-cr-input-block ml-margin-r-4" flex flex-xs="100">
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label class="md-caption">General Description</label>
+                                        <textarea id="general.description" required name="general.description"
+                                            ng-model="order.so_description" rows="5"> </textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div flex="25"></div>
+                        </div>
+                        <div layout="row" class="md-margin md-padding md-cr-input-section" ng-if="order.id"
+                            layout-xs="column" layout-sm="column">
+                            <div flex="75" class="md-cr-input-block ml-margin-r-4" flex flex-xs="100">
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label class="md-caption">Additional Notes</label>
+                                        <textarea id="edit_notes" required name="edit_notes" ng-model="order.edit_notes"
+                                            rows="5"> </textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div flex="25"></div>
+                        </div>
+                        <div layout="row" layout-align="end end" ng-if="!disabledOrder">
+                            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                                Cancel
+                            </md-button>
+                            <md-button type="submit" name="createOrder" class="md-primary md-raised cr-md-primary"
+                                ng-disabled="disableSave" ng-click="save(order)" ng-disabled="disabledOrder">
+                                Save
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Items" ng-disabled="!order.id">
+                    <md-content class="so">
+                        <div class="md-margin md-padding">
+                            <div layout="row" class="md-cr-input-block" layout-xs="column">
+                                <div flex="5">
+                                    <md-input-container class="md-block" flex>
+                                        <label class="so-label">1.</label>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="md-block" flex>
+                                        <label>Currency</label>
+                                        <md-select ng-model="currency" ng-disabled="disableCurrency">
+                                            <md-option ng-repeat="currency in currencyTypeList" ng-value="currency.currency_type_name">
+                                                {[{currency.currency_type_name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <span flex></span>
+                                <div flex layout-align="end end">
+                                    <a
+                                        href="https://s3-ap-southeast-1.amazonaws.com/suppliers-cave-templates/SalesOrder_Items_Upload_Format.csv">
+                                        <md-button class="md-raised md-primary">Download SO Format</md-button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div layout="row" class="md-headline" layout-xs="column">
+                                2.Item Details
+                            </div>
+                            <div layout="row" class="md-headline" ng-if="existingSOItems.length" layout-xs="column" flex-xs="100">
+                                <label>a.Exisiting Item Details</label>
+                            </div>
+                            <div class="md-cr-input-block margin-top-2" flex flex-xs="100" ng-if="existingSOItems.length" layout="row">
+                                <div flex>
+                                    <label>Total Items</label>
+                                    <p>{[{existingSOItems.length}]}</p>
+                                </div>
+                                <div flex>
+                                    <label>Total Price</label>
+                                    <p>{[{existingItemsPrice}]}</p>
+                                </div>
+                                <div flex>
+                                    <i class="fa fa-eye view-icon" title="View" ng-click="EditItems($event)"></i>
+                                </div>
+                            </div>
+                            <div layout-wrap class="margin-top-2">
+                                <label>
+                                    <b>b.Add Sales Order items:</b>
+                                </label>
+                                <p>CSV (size under 2 MB) accepted</p>
+                                <div layout="row">
+                                    <div>
+                                        <input class="adjust-mto-fileupload" id="sales-order-file" type="file" ng-disabled="disabledData"
+                                            placeholder="Choose CSV file to import data" file-model="csvfile" file-reader="fileContent"
+                                            on-load-callback="getFileName()" />
+                                    </div>
+                                    <div>
+                                        <md-button class="md-raised md-primary adjust-mto-import" ng-disabled="disableImport"
+                                            ng-if="fileContent" ng-click="importData(fileContent)">ImportData</md-button>
+                                    </div>
+                                </div>
+                                <div layout="row" ng-if="uploadedFilesList.length" layout-margin ng-repeat="file in uploadedFilesList track by $index" layout-xs="row">
+                                    <div flex-xs="40">
+                                        SO - {[{file.fileName}]} -uploaded
+                                    </div>
+                                    <div flex="10" flex-xs="20">
+                                        <i class="fa fa-eye" title="View" ng-click="ViewItems($event,$index,currency)"></i>
+                                    </div>
+                                    <div flex="10" flex-xs="20">
+                                        <i class="fa fa-trash font-s-20" title="Delete" ng-click="DeleteSO($index)"></i>
+                                    </div>
+                                    <div flex="10" flex-xs="20">
+                                        <md-button ng-disabled="file.save" title="Save" class="fa fa-save so-save-icon" ng-click="SaveItems($index,currency)">
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout="row" class="margin-top-2">
+                                <div flex class="margin-l-n-16">
+                                    <md-button ng-click="SOPaymentTerms($event)" class="payment-terms-link">
+                                        <span class="md-headline">3.Payment Terms</span></md-button>
+                                </div>
+                            </div>
+                            <div class="md-cr-input-block margin-top-2" flex flex-xs="100"
+                                ng-if="order.price_number > 0 && order.currency">
+                                <p class="md-title">
+                                    Total Items : {[{totalItemsCount}]}
+                                </p>
+                                <br />
+                                <p class="md-title">
+                                    Total Amount : {[{order.price_number}]}
+                                </p>
+                            </div>
+                            <div layout="row" layout-align="end end">
+                                <span flex></span>
+                                <div flex>
+                                    <md-button type="submit" name="createOrder" class="md-primary md-raised cr-md-primary" ng-click="Done()">
+                                        Done
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

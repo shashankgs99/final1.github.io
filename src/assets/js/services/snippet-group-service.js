@@ -1,0 +1,34 @@
+(function(){
+  var app = angular.module('app');
+
+  // Factory are better than Services
+
+  app.factory('SnippetGroupService',['$http','$cookies',function($http,$cookies){
+    
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+    var factory = {};
+    factory.getSchema = function(){
+      return $http.get('/api/v1/snippets-group-schema/');
+    }
+    factory.getSnippetGroups = function(){
+      
+      return $http.get('/api/v1/snippets-group/',{
+        params: params
+      });
+    };
+    factory.postSnippetGroup = function(data){
+      
+      return $http.post('/api/v1/snippets-group/',data);
+    };
+    factory.updateSnippetGroup = function(id,data){
+ 
+      return $http.patch('/api/v1/snippets-group/'+id+'/',data);
+    };
+    factory.deleteSnippetGroup = function(id){
+      
+      return $http.delete('/api/v1/snippets-group/'+id+'/');
+    }
+  
+    return factory;
+  }]);
+})();

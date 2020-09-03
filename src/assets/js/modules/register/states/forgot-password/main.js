@@ -1,0 +1,51 @@
+(function(){
+    var app = angular.module('app');
+    app.controller('register.forgotpassword.controller',[
+      '$scope',
+      '$state',
+      '$stateParams',
+      '$http',
+      'UserService',
+      '$injector',
+      '$location',
+      '$window',
+      '$timeout',
+      function($scope,$state,$stateParams,$http,UserService,$injector,$location,$window,$timeout){
+      
+        console.log("Forgot password");
+
+        $scope.register = {email : $stateParams.email};
+
+        $scope.resetPassword = function(user){
+          if(user.email){
+            UserService.get({email:user.email}).then(function(data){
+              var Notification = $injector.get('Notification');
+              if(data.data.count > 0){
+                var dbUser = data.data.results[0];
+                var updatedUser = {password: user.password};                
+                UserService.update(dbUser.id,updatedUser).then(function(){                  
+                  Notification.success({
+                      message:'Password updated. Relogin with new password!',
+                      positionX:'right',
+                      positionY:'top'
+                    });
+                  $timeout(function () {
+                    $location.url('/login/default');
+                    // $window.location.reload();  
+                  }, 3000);
+                },function(err){                
+                  console.log(err);
+                });
+              }else{
+                Notification.error({
+                  message: 'User with given email doesnt exist',
+                  positionX: 'right',
+                  positionY: 'top'
+                });
+              }
+            });
+          }
+        };
+
+    }]);
+})();

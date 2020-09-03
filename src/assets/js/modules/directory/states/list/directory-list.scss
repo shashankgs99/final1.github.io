@@ -1,0 +1,18 @@
+@import '../../../../../scss/settings';
+
+.directory-list{
+  .filter-view, .list-view{
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  .filter-view{
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    width: 20vw;
+  }
+  .list-view{
+    border: 1px solid #ccc;
+    width: 80vw;
+  }
+  
+}

@@ -1,0 +1,22 @@
+@mixin transition($prop, $values...) {
+  -moz-#{$prop}: $values;
+  -ms-#{$prop}: $values;
+  -o-#{$prop}: $values;
+  -webkit-#{$prop}: $values;
+  $prop: $values;
+}
+//1. Two Arguments
+//@include transition(transition-delay, 0.5s)
+//gives
+// -moz-transition-delay: 0.5s;
+// -ms-transition-delay: 0.5s;
+// -o-transition-delay: 0.5s;
+// -webkit-transition-delay: 0.5s;
+
+//2. Multipe Arguments
+//@include transition(transition, color 1s, background-color 1s, border-color 1s);
+//gives
+// -moz-transition: color 1s, background-color 1s, border-color 1s;
+// -ms-transition: color 1s, background-color 1s, border-color 1s;
+// -o-transition: color 1s, background-color 1s, border-color 1s;
+// -webkit-transition: color 1s, background-color 1s, border-color 1s; 

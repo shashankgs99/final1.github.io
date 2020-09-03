@@ -1,0 +1,212 @@
+<div layout="row" layout-sm="column" ng-if="showLoader" layout-align="space-around" class="loader">
+    <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+</div>
+<div  class="container add-inventory-section general-form padding-10 margin-t-15">
+        <h3 ng-if="!hide" class="margin-top-1 margin-bottom-1">{[{name}]} Project</h3>
+        <div ng-if="!hide" class="primary-line margin-bottom-2 margin-0"></div>
+    <form name="projectForm" novalidate accessible-form>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="label-l" for="name">Project Name</label>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" name="projectname" id="projectname" ng-model="project.name" placeholder="Name" required ng-required="true"/>
+                            </div>
+                        </div>
+                        <div  class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs m-l-n-7">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="label-l" for="parentProject">Parent Project (For Sub-project)</label>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <select ng-disabled="disableProject" ng-options="parent.name for parent in projectsData track by parent.id" ng-change="selectParentProject(project.parent_project)"
+                                    ng-model="project.parent_project">
+                                    <option value="">Select Parent Project</option>
+                                    <!-- <option ng-value="parent.id" ng-repeat="parent in projectsData">{[{parent.name}]}</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="label-l" for="contactNumber">Contract Number*</label>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" id="contractNumber" name="contractNumber" ng-model="project.contract_number" placeholder="Contract Number"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                            <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="label-l" for="client">Customer</label>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <select name="client" ng-change="selectContacts(project)" ng-model="project.customer">
+                                        <option value="" disabled>Select Customer</option>
+                                        <option ng-value="customer.id" ng-repeat="customer in customers">{[{customer.name}]}</option>
+                                    </select>
+                            
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <i class="fa fa-plus-square-o fa-lg m-l-20 m-t-15"  aria-hidden="true" title="Create Customer" ng-model="create_client"
+                                        ng-click="createClient($event,'client')"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs m-l-n-8">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label class="label-l" for="client">Contacts</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12 select-dropdown">
+                                                <div ng-dropdown-multiselect="" 
+                                                options="clientContacts" 
+                                                id="client-contact" 
+                                                selected-model="clientcontacts"  
+                                                events="selectEvents" 
+                                                extra-settings="dropDownSettings">
+                                                </div>
+                                        </div>
+                            </div>
+                            <div  class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label class="label-l" for="date">Due Date*</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input type="date" name="date" id="date" ng-model="project.due_date" placeholder="dd/MM/yyyy" />
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                                <!-- <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label class="label-l" for="client">Contractor</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <select ng-change="contractor(project)" ng-model="project.customer_contractor">
+                                                <option value="" disabled>Select Contractor</option>
+                                                <option ng-value="customer.id" ng-repeat="customer in contractors">{[{customer.name}]}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <i class="fa fa-plus-square-o fa-lg m-l-20 m-t-15" aria-hidden="true" title="Create Client"
+                                                    ng-model="create_client"  ng-click="createClient('large','contractor')"></i>
+                                        </div>
+                                </div>
+                                <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs m-l-n-8">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label class="label-l" for="client">Contacts</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12 select-dropdown">
+                                                <div ng-dropdown-multiselect="" 
+                                                options="contractorContacts" 
+                                                id="contractor-contact" 
+                                                selected-model="selectedContacts"  
+                                                events="selectEvents" 
+                                                extra-settings="dropDownSettings">
+                                                </div>
+                                        </div>
+                                </div> -->
+                                <div  class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label class="label-l" for="industry">Industry</label>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 select-dropdown">
+                                        <div ng-dropdown-multiselect="" 
+                                                options="industries" 
+                                                class="multi-class"
+                                                id="product-selected-industry" 
+                                                selected-model="selectedIndustry" 
+                                                translation-texts="customButtonText"
+                                                extra-settings="dropdownSettings" 
+                                                events="selectEvents"
+                                                ng-model="selectedIndustry">
+                                        </div>
+                                    </div>
+                               </div>
+                               <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label class="label-l" for="industry">Project Type</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <label>
+                                            <input type="radio" ng-model="project.project_type" value="Budgetary" />Budgetary</label>
+                                        <label class="m-l-4">
+                                            <input type="radio" ng-model="project.project_type" value="Firm" />Firm</label>
+                                        <br />
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-4 col-sm-8 col-xs-12 padding-r-sm-8 padding-l-r-7 no-padding-xs">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="label-l" for="industry">Project Type</label>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label>
+                                    <input type="radio" ng-model="project.project_type" value="Budgetary" />Budgetary</label>
+                                <label class="m-l-4">
+                                    <input type="radio" ng-model="project.project_type" value="Firm" />Firm</label>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 padding-r-sm-8 padding-r-7 no-padding-xs">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="label-l" for="description">Enquiry Details</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea id="Description" class="login-box-input project-desc" type="text" name="description" ng-model="project.description" placeholder="Description">
+                                     </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 action-menu" ng-if="!hide">
+            <div class="row float-right">
+                <button class="button4 margin-t-3 margin-b-3" id="cancel-project" ng-click="cancelProjectInternal()">
+                    Cancel
+                </button>
+                <button class="button4 margin-t-3 margin-b-3" id="save-project" ng-click="saveProject(project,projectForm.$valid)">
+                    Save
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+
+    </form>
+</div>
+</div>
+<!-- <div ng-include="'assets/js/modules/customer/customer-modal.html'"></div> -->

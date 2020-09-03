@@ -1,0 +1,780 @@
+<div class="container manage-company-section general-form padding-15 margin-t-15">
+    <form name="companyDataForm" novalidate accessible-form>
+        <div class="clear-fix"></div>
+        <div class="content-body padding-15">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Companyname">Company name*</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="Companyname" class="login-box-input" type="text" name="Companyname" ng-model="companyData.company_name" required
+                                ng-required="true" placeholder="Company name" />
+                            <p ng-if="companyDataForm.Companyname.$error.required && companyDataForm.Companyname.$touched" ng-cloak class="ng-cloak alert-color margin-bottom-dot5">This is a required field</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Webaddress">Web address</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="Webaddress" class="login-box-input" type="text" name="Webaddress" ng-model="companyData.website" required ng-required="true"
+                                placeholder="Web address" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-12 attachments">
+                            <img ng-src="{[{companyData.logo}]}" alt="{[{companyData.logo ? companyData.logo.split('/').pop()  :companyData.company_name}]}">
+                        </div>
+                    </div>
+                    <div class="col-md-6 padding-l-15">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Logo">Logo</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <input type="file" class="" id="Logo" file-model="companyData.logo" file-reader="logoContent">
+                            </div>
+                            <div class="col-md-6">
+                                <button ng-show="logoContent" class="button4 m-l-10" id="company-logo" ng-click="FileUpload(companyData.logo, 'logo')">
+                                    Upload File
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="col-md-12">
+                <h5>Legal Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="establishmentType">Establishment Type</label>
+                        </div>
+                        <div class="col-md-12">
+                            <select name="establishmentType" id="establishmentType" ng-model="companyData.establishment_type" ng-change="establishmentTypeClicked(companyData.establishment_type)">
+                                <option value="" disabled>Select establishment type</option>
+                                <option value="Public">Public</option>
+                                <option value="Private">Private</option>
+                                <option value="LLC">LLC</option>
+                                <option value="FZE">FZE</option>
+                                <option value="FZC">FZC</option>
+                                <option value="Government">Government</option>
+                                <option value="Other">Others(specify)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" ng-if="companyData.establishment_type === 'Other'" ng-model="companyData.establishment_type_other" placeHolder="Enter other types">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="CompanyType">Company Size</label>
+                        </div>
+                        <div class="col-md-12">
+                            <select name="CompanyType" id="CompanyType" ng-model="companyData.company_type" ng-change="companyTypeClicked(companyData.company_type)">
+                                <option value="" disabled>Select company size</option>
+                                <option value="Micro">Micro</option>
+                                <option value="Small">Small</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Large">Large</option>
+                                <option value="Multinational">Multinational</option>
+                                <option value="Conglomorate">Conglomorate</option>
+                                <option value="Other">Others(specify)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" ng-if="companyData.company_type === 'Other'" ng-model="companyData.company_type_other" placeHolder="Enter other types">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Activities1">Company Role</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <input type="checkbox" id="Supplier" name="Supplier" ng-model="companyData.is_seller">
+                                <label for="Supplier">Supplier</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="checkbox" id="Buyer" name="Buyer" ng-model="companyData.is_buyer">
+                                <label for="Buyer">Buyer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Activities2">Company Profile</label>
+                        </div>
+                        <div class="col-md-12 multi-select">
+                            <div ng-dropdown-multiselect="" options="activitiesTwoOptions" id="company-profile" selected-model="companyData.role_type"
+                                translation-texts="customButtonText" extra-settings="dropdownSettings">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="yearOfEstablishment">Year of Establishment</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="date" id="yearOfEstablishment" name="yearOfEstablishment" ng-model="companyData.yearOfEstablishment" placeholder="dd/MM/yyyy"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label class="label-l" for="Logo">Attach incorporation document / License</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <input type="file" id="incorporationdocument" class="" file-model="companyData.attachments" file-reader="attachmentsContent">
+                                </div>
+                                <div class="col-md-6">
+                                    <button ng-show="attachmentsContent" class="button4 m-l-10" id="companydata-attachments" ng-click="FileUpload(companyData.attachments, 'attachments')">
+                                        Upload File
+                                    </button>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                            <div>{[{logoUploadingStatus}]}</div>
+                                        </div> -->
+                                <div class="clear-fix"></div>
+                                <div class="col-md-12 attachments margin-t-15">
+                                    <a ng-href="{[{companyData.attachments}]}" target="_blank" download>
+                                        <i class="fa fa-paperclip"></i> {[{attachmentName}]} </a>
+                                    <div class="clear-fix"></div>
+                                </div>
+                                <div class="clear-fix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="col-md-12">
+                <h5>Financial Information</h5>
+                <div class="row">
+                    <div class="col-md-6 no-padding">
+                        <div class="col-md-12">
+                            <label class="label-l" for="revenue_confidential">Revenue information</label>
+                        </div>
+                        <!--<div class="col-md-12">
+                                <input type="checkbox" name="revenue_confidential" id="revenue_confidential" ng-model="companyData.revenue_confidential"> 
+                                <label for="revenue_confidential">Confidential</label>
+                            </div> -->
+                        <div class="col-md-12">
+                            <input type="checkbox" name="not_to_provide" id="not_to_provide" ng-model="companyData.not_to_provide">
+                            <label for="not_to_provide">Choose not to provide</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12 m-t-32">
+                            <input type="checkbox" name="revenue_confidential" id="revenue_confidential" ng-model="companyData.revenue_confidential">
+                            <label for="revenue_confidential">Confidential
+                                <b>(shared with registered trusted buyers only)</b>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <div class="col-md-12">
+                                <label class="label-l" for="Revenue">Currency type</label>
+                            </div>
+                            <div class="col-md-12 padding-r-15">
+                                <select name="currency_type_name" id="currency_type_name" ng-model="companyData.revenue_currency">
+
+                                    <option value="{[{currencyType.currency_type_name}]}" ng-repeat="currencyType in currencyTypeList"> {[{currencyType.currency_type_name}]} </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="col-md-12">
+                                <label class="label-l" for="Revenue">Revenue</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="Revenue" class="login-box-input" type="text" name="Revenue" ng-model="companyData.revenue" placeholder="Revenue">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <div class="col-md-12">
+                                <label class="label-l" for="Revenue">Currency type</label>
+                            </div>
+                            <div class="col-md-12 padding-r-15">
+                                <select name="currency_type_name" id="currency_type_name" ng-model="companyData.profit_currency">
+
+                                    <option value="{[{currencyType.currency_type_name}]}" ng-repeat="currencyType in currencyTypeList"> {[{currencyType.currency_type_name}]} </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="col-md-12">
+                                <label class="label-l" for="Profit">Profit</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="Profit" class="login-box-input" type="text" name="Profit" ng-model="companyData.profit" placeholder="Profit" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="Employees">Employees</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="Employees" class="login-box-input" type="text" name="Employees" ng-model="companyData.num_employees" required
+                                ng-required="true" placeholder="Employees" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname"> &nbsp; </label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r"> &nbsp; </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="row">
+                <h5 flex="100">About Us
+                    <span flex></span>
+                    <button class="button1" ng-click="getAboutUs()" ng-if="!companyData.aboutus_text">Generate Aboutus</button>
+                </h5>                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea  ui-tinymce="tinymceOptions" id="companytext" ng-model="companyData.aboutus_text">{[{companyData.aboutus_text}]}</textarea> 
+                </div>
+            </div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="m-t-19">About us images:
+                    </h5>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <input class="adjust-mto-fileupload" id="company-attachment" type="file" valid-file upload="uploadAboutUs(file,$index)"
+                        />
+                    </div>
+                    <div class="col-md-12">
+                        <div ng-repeat="file in companyAttachments track by $index" class="margin-l-2 margin-top-n-1">
+                            {[{file.split('/').pop()}]}
+                            <md-button class="md-icon-button">
+                                <md-icon class="material-icons clear-icon" ng-click="removeAboutUs(companyAttachments,$index)"
+                                    title="Remove Attachment">clear</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <div ng-repeat="file in companyAboutusImages track by $index" class="margin-l-2 margin-top-n-1">
+                        {[{file.name}]}
+                            <md-button class="md-icon-button">
+                                <md-icon class="material-icons clear-icon" ng-click="removeImage(companyAboutusImages, $index)"
+                                    title="Remove Attachment">clear</md-icon>
+                            </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="m-t-19">Catalog 
+                    </h5>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <input class="adjust-mto-fileupload" id="company-catelog" type="file" valid-file upload="uploadCatalogs(file,$index)" />
+                    </div>
+                    <div class="col-md-12">
+                        <div ng-repeat="file in catalogImages track by $index" class="margin-l-2 margin-top-n-1">
+                            {[{file.split('/').pop()}]}
+                            <md-button class="md-icon-button">
+                                <md-icon class="material-icons clear-icon"  ng-click="removeCatalogs(catalogsInfo,$index)"
+                                    title="Remove Attachment">clear</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <div ng-repeat="file in companycatalogs track by $index" class="margin-l-2 margin-top-n-1">
+                        {[{file.name}]}
+                        <md-button class="md-icon-button">
+                            <md-icon class="material-icons clear-icon"  ng-click="removeUploadedCatalogs(companycatalogs, $index)"
+                                title="Remove Attachment">clear</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body padding-15">
+            <h5>Company Contact</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label class="label-l" for="countryCode1">Country code</label>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="label-l" for="phonenumber1">Phone number 1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3 padding-r-15">
+                            <input id="countryCode1{[{$index}]}" class="login-box-input" name="countryCode1{[{$index}]}" type="text" ng-model="companyData.countryCode1"
+                                ng-required="true" placeholder="ISD" ng-maxlength="4" ng-minlength="1" required />
+                        </div>
+                        <div class="col-md-9">
+                            <input id="phonenumber1{[{$index}]}" class="login-box-input" name="phonenumber1{[{$index}]}" type="tel" ng-model="companyData.phonenumber1"
+                                ng-required="true" placeholder="Phone number 1" ng-maxlength="10" ng-minlength="6" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label class="label-l" for="countryCode2">Country code</label>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="label-l" for="phonenumber2">Phone number 2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3 padding-r-15">
+                            <input id="countryCode2{[{$index}]}" class="login-box-input" name="countryCode2{[{$index}]}" type="text" ng-model="companyData.countryCode2"
+                                ng-required="true" placeholder="ISD" ng-maxlength="4" ng-minlength="1" required />
+                        </div>
+                        <div class="col-md-9">
+                            <input id="phonenumber2{[{$index}]}" class="login-box-input" name="phonenumber2{[{$index}]}" type="tel" ng-model="companyData.phonenumber2"
+                                ng-required="true" placeholder="Phone number 2" ng-maxlength="10" ng-minlength="6" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="emailid1">Email id 1</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="login-box-input" type="email" name="emailid1" maxlength="100" ng-model="companyData.emailid1" required ng-required="true"
+                            placeholder="Emailid 1" />
+
+                        <span class="color-red" ng-show="companyDataForm.emailid1.$dirty && companyDataForm.emailid1.$invalid">
+                            <span ng-show="companyDataForm.emailid1.$error.required">
+                                Email is required.
+                            </span>
+                            <span ng-show="companyDataForm.emailid1.$error.email">
+                                Invalid email address.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="emailid2">Email id 2</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="emailid2" class="login-box-input" type="text" name="emailid2" ng-model="companyData.emailid2" required ng-required="true"
+                            placeholder="Emailid 2" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="facebook">Facebook Url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="login-box-input" type="text" name="facebook" maxlength="100" ng-model="companyData.facebook_url" 
+                            placeholder="Facebook Url" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="Twitter">Twitter Url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="twitter" class="login-box-input" type="text" name="emailid2" ng-model="companyData.twitter_url" 
+                            placeholder="Twitter Url" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="linkedin">Linkedin Url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="login-box-input" type="text" name="Linkedin" maxlength="100" ng-model="companyData.linkedin_url" 
+                            placeholder="Linkedin Url" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="youtube">Youtube Url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="youtube" class="login-box-input" type="text" name="youtube" ng-model="companyData.youtube_url" 
+                            placeholder="youtube Url" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Addresses
+                    <a  id="add-address" ng-click="CreateAddress()" class="addAddress"
+                        title="Add address">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="contact in companyData.addresses track by $index">
+                <h6>Address {[{$index+1}]}
+                    <!-- <a ng-click="addAddress()" class="addAddress" title="Add address" ng-show="$last">+</a> -->
+                    <a ng-click="deleteAddress($index)" class="addAddressAnchor p-b-9" title="Delete address">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12" ng-click="EditAddress($event,contact,$index)">
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <div>
+                                            <label> Name of address</label><br/>
+                                            <span>{[{contact.nameofaddress}]}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <div>
+                                            <label>State</label><br/>
+                                            <span>{[{contact.state}]}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <div>
+                                            <label>City</label><br/>
+                                            <span>{[{contact.cityname}]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Contacts
+                    <a id="add-contact" ng-click="addContact($event)" class="addAddress" title="Add contact">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="contact in companyData.contact track by $index">
+                <h6>Contact {[{$index+1}]}
+                    <a ng-click="deleteContacts($index)" class="addAddressAnchor p-b-9" 
+                        title="Delete contact">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-click="EditContact($event,contact,$index)">
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Name</label><br />
+                                        <span>{[{contact.firstname}]} {[{contact.lastname}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Phone Number</label><br />
+                                        <span>{[{contact.countryCode1}]} {[{contact.phonenumber1}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Email ID 1</label><br />
+                                        <span ng-bind="contact.emailid1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Customers
+                    <a id="add-customers" ng-click="OpenDialog($event,'customer')" class="addAddress" title="Add customer">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="customer in companyData.customers track by $index">
+                <h6>Customer {[{$index+1}]}
+                    <a ng-click="deleteCustomer($index)" class="addAddressAnchor p-b-9" 
+                        title="Delete customer">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-click="EditDialog($event,customer,$index,'customer')">
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Name</label><br />
+                                        <span>{[{customer.name}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div></div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Projects
+                    <a id="add-projects" ng-click="OpenDialog($event,'project')" class="addAddress" title="Add Project">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="project in companyData.projects track by $index">
+                <h6>Project {[{$index+1}]}
+                    <a ng-click="deleteProject($index)" class="addAddressAnchor p-b-9" 
+                        title="Delete project">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-click="EditDialog($event,project,$index,'project')">
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Name</label><br />
+                                        <span>{[{project.name}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div></div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Testimonials
+                    <a id="add-testimonials" ng-click="OpenDialog($event,'testimonial')" class="addAddress" title="Add testimonial">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="testimonial in companyData.testimonials track by $index">
+                <h6>Testimonials {[{$index+1}]}
+                    <a ng-click="deleteTestimonials($index)" class="addAddressAnchor p-b-9" 
+                        title="Delete Testimonials">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div  ng-click="EditDialog($event,testimonial,$index,'testimonial')">
+                                <div class="col-md-12">
+                                        <div class="col-md-4 col-xs-4 col-sm-4">
+                                                <div>
+                                                    <label>Name</label><br />
+                                                    <span>{[{testimonial.name}]}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                                <div>
+                                                    <label>Designation</label><br />
+                                                    <span>{[{testimonial.designation}]}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                                <div>
+                                                    <label>Company Name</label><br />
+                                                    <span>{[{testimonial.company_name}]}</span>
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="col-md-12" class="margin-t-3">
+                                    <div class="col-md-4 col-xs-4 col-sm-4">
+                                        <div>
+                                            <label>Signature</label><br />
+                                            <span>{[{testimonial.signature}]}</span>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="col-md-12" class="margin-t-3">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <div>
+                                            <label>Description</label><br />
+                                            <span>{[{testimonial.description}]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Tax Details
+                    <a id="add-tax" ng-click="AddTax($event)" class="addAddress" title="Add Tax">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="tax in taxData track by $index">
+                <h6>tax
+                    <a ng-click="removeTaxDetails(tax,$index)" class="addAddressAnchor p-b-9" 
+                        title="Delete Tax">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-click="EditTax($event,tax,$index)">
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Tax Type</label><br />
+                                        <span>{[{tax.taxType.name}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Number</label><br />
+                                        <span>{[{tax.number}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Valid Date</label><br />
+                                        <span ng-bind="tax.valid_date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="content-body padding-15 addAddress">
+            <div class="col-md-12">
+                <h5>Bank Details
+                    <a id="add-tax" ng-click="AddBankDetails($event)" class="addAddress" title="Add Bank">+</a>
+                </h5>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="col-md-12 padding-15 address-container" ng-repeat="bank in bankData track by $index">
+                <h6>Account details{[{$index+1}]}
+                    <a ng-click="removeBankDetails(bank,$index)" class="addAddressAnchor p-b-9" 
+                        title="Delete BankDetails">-</a>
+                </h6>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-click="EditBankDetails($event,bank,$index)">
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Beneficiary Name</label>
+                                        <br />
+                                        <span>{[{bank.beneficiary_name}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Account Name</label>
+                                        <br />
+                                        <span>{[{bank.account_number}]}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <div>
+                                        <label>Bank Name</label>
+                                        <br />
+                                        <span ng-bind="bank.bank_name"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6"> &nbsp; </div>
+                <div class="col-md-6">
+                        <a ng-click="backToDetails()">
+                            <button class="button4">
+                                Cancel
+                            </button>
+                        </a>
+                        <a>
+                            <button class="button4" id="save-company-info" ng-disabled="disabled" ng-click="saveCompanyInfo(companyData)">
+                                Save
+                            </button>
+                        </a>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </form>
+</div>
+<!-- <div id="loadingDiv" ng-show="showload">
+        <img id="loading-image" src="https://i.stack.imgur.com/kOnzy.gif" alt="Loading..." />
+    </div> -->

@@ -1,0 +1,26 @@
+<md-dialog flex-xs=100 flex-gt-xs="70" flex>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>View Items PO#{[{order.po_number}]} Expected Payments</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="row" layout-margin layout-padding ng-if="type == 'payment-request'">
+                <div id="pr-items-grid" ui-grid="prGridOptions" class="grid"></div>
+            </div>
+            <div layout="column" layout-margin layout-padding layout-align="center center" ng-if="type != 'payment-request'">
+                <div id="pr-items-grid" ui-grid="prGridOptions" class="grid payments-grid"></div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

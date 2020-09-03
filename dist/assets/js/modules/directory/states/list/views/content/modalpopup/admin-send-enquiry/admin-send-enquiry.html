@@ -1,0 +1,112 @@
+<style>
+    .input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
+<md-dialog flex>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Details</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3 enquiry-subject">
+                                <h6>To
+                                    <input type="text" class="input" id="to_email" ng-model="message.to_email"
+                                        ng-blur="checkEmail(message.to_email,$event)">
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Message to supplier </h5>
+                                <textarea id="enquiryMessage" ui-tinymce="tinymceOptions" ng-model="message.messages_text">
+                                                                                                    </textarea>
+                            </div>
+                        </div>
+                        <div class="row m-t-20" ng-if="message.project">
+                            <input type="checkbox" ng-model="message.hideProject" ng-init="message.hideProject=false" />
+                            <p class="font-size-15">Hide project details</p>
+                        </div>
+                        <div class="row m-t-6" ng-if="message.project && !message.hideProject">
+                            <div class="col-md-12">
+                                <div class="col-md-5 m-r-8">
+                                    <h6>customer
+                                        <p class="font-size-15">{[{message.project.customer ?
+                                            message.project.customer.name :
+                                            'N/A'}]}</p>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-6" ng-if="message.project && !message.hideProject">
+                            <div class="col-md-12">
+                                <div class="col-md-5 m-r-8">
+                                    <h6>Project
+                                        <p class="font-size-15">{[{message.project_name ? message.project_name:'N/A'}]}
+                                        </p>
+                                    </h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Sub-Project
+                                        <p class="font-size-15">{[{message.sub_project ? message.sub_project :'N/A'}]}
+                                        </p>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-6" ng-if="message.enquiry_type">
+                            <div class="col-md-12">
+                                <div class="col-md-5 m-r-8">
+                                    <h6>Enquiry Type
+                                        <p class="font-size-15">{[{message.project_type ? message.project_type : 'N/A'}]}
+                                        </p>
+                                    </h6>
+                                </div>
+                                <div class="col-md-5 m-r-8">
+                                    <h6>Enquiry Number
+                                        <p class="font-size-15"> {[{message.enquiry_number ? message.enquiry_number :
+                                            'N/A'}]}
+                                            {[{message.revision_number ? ('Rev: '+message.revision_number) : ''}]}</p>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-6" ng-if="message.subject">
+                            <div class="enquiry-subject">
+                                <h6>Subject
+                                    <p class="font-size-15">{[{message.subject ? message.subject : 'N/A'}]}</p>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row m-t-6"  ng-if="message.message">
+                            <div class="enquiry-subject">
+                                <h6>Enquiry Details
+                                    <p class="font-size-15" ng-bind-html="message.message"></p>
+                                </h6>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit"  ng-click="sendEnquiry(message)">
+                send
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>

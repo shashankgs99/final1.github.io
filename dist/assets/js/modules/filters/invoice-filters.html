@@ -1,0 +1,56 @@
+<div layout="row" class="md-padding">
+    <div layout="column" flex="80" layout-margin>
+        <div layout="row">
+            <div flex="15">
+                <md-input-container class="md-block">
+                    <label>Customers</label>
+                    <md-select ng-model="filter.customer">
+                        <md-option ng-repeat="supplier in customersList" ng-value="supplier.id">
+                            {[{supplier.name}]}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex="15">
+                <md-input-container class="md-block">
+                    <label>Project</label>
+                    <md-select ng-model="filter.project" ng-change="subProjectFilter(filter.project)">
+                        <md-option ng-repeat="project in projectNames" ng-value="project">
+                            {[{project.label}]}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex="15">
+                <md-input-container>
+                    <label>SO Number</label>
+                    <input type="text" ng-model="filter.so_number" />
+                </md-input-container>
+            </div>
+        </div>
+        <div layout="row" style="margin-top: -24px;">
+            <div flex="15">
+                <md-input-container class="md-block">
+                    <label class="md-caption">Date From</label>
+                    <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="filter.date_from"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div flex="15">
+                <md-input-container class="md-block">
+                    <label class="md-caption">Date To</label>
+                    <md-datepicker type="date" layout="row" name="Date" id="dateTo" ng-model="filter.date_to"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div flex="15">
+
+            </div>
+        </div>
+
+    </div>
+    <div layout="column" flex="20">
+        <div layout="row" layout-align="end end">
+            <md-button class="md-raised md-primary" id="apply-filters" ng-click="InvoiceFilters(filter)">Apply Filters</md-button>
+            <md-button class="md-raised md-primary" ng-click="clear()">Clear</md-button>
+        </div>
+    </div>
+</div>

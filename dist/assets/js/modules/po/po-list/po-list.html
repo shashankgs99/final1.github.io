@@ -1,0 +1,182 @@
+<div layout="column" layout-align="start center">
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" ng-controller="layout.standard.filtersController" class="md-padding md-margin main-card">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Purchase Order List
+                    </div>
+                    <span layout-xs="column">
+                        <div layout-xs="row" layout-align-xs="end">
+                            <md-button class="md-icon-button" ng-click="POFilters(filter)">
+                                <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="clear()">
+                                <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close</md-icon>
+                            </md-button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Customer</label>
+                            <md-select ng-model="filter.customer">
+                                <md-option ng-repeat="customer in customersList" ng-value="customer">
+                                    {[{customer.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">PO Type</label>
+                            <md-select ng-model="filter.po_type">
+                                <md-option ng-repeat="po in PoTypesInfo" ng-value="po">
+                                    {[{po.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Project</label>
+                            <md-select ng-model="filter.project">
+                                <md-option ng-repeat="project in projectNames" ng-value="project">
+                                    {[{project.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" ng-if="!supplierAcess">
+                            <label>Supplier</label>
+                            <md-select ng-model="filter.supplier">
+                                <md-option ng-repeat="supplier in productSuppliersInfo" ng-value="supplier">
+                                    {[{supplier.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" ng-if="supplierAcess">
+                            <label>Status</label>
+                            <md-select ng-model="filter.status">
+                                <md-option value="received">Received</md-option>
+                                <md-option value="accepted">Accepted</md-option>
+                                <md-option value="rejected">Rejected</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Date From</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="filter.date_from"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Date To</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="dateTo" ng-model="filter.date_to"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">PO</label>
+                            <input type="text" required ng-model="filter.po_number">
+                        </md-input-container>
+                    </div>
+                    <div flex></div>
+                </div>
+            </div>
+
+        </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+        <div layout="row" class="margin-top-2">
+            <div flex>
+                <!-- <md-checkbox ng-model="item.checked">Select all</md-checkbox> -->
+            </div>
+            <span>
+                <md-button class="md-icon-button" ng-click="createOrder()">
+                    <md-icon class="material-icons managecustomericon" title="Create Purchase Order">add</md-icon>
+                </md-button>
+                <!-- Commented From <md-button class="md-icon-button" ng-click="EditOrder(selectedOffers)">
+                    <md-icon class="material-icons managecustomericon"  title="Edit Purchase Order">edit</md-icon>
+                </md-button> -->
+                <!-- <md-button class="md-icon-button" ng-click="ViewOrder(selectedOffers)">
+                    <md-icon class="material-icons managecustomericon" title="View">visibility</md-icon>
+                </md-button> -->
+                <md-button class="md-icon-button" ng-click="SendEmail($event,selectedOffers)">
+                    <md-icon class="material-icons managecustomericon" title="Send Purchase Order">send</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="PrintOrder(selectedOffers)">
+                    <md-icon class="material-icons managecustomericon" target="_blank" title="Print Purchase Order">print</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="deletePO(selectedOffers)">
+                    <md-icon class="material-icons managecustomericon color-red" title="Delete PO">delete</md-icon>
+                </md-button>
+            </span>
+        </div>
+    </div>
+</div>
+<div layout="column" layout-align="start center" class="md-margin md-padding">
+    <div class="margin-r-55">Total
+        <b>{[{count}]}</b> records</div>
+    <div layout="column" class="list-cards" flex ng-repeat="order in poList" track by $index>
+        <div layout="row">
+            <md-checkbox ng-model="order.selected" ng-change="selectedValue(order,$index,order.selected)"></md-checkbox>
+            <div layout="column" flex>
+                <md-card md-theme-watch ng-click="ViewOrder(order)">
+                    <md-card-content>
+                        <div layout="row" layout-xs="column">
+                            <div layout="column" flex layout-margin layout-gt-xs="row">
+                                <div>
+                                    <label class="md-caption">PO Number</label>
+                                    <p class="md-body-1" ng-bind="order.po_number"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">PO Date</label>
+                                    <p class="md-body-1" ng-bind="order.po_date"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Project</label>
+                                    <p class="md-body-1" ng-bind="order.projectName"></p>
+                                </div>
+                                <div flex ng-if="!supplierAcess">
+                                    <label class="md-caption">Supplier</label>
+                                    <p class="md-body-1" ng-bind="order.supplier_name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Total Price</label>
+                                    <p class="md-body-1">{[{order.currency}]} {[{order.price_number}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Status</label>
+                                    <p class="md-body-1">{[{order.po_status.name}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Delivery Date</label>
+                                    <p class="md-body-1" ng-bind="order.delivery_date"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-align="center center">
+    <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)" boundary-links="true">
+    </pagination>
+</div>

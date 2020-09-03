@@ -1,0 +1,249 @@
+<md-dialog flex="40">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add Details</span></h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-margin md-padding">
+            <div ng-if="display == 'grn'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex ng-if="reverse || type == 'create'">
+                        <md-input-container class="md-block">
+                            <label>{[{title}]}</label>
+                            <input type="text" ng-model="data.quantity_received">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Manufacturer</label>
+                            <input type="text" ng-model="data.manufacturer" />
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex ng-if=" type != 'create' && !reverse"></div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Batch</label>
+                            <input type="text" ng-model="data.batch" />
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Serial</label>
+                            <input type="text" ng-model="data.serial" />
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Production Date</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="data.production_date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block" flex-gt-sm="">
+                            <label class="md-caption">Expiry Date</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="data.expiry_date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Delivery Date</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="data.delivery_date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Yard Receipt Date</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="data.yard_receipt_date" required></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'imin'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>status</label>
+                            <md-select ng-model="data.imin_status">
+                                <md-option ng-repeat="record in status" ng-value="record">
+                                    {[{record.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">  
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Remarks</label>
+                            <textarea ng-model="data.inspected_remarks" rows="5"></textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'payment-request'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Invoiced Quantity</label>
+                            <input type="text" ng-model="data.invoiced_quantity">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Payment Due Date</label>
+                            <md-datepicker type="date" layout="row" name="payment_due_date" id="payment_due_date" ng-model="data.payment_due_date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex ng-if="type == 'edit'">
+                                <md-input-container class="md-block">
+                                    <label>Payment status</label>
+                                    <md-select ng-model="data.payment_status">
+                                        <md-option ng-repeat="record in prStatus" ng-value="record">
+                                            {[{record.name}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                        </div>
+                        <div layout-margin flex="10">
+                                <i class="fa fa-plus-square-o fa-lg m-t-10" aria-hidden="true" title="Add Payment Receipt"
+                                ng-model="payment_receipt" ng-click="viewPaymentReceipt($event,'customer')"></i>
+                        </div>
+                </div>
+            </div>
+            <div ng-if="display == 'invoiceItemsUpdate'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Quantity</label>
+                            <input type="text" ng-model="data.invoice_item_quantity">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Remarks</label>
+                            <input type="text" ng-model="data.invoice_item_remark">
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'packingList'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Packing</label>
+                            <input type="text" ng-model="data.packing_packing">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Dimenssion</label>
+                            <input type="text" ng-model="data.packing_dimenssion">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Net Weight</label>
+                            <input type="text" ng-model="data.packing_net_weight">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Gross Weight</label>
+                            <input type="text" ng-model="data.packing_gross_weight">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Remarks</label>
+                            <input type="text" ng-model="data.packing_remarks">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                           
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'material_requisition'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Quantity to be Issued</label>
+                            <input type="text" ng-model="data.issued_quantity">
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'enquiry' || display == 'project'">
+                <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Status</label>
+                            <md-select ng-model="data.status" ng-if="display == 'enquiry'">
+                                <md-option ng-repeat="record in statusList" ng-value="record.name">
+                                    {[{record.name}]}
+                                </md-option>
+                            </md-select>
+                            <md-select ng-model="data.status" ng-if="display == 'project'">
+                                <md-option ng-repeat="record in statusList" ng-value="record.id">
+                                    {[{record.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block" ng-if="display == 'enquiry'">
+                            <label>Remarks</label>
+                            <input type="text" ng-model="data.remarks">
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="display == 'supplierProject'">
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Status</label>
+                                <md-select ng-model="data.status" ng-if="display == 'project'">
+                                    <md-option ng-repeat="record in projectStatus" ng-value="record.id">
+                                        {[{record.name}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button type="submit" ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button type="submit" ng-click="save(data)">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

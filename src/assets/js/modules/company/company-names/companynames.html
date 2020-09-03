@@ -1,0 +1,49 @@
+<script type="text/ng-template" id="companiesList.html">
+    <div class="col-md-12 modal-container" >
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4 class="margin-0">Company Details</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container" >
+                    <form>
+                        <div>
+                                <div class="row col-md-12">
+                                        <div class="col-md-7" class="width-125">
+                                                <h6>Name <input type="text" class="input" placeholder="Name" ng-model="company_name"></h6> 
+                                        </div>
+                                </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-7" class="width-125">
+                                   <h6>Email</h6>  
+                                   <input type="text" placeholder="Email" id="to" class="input"  ng-model="company_email">
+                                 </div>
+                                 <br/>
+                                </div>
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15" align="right">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button class="button4" ng-click="submit(company_name,company_email)">Ok</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script>

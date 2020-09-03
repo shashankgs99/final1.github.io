@@ -1,0 +1,276 @@
+<div id="profileInformation" ng-show="profileInfo" class="cr-md-dialog-container" flex-gt-xs="75" flex-gt-sm="70">
+    <md-dialog aria-label="Profile Information" flex-gt-xs="75" flex-gt-sm="70">
+        <form name="editProfile" ng-cloak ng-submit="updateUserAccount(data,$event)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Update Profile</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div layout="column" layout-align="start center" class="md-dialog-content">
+                    <div layout="row">
+                        <img ng-src="{[{data.image_url?data.image_url:'/assets/img/user-img.png'}]}" alt="{[{data.image_url? data.image_url.split('/').pop() : 'user-img.png'}]}" class="profile-pic">
+                    </div>
+                    <div layout="row" class="md-margin">
+                        <div flex class="margin-xs-t-15">
+                            <input type="file" class="" id="profileimage" file-model="data.image_url" file-reader="logoContent" />
+                        </div>
+                        <div flex>
+                            <md-button ng-show="logoContent" class="md-primary md-raised cr-md-primary" ng-click="FileUpload(data.image_url)">
+                                Upload File
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="row" class="md-headline">
+                        <span>Select Dashboards </span>
+                    </div>
+                    <div layout="row" class="md-title">
+                        <div>
+                            <label>Buyer</label>
+                            <span class="m-r-20"></span>
+                            <md-checkbox ng-model="data.is_buyer" ng-checked="data.is_buyer"></md-checkbox>
+                        </div>
+                        <div class="m-l-100">&nbsp;</div>
+                        <div>
+                            <label>Seller</label>
+                            <span class="m-r-20"></span>
+                            <md-checkbox ng-model="data.is_seller" ng-checked="data.is_seller"></md-checkbox>
+                        </div>
+                        <div class="m-l-100">&nbsp;</div>
+                        <div>
+                            <label>Store</label>
+                            <span class="m-r-20"></span>
+                            <md-checkbox ng-model="data.is_store" ng-checked="data.is_store"></md-checkbox>
+                        </div>
+                    </div>
+                    <div layout="row">&nbsp;</div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>
+
+<div id="generalInformation" ng-show="generalInfo" class="cr-md-dialog-container" flex-gt-xs="50" flex-gt-sm="55">
+    <md-dialog aria-label="General Information" flex-gt-xs="75" flex-gt-sm="70">
+        <form name="editProfile" ng-cloak ng-submit="updateUserAccount(data,$event)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>General Information</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div class="md-dialog-content">
+                    <div class="md-cr-input-block">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">First Name</label>
+                                    <input class="login-box-input" type="text" name="first_name" ng-model="data.first_name" />
+                                </md-input-container>
+                            </div>
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">Last Name</label>
+                                    <input id="accountNumber" class="login-box-input" type="text" name="Last_name" ng-model="data.last_name" />
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">Designation</label>
+                                    <input class="login-box-input" type="text"name="designation" ng-model="data.designation" />
+                                </md-input-container>
+                            </div>
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="md-caption  ml-caption-margin-lineheight">Role Type</label>
+                                    <md-select ng-model="data.role_type" multiple>
+                                        <md-option ng-repeat="role in rollTypeOptions track by $index" ng-value="role">
+                                            {[{role.role_type_name}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>
+
+<div id="addressInformation" ng-show="addressInfo" class="cr-md-dialog-container" flex-gt-xs="50" flex-gt-sm="55">
+    <md-dialog aria-label="Address Details" flex-gt-xs="75" flex-gt-sm="70">
+        <form name="editProfile" ng-cloak ng-submit="updateUserAccount(data,$event)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Address Details</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div class="md-dialog-content">
+                    <div class="md-cr-input-block">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <md-input-container class="md-block" flex>
+                                <label class="label-l">Address</label>
+                                <input class="login-box-input" type="text" name="address" ng-model="data.address" />
+                            </md-input-container>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">City</label>
+                                    <input id="accountNumber" class="login-box-input" name="location_city" ng-model="data.location_city" />
+                                </md-input-container>
+                            </div>
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">Country</label>
+                                    <input id="accountNumber" class="login-box-input" name="location_city" ng-model="data.location_country" />
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div layout="row" flex="50" flex-xs="100">
+                                <div flex="20" flex-xs="40">
+                                    <md-input-container class="md-block flex md-input-invalid">
+                                        <label for="countryCode1">Country Code1</label>
+                                        <input type="text" name="countryCode1" ng-model="data.country_code">
+                                    </md-input-container>
+                                </div>
+                        
+                                <div flex>
+                                    <md-input-container class="md-block flex md-input-invalid">
+                                        <label for="phonenumber"> Phone Number1</label>
+                                        <input type="text" name="phonenumber1" ng-model="data.contact_no">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-xs="column">
+                                <md-input-container class="md-block flex md-input-invalid">
+                                    <label class="label-l">Email</label>
+                                    <input class="login-box-input" type="text" name="email" ng-model="data.email" />
+                                </md-input-container>
+                            </div>
+                        </div>                            
+                    </div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>
+<div id="companyInformaion" ng-show="companyInfo" class="cr-md-dialog-container" flex-gt-xs="50" flex-gt-sm="55">
+    <md-dialog aria-label="Supplier Information" flex-gt-xs="45" flex-gt-sm="40">
+        <form name="editProfile" ng-cloak ng-submit="updateUserAccount(data,$event)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Supplier Information</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div class="md-dialog-content">
+                    <div class="md-cr-input-block">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label class="label-l">Company</label>
+                                    <input class="login-box-input" type="text"  name="supplier" ng-model="data.company.company_name" ng-disabled="data.company.id" />
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>
+<div id="signatureInformaion" ng-show="signatureInfo" class="cr-md-dialog-container" flex-gt-xs="50" flex-gt-sm="55">
+    <md-dialog aria-label="Signature" flex-gt-xs="75" flex-gt-sm="70">
+        <form name="editProfile" ng-cloak ng-submit="updateUserAccount(data,$event)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Signature</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div class="md-dialog-content">
+                    <div class="md-cr-input-block">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex>
+                                <md-input-container flex class="md-block">
+                                    <textarea name="signature" ui-tinymce="tinymceOptions" ng-model="data.signature"></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" type="submit">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>

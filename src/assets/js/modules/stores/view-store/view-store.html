@@ -1,0 +1,73 @@
+
+<div layout="column" layout-align="center center" class="margin-t-3">
+    <div layout="column" class="main-card" flex track by $index>
+            <md-button ng-click="ListPage()" class="md-icon-button">
+                    <md-icon class="material-icons managecustomericon" title="Back to list">keyboard_backspace</md-icon>
+                </md-button>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <div layout="column">
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Store Type</label>
+                                    <p class="md-body-1">
+                                            {[{store.store_type.name}]}
+                                    </p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Store Name</label>
+                                    <p class="md-body-1" ng-bind="store.store_name"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Contact Person</label>
+                                    <p class="md-body-1">{[{store.contact_person.firstname}]} {[{store.contact_person.lastname}]}</p>
+                                </div>
+                                <div flex>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Address</label>
+                                    <p class="md-body-1">{[{store.location.nameofaddress}]}{[{store.location.addressline1 ? ","
+                                        +store.location.addressline1 : (store.location.addressline2 ? "," +store.location.addressline2:'')}]}
+                                    </p>
+                                    <p class="md-body-1">{[{store.location.cityname}]},{[{store.location.state}]},{[{store.location.country}]}
+                                    </p>
+                                </div>
+                                <div flex>
+                                   
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Description</label>
+                                    <p class="md-body-1" ng-bind="store.description"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                   
+                                </div>
+                                <div flex>
+                            
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                   
+                                </div>
+                                <div flex>
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

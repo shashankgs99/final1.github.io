@@ -1,0 +1,147 @@
+<div layout="column" layout-align="start center">
+    <div layout="column" class="so-view-card">
+        <div layout="row">
+            <div layout="column" flex>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">References</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <p> {[{refer.description}]}</p>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Scope Of Work</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{sow.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Price & Price Basis</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{price.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Payment Terms</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{payment.description}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <table id="installmentTable" border="1" cellpadding="5" class="installment-table"
+                                    ng-if="uploadedInstallments.length">
+                                    <tbody class="installment-table-1">
+                                        <tr>
+                                            <th width="10%">S No</th>
+                                            <th width="20%">Percentage (Total:100%) </th>
+                                            <th width="20%">Credit (Days) </th>
+                                            <th width="20%">Type </th>
+                                            <!-- <th width="30%">Expected Mile Stone Date </th> -->
+                                        </tr>
+                                        <tr ng-repeat="data in uploadedInstallments track by $index">
+                                            <td>{[{$index+1}]}</td>
+                                            <td>{[{data.percentage}]}</td>
+                                            <td>{[{data.credit}]}</td>
+                                            <td>{[{data.type}]}</td>
+                                            <!-- <td>{[{data.expected_milestone_date}]}</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Liquidated damages</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{liquid.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Delivery Terms</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{delivery.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Bank Guarantees</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{bank.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">General Terms & Conditions</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{terms.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Other Terms</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{other.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <label class="md-title">Contact Person</label>
+                        <div flex layout="column" class="margin-t-1">
+                            <div>
+                                <div layout="row">
+                                    <p>{[{contact.description}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

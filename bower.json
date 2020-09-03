@@ -1,0 +1,54 @@
+{
+  "name": "foundation-ssg",
+  "version": "1.0.0",
+  "authors": [
+    "ZURB <foundation@zurb.com>"
+  ],
+  "description": "Static site generator for Foundation for Sites.",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "~6.3.0",
+    "motion-ui": "~1.2.2",
+    "angular": "^1.6.2",
+    "angular-snapscroll": "^1.2.0",
+    "hammerjs": "^2.0.8",
+    "AngularHammer": "ryanmullins-angular-hammer#^2.2.0",
+    "angular-animate": "^1.6.2",
+    "angular-sanitize": "^1.6.2",
+    "ngSelect": "^1.0.0",
+    "angular-resource": "^1.6.3",
+    "jquery-file-download": "^1.4.6",
+    "angular-touch": "^1.6.5",
+    "angular-foundation-6": "~0.11.5",
+    "angular-local-storage": "^0.7.1",
+    "angular-cookies": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "ngprogress": "^1.1.3",
+    "moment": "^2.18.1",
+    "angularjs-dropdown-multiselect": "#1.11.8",
+    "angular-filter": "^0.5.16",
+    "oclazyload": "^1.1.0",
+    "angular-ui-notification": "^0.3.6",
+    "angular-messages": "^1.6.8",
+    "angular-material": "^1.1.5",
+    "angucomplete-alt": "^3.0.0",
+    "devextreme": "~17.2",
+    "aws-sdk": "^2.198.0",
+    "angular-bootstrap": "^2.5.0",
+    "angular-material-data-table": "^0.10.10",
+    "material-design-icons": "^3.0.1",
+    "angular-chart.js": "^1.1.1"
+  },
+  "private": true,
+  "resolutions": {
+    "angular": "^1.6.2"
+  }
+}

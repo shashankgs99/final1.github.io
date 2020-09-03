@@ -1,0 +1,25 @@
+<ul class="pagination text-center padding-top-2" role="navigation" aria-label="Pagination" data-page="6" data-total="16">
+
+  <!-- Previous Page -->
+  <li ng-if="params.page==1" class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>  
+  <li ng-if="!(params.page==1)"class="pagination-previous">
+    <a ng-click="previous_page()" aria-label="Previous page">Previous <span class="show-for-sr">page</span>  
+    </a>
+  </li>
+  
+  <!-- Pages -->
+  <li ng-repeat="single_page in total_page" ng-class="{'current':single_page==params.page}">
+    <div ng-if="(single_page==params.page)">
+      {[{single_page}]}
+    </div>
+    <div ng-if="!(single_page==params.page)">
+      <a ng-click="update_page(single_page)">{[{single_page}]}</a>  
+    </div>
+  </li>
+
+  <!-- Next Page -->
+  <li ng-if="params.page==total_page.length" class="pagination-next disabled">Next <span class="show-for-sr">page</span></li>  
+  <li ng-if="!(params.page==total_page.length)" class="pagination-next"><a ng-click="next_page()" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+  
+</ul>
+<div class="clear-fix"></div>

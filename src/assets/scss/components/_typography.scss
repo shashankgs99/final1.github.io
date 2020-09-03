@@ -1,0 +1,138 @@
+// Variables
+$default-h1-font-size: 38;
+$default-h2-font-size: 30;
+$default-h3-font-size: 22;
+$default-h4-font-size: 18;
+$default-h5-font-size: 16;
+$default-h6-font-size: 14;
+// Set all increases to 1 to remove font size changes
+$default-medium-increase: 1.2;
+$default-large-increase: 1.1;
+$default-xlarge-increase: 1.05;
+$default-xxlarge-increase: 1.05;
+$default-body-font-size: 0.85rem;
+$default-accordion-font-size: 0.9rem;
+$default-button-font-size: 0.9rem;
+// Font size play
+$body-font-larger: 1.4;
+$body-font-large: 1.2;
+$body-font-small: 0.9;
+$body-font-smaller: 0.8;
+
+// Responsive Content
+
+@mixin responsive-content($font-size){
+    font-size: $font-size;
+    @include breakpoint(xlarge down){
+        font-size: $font-size/$default-xxlarge-increase;
+    }
+    @include breakpoint(large down){
+        font-size: $font-size/($default-xlarge-increase*$default-xxlarge-increase);
+    }
+    @include breakpoint(medium down){
+        font-size: $font-size/($default-large-increase*$default-xlarge-increase*$default-xxlarge-increase);
+    }
+    @include breakpoint(small down){
+        font-size: $font-size/($default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase);
+    }
+};
+
+body {
+    @include responsive-content($default-body-font-size);
+}
+
+.larger-font{
+    @include responsive-content($default-body-font-size*$body-font-larger);
+}
+.large-font{
+    @include responsive-content($default-body-font-size*$body-font-large);
+}
+.small-font{
+    @include responsive-content($default-body-font-size*$body-font-small);
+}
+.smaller-font{
+    @include responsive-content($default-body-font-size*$body-font-smaller);
+}
+
+//Changing defaults - Accordion, Dropdown
+section .accordion-title
+{
+    @include responsive-content($default-accordion-font-size);
+    font-weight: 500;
+    line-height: inherit;
+}
+section button.button, a.button, .button-group button.button, .button-group a.button, div.dropdown-pane
+{
+    @include responsive-content($default-button-font-size);
+}
+// Responsive Header Styles
+
+
+$header-styles: (
+  small: (
+    'h1': ('font-size': $default-h1-font-size),
+    'h2': ('font-size': $default-h2-font-size),
+    'h3': ('font-size': $default-h3-font-size),
+    'h4': ('font-size': $default-h4-font-size),
+    'h5': ('font-size': $default-h5-font-size),
+    'h6': ('font-size': $default-h6-font-size),
+  ),
+  medium: ( //+80%
+    'h1': ('font-size': ($default-h1-font-size*$default-medium-increase)),
+    'h2': ('font-size': ($default-h2-font-size*$default-medium-increase)),
+    'h3': ('font-size': ($default-h3-font-size*$default-medium-increase)),
+    'h4': ('font-size': ($default-h4-font-size*$default-medium-increase)),
+    'h5': ('font-size': ($default-h5-font-size*$default-medium-increase)),
+    'h6': ('font-size': ($default-h6-font-size*$default-medium-increase)),
+  ),
+  large: ( //+50%
+    'h1': ('font-size': ($default-h1-font-size*$default-medium-increase*$default-large-increase)),
+    'h2': ('font-size': ($default-h2-font-size*$default-medium-increase*$default-large-increase)),
+    'h3': ('font-size': ($default-h3-font-size*$default-medium-increase*$default-large-increase)),
+    'h4': ('font-size': ($default-h4-font-size*$default-medium-increase*$default-large-increase)),
+    'h5': ('font-size': ($default-h5-font-size*$default-medium-increase*$default-large-increase)),
+    'h6': ('font-size': ($default-h6-font-size*$default-medium-increase*$default-large-increase)),
+  ),
+  xlarge: ( //+50%
+    'h1': ('font-size': ($default-h1-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+    'h2': ('font-size': ($default-h2-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+    'h3': ('font-size': ($default-h3-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+    'h4': ('font-size': ($default-h4-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+    'h5': ('font-size': ($default-h5-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+    'h6': ('font-size': ($default-h6-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase)),
+  ),
+  xxlarge: ( //+50%
+    'h1': ('font-size': ($default-h1-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+    'h2': ('font-size': ($default-h2-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+    'h3': ('font-size': ($default-h3-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+    'h4': ('font-size': ($default-h4-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+    'h5': ('font-size': ($default-h5-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+    'h6': ('font-size': ($default-h6-font-size*$default-medium-increase*$default-large-increase*$default-xlarge-increase*$default-xxlarge-increase)),
+  ),
+);
+
+// Removing Certain Defaults
+section,div p{
+    margin-bottom: 0;
+}
+
+
+//2. Handling Form
+.standard-input-element{
+    outline: none;
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid $black;
+    text-align: left;
+    padding: 25px 5%;
+    &:focus{
+        outline: none;
+        border: 0;
+        box-shadow: none;
+        border-bottom: 2px solid $primary-color;
+
+    }
+}

@@ -1,0 +1,27 @@
+<md-dialog flex>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Item Details</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div flex layout-margin flex-xs="100">
+            <div layout="column" layout-align="start center">
+                    <div id="invoice-grid" ui-grid="uiGridOptions" class="grid invoice-grid" ui-grid-edit></div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button type="submit" ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button type="submit" ng-click="save()" ng-if="showBtn">
+            Save
+        </md-button>
+        <md-button type="submit" ng-click="delete()" ng-if="showBtn">
+            Delete
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

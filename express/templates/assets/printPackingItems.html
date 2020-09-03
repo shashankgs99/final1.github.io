@@ -1,0 +1,292 @@
+<html>
+
+<head>
+    <style>
+        .porow {
+            width: 100%;
+            float: left;
+        }
+
+        .pocol-2 {
+            width: 50%;
+            float: left;
+        }
+
+        .pocol-3 {
+            width: 32.333%;
+            float: left;
+        }
+
+        .pocol-4 {
+            width: 25%;
+            float: left;
+        }
+
+        .pocol-5 {
+            width: 20%;
+            float: left;
+        }
+
+        .pocol-8 {
+            width: 80%;
+            float: left;
+        }
+
+        .pocol-70 {
+            width: 55%;
+            float: left;
+        }
+
+        .pocol-30 {
+            width: 45%;
+            float: left;
+        }
+
+
+        .buyerlogo {
+            max-width: 100px !important;
+            width: 100%;
+            margin-left: 95px !important;
+        }
+
+        table {
+            width: 100%;
+            margin: auto;
+        }
+
+        table {
+            page-break-before: always
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <table border="1" cellpadding="5" cellspacing="5">
+            <thead>
+                <tr>
+                    <td colspan="10">
+                        <div class="porow">
+                            <h2 style="font-size:30px;text-align:center;">Packing List</h2>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div class="pocol-2">
+                                        <img class="buyerlogo" src="{{logo}}" alt="Company Logo">
+                                    </div>
+                                    <div class="pocol-2">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div class="pocol-2">&nbsp;</div>
+                                    <div class="pocol-2">
+                                        <div style="font-weight:600;">
+                                            {{company_name}}
+                                        </div>
+                                        <div>{{company_addressline1}}, {{company_addressline2}} </div>
+                                        <div>{{company_city}}</div>
+                                        <div>{{company_state}}</div>
+                                        <div>{{company_country}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="10">
+                        <div class="porow" style="margin-left:9%;">
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div>
+                                        <div>Order No :
+                                            <span>{{so_number}}</span>
+                                        </div>
+                                        <div>Ordered Date :
+                                            <span>{{so_date}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div>Packing List No :
+                                        <span>{{pl_number}}</span>
+                                    </div>
+                                    <div>Packing List Date :
+                                        <span>{{invoice_date}}</span>
+                                    </div>
+                                    <div>Invoice Ref :
+                                        <span>{{invoice_number}}</span>
+                                    </div>
+                                    <div>Invoice Date :
+                                        <span>{{invoice_date}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        <div class="porow" style="margin-left:8%;">
+                            <div class="pocol-3">
+                                <div>
+                                    <h3>Supplier :</h3>
+                                </div>
+                                <div>{{supplier_name}}</div>
+                                <div>{{ invoice_from_address.addressline1}}, {{ invoice_from_address.addressline2}}</div>
+                                <div>{{ invoice_from_address.cityname}}</div>
+                                <div>{{ invoice_from_address.state}}</div>
+                                <div>{{ invoice_from_address.country}}</div>
+                                <div>Lisence No: #
+                                    <span>{{fromLisenceno}}</span>
+                                </div>
+                            </div>
+                            <div class="pocol-3">
+                                <div>
+                                    <h3>Buyer :</h3>
+                                </div>
+                                <div>{{buyer_name}}</div>
+                                <div>{{ invoice_to_address.addressline1}}, {{ invoice_to_address.addressline2}}</div>
+                                <div>{{ invoice_to_address.cityname}}</div>
+                                <div>{{ invoice_to_address.state}}</div>
+                                <div>{{ invoice_to_address.country}}</div>
+                                <div></div>
+                                <div>TRN :
+                                    <span>{{tinNo}}</span>
+                                </div>
+                            </div>
+                            <div class="pocol-3">
+                                <div>
+                                    <h3>Shipped to :</h3>
+                                </div>
+                                <div>{{ship_to_name}}</div>
+                                <div>{{ invoice_ship_to_address.addressline1}}, {{ invoice_ship_to_address.addressline2}}</div>
+                                <div>{{ invoice_ship_to_address.cityname}}</div>
+                                <div>{{ invoice_ship_to_address.state}}</div>
+                                <div>{{ invoice_ship_to_address.country}}</div>
+                                <div>TRN :
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        SNO
+                    </td>
+                    <td colspan="3">
+                        Details
+                    </td>
+                    <td>
+                        Qty (Unit Of Measure)
+                    </td>
+                    <td>
+                        Packing
+                    </td>
+                    <td>
+                        Dimension
+                    </td>
+                    <td>
+                        Net Weight
+                    </td>
+                    <td>
+                        Gross Weight
+                    </td>
+                    <td>
+                        Remarks
+                    </td>
+
+                </tr>
+                {{#each items}}
+                <tr>
+                    <td>{{inc @index}}</td>
+                    <td colspan="3">
+                        {{details}}
+                    </td>
+                    <td>
+                        {{quantity}} -
+                        <span>{{units}}</span>
+                    </td>
+                    <td>
+                        {{packing}}
+                    </td>
+                    <td>
+                        {{dimensions}}
+                    </td>
+                    <td>
+                        {{net_weight}}
+                    </td>
+                    <td>
+                        {{gross_weight}}
+                    </td>
+                    <td>
+                        {{remarks}}
+                    </td>
+                </tr>
+                {{/each}}
+                </tr>
+                <tr>
+                    <td colspan="7" style="border:none;"></td>
+                    <td colspan="1">Total Net Weight</td>
+                    <td colspan="2">{{totalNetWeight}} <span>Kgs</span> </td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="border:none;"></td>
+                    <td colspan="1">Total Gross Weight</td>
+                    <td colspan="2">{{totalGrossWeight}} <span>Kgs</span> </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        Delivery Terms :
+                        <span>
+                            {{delivery_terms}}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" height="20">
+                        <div class="porow">
+                            Declaration :
+                        </div>
+                        <div style="height:100px;">
+                            {{declaration}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" height="20">
+                     Total Items : {{items.length}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="border:none;">
+                        <div class="porow" style="height:80px;margin-left:75%;">
+                            <div style="margin-top:2%;">For {{company_name}}</div>
+                            <div>{{supplier_name}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr></tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div>
+        {{#data}}{{body}}{{/data}}
+    </div>
+</body>
+
+</html>

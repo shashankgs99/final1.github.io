@@ -1,0 +1,159 @@
+<div ng-controller="login.controller">
+<header class="navigation" Login
+  ng-if="!current_user.data.username" 
+  sticky-header="true" id="Home">
+
+  <div class="container">
+    <div layout="column" layout-gt-xs="row">
+      <div layout="row" layout-xs="column">
+        <div> 
+          <a target="_self" href="/" id="site-logo" class="site-logo"> <img src="/assets/img/supplierscave-logo.png" class="h-80" alt="Supplierscave"></a>
+        </div>
+        <div layout="row" class="margin-top-2 m-l-4" layout-xs="column">
+            <div class="dpdwn margin-l-2">
+                <md-input-container class="md-block">
+                    <label>Market Place</label>
+                    <md-select ng-model="list" class="home-dpdwn" ng-change="selectList(list)">
+                        <md-option value="/inventory/list/category">Inventory</md-option>
+                        <md-option value="/companies/list">Directory</md-option>
+                        <md-option value="/rental/list/category">Rental</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="dpdwn margin-l-2">
+                <md-input-container class="md-block">
+                    <label>Sotware Solutions(ERP)</label>
+                    <md-select ng-model="dashboard" class="home-dpdwn" ng-change="dashboardsList(dashboard)">
+                        <md-option value="/supplier-dashboard/projects/list">Supplier Dashboard</md-option>
+                        <md-option value="/buyer-dashboard/enquiries?type=Sent">Buyer Dashboard</md-option>
+                        <md-option value="/stores-dashboard/inventory/list">Stores Dashboard</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="dpdwn margin-l-2 header-buttons">
+                <md-button class="pricing-btn" ng-click="pricing()">Pricing</md-button>
+            </div>
+            <div class="dpdwn margin-l-2 header-buttons">
+                <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+            </div>
+            <div class="dpdwn margin-l-2 header-buttons">
+                <md-button class="md-raised md-primary" ng-click="register()">Sign-Up</md-button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<header 
+  class="navigation" 
+  ng-if="current_user.data.username" 
+  sticky-header="true" id="Home">
+  <div class="container" ng-if="current_user.data.username" >
+    <div class="float-left col-md-4 col-xs-12 supplier-logo">
+      <a target="_self" href="/" id="site-logo" class="site-logo"> <img src="/assets/img/supplierscave-logo.png" class="h-80" alt="supplierscave-logo"></a>
+    </div>
+    <div class="float-right col-md-8 col-xs-12 p-4px">
+      <div class="col-md-5 col-xs-12 col-sm-3">
+        &nbsp;
+      </div>
+      <div class="col-md-7 col-xs-12 col-sm-9">
+          <div class="navbar navbar-default login-navigation top-0" role="navigation">
+            <!--Logout-->
+            <div class="row header-align">
+              <div class="column small-7">
+                <p class="light-color large-font">Hello
+                  <span ng-bind="current_user.data.first_name"></span>&nbsp;
+                  <span ng-bind=" current_user.data.last_name === null ? ' ' : current_user.data.last_name"></span>!</p>
+              </div>
+              <div class="column small-5">
+                <a class="float-right" ng-click="current_user.logout()">
+                  <button class="button1"  id="header-logout" ng-disabled="">Logout</button>
+                </a>
+              </div>
+            </div>
+            <!--Login-->
+            <div class="row header-align">
+              <div class="column small-7">
+                <!--My Applications-->
+                <ul class="dropdown menu" dropdown-menu>
+                  <li>
+                    <a>
+                      <i class="fa fa-th dashboard" id="dashboards" aria-hidden="true"></i>Dashboards</a>
+                    <ul class="menu">
+                      <li ng-if="(current_user.data.is_superuser)">
+                        <a href="/admin-dashboard/user" id="admin-dashboard" target="_self">Admin Dashboard</a>
+                      </li>
+                      <li ng-if="(current_user.data.is_superuser || current_user.data.is_seller)">
+                        <a href="/supplier-dashboard/projects/list" id="supplier-dashboard" target="_self">Supplier Dashboard</a>
+                      </li>
+                      <li ng-if="(current_user.data.is_superuser || current_user.data.is_buyer)">
+                        <a href="/buyer-dashboard/enquiries?type=Sent" id="buyer-dashboard" target="_self">Buyer Dashboard</a>
+                      </li>
+                      <li ng-if="(current_user.data.is_superuser || current_user.data.is_store)">
+                        <a href="/stores-dashboard/inventory/list" id="supplier-dashboard" target="_self">Stores Dashboard</a>
+                      </li>
+                      <!-- <li ng-if="(current_user.data.is_superuser || current_user.data.is_finance)">
+                        <a href="/finance-dashboard" id="buyer-dashboard" target="_self">Finance Dashboard</a>
+                      </li> -->
+                      <li>
+                          <a href="/market-dashboard/inventory" id="marketplace-dashboard" target="_self">MarketPlace Dashboard</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="column small-5">
+                <a class="float-right" ng-href="{[{getAccountSettings()}]}" target="_self">
+                  <button class="button1" id="myAccount">My Account</button>
+                </a>
+              </div>
+            </div>
+          </div>        
+      </div>
+    </div>
+  </div>
+  </header>
+  <script type="text/ng-template" id="forgot-password.html">
+    <div class="col-md-12 modal-container forgot-psd-popup">
+        <div class="col-md-12 forgotpsd-modal-title">
+            <h4>Forgot your password ?</h4>
+        </div>
+        <div class="col-md-12 modal-box">
+            <div class="modal-body">
+                <div class="col-md-12 padding-15">
+                    <div class="col-md-12 text-info">
+                        <p>Don't worry! just fill in your email and we will help you to reset your password.</p>
+                    </div>
+                    <div class="col-md-12">
+                      <h6>Email address</h6>
+                    </div>
+                    <div class="col-md-12 general-form">
+                        <input type="text" ng-model="passwordToEmail" name="forgotPassword" placeholder="Enter your email id" required />
+                    </div>
+                    <div class="col-md-12">
+                        <button class="button header-submit" id="forgot-password-submit" ng-click="forgotPassword(passwordToEmail)">Submit</button>
+                    </div>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr forgot-psd-popup">
+            <div class="col-md-12 padding-15">
+                <a href="/register" target="_self"> <span>Dont have an account?</span> Signup here</a>
+                <a class="" ng-click="cancel()">CANCEL</a>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+  
+    <!-- <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button> -->
+  </script>
+</div>
+<!-- </header> -->
+

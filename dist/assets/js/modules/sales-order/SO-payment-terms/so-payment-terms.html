@@ -1,0 +1,45 @@
+<md-dialog flex-gt-sm="50">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add Payment Terms</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">clear</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div layout="column" class="md-margin md-padding">
+            <div layout="row">
+                <md-input-container flex class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="payment.description" rows="6" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row" class="md-cr-input-block" flex>
+                <div flex>
+                    <md-button class="md-primary md-raised" ng-model="payment.installment" ng-click="installmentTerms()">
+                        Installments
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button type="submit" ng-click="cancel()">
+           Back
+        </md-button>
+        <md-button type="submit" ng-if="!accessInfo" ng-click="SavePayments(payment)">
+           save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+
+
+
+
+
+
+
+

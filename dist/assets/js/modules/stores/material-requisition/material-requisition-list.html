@@ -1,0 +1,90 @@
+<div layout="column" layout-align="start center">
+        <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+            <div layout="column">
+                <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+            </div>
+        </div>
+        <div layout="column"  flex  class="md-padding md-margin main-card">
+            <md-card-content>
+                <div layout="row" layout-xs="column">
+                    <div layout="column" flex layout-gt-xs="row">
+                        <div flex class="md-display-1">
+                            View Material Issue Records<md-button ng-click="toHelp()">
+                                    <md-icon class="material-icons fa fa-info-circle help-icon"></md-icon>
+                                </md-button>
+                        </div>
+                        <span layout-xs="column">
+                            <div layout-xs="row" layout-align-xs="end">
+                                <md-button class="md-icon-button" ng-click="applyFilters(filter)">
+                                    <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list</md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" ng-click="clearFilters()">
+                                    <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close</md-icon>
+                                </md-button>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div layout="column" flex layout-gt-xs="row">
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>SO</label>
+                                <md-select ng-model="filter.so_number">
+                                    <md-option ng-repeat="so in SOList" ng-value="so.so_number">
+                                        {[{so.so_number}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>Request Type</label>
+                                <md-select ng-model="filter.request_type">
+                                    <md-option ng-repeat="request in requestType" ng-value="request.id">
+                                        {[{request.name}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label class="md-caption">Date From</label>
+                                <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="filter.date_from"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label class="md-caption">Date To</label>
+                                <md-datepicker type="date" layout="row" name="Date" id="dateTo" ng-model="filter.date_to"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </md-card-content>
+            <div layout="row" class="dotted-border"></div>
+            <div layout="row" class="margin-top-2">
+                <div flex></div>
+                <span>
+                    <md-button class="md-icon-button" ng-click="AddMR()">
+                        <md-icon class="material-icons managecustomericon" title="Create Material Requisition">add</md-icon>
+                    </md-button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div layout="column" layout-align="start center" class="md-margin md-padding">
+        <div layout="column" class="list-cards" flex>
+            <div layout="row" layout-xs="column" flex>
+                <div layout="column" layout-gt-xs="row" flex>
+                    <div id="mr-list-ui-grid" ui-grid="MRGridList" class="grid" flex flex-xs="100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div layout="row" layout-margin layout-align="center center">
+        <div>
+            <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)" boundary-links="true">
+            </pagination>
+        </div>
+    </div>

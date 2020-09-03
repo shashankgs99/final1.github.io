@@ -1,0 +1,57 @@
+<div layout="column" layout-align="start center">
+    <div layout="column" style="max-width: 1000px; width: 100%;">
+        <div layout="row">
+            <div flex>
+                <md-input-container class="md-block">
+                    <label>Customer</label>
+                    <md-select ng-model="enquiry.client">
+                        <md-option ng-repeat="client in customerNames" ng-value="client">
+                            {[{client.label}]}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex>
+                <md-input-container class="md-block">
+                    <label>Project</label>
+                    <md-select ng-model="enquiry.project" ng-change="subProjectFilter(enquiry.project)">
+                        <md-option ng-repeat="project in projectNames" ng-value="project">
+                            {[{project.label}]}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex>
+                <md-input-container class="md-block">
+                    <label>Enquiry Type</label>
+                    <md-select ng-model="enquiry.enquiry_type">
+                        <md-option ng-repeat="type in projectType" ng-value="type">
+                            {[{type.name}]}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex>
+                <md-input-container class="md-block">
+                    <label class="md-caption">Date From</label>
+                    <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="enquiry.date_from"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div flex>
+                <md-input-container class="md-block">
+                    <label class="md-caption">Date From</label>
+                    <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="enquiry.date_to"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div flex></div>
+        </div>
+        <div layout="row" layout-align="end end">
+                <i class="material-icons managecustomericon" style="font-size:40px;color:green;" ng-click="EnquiryFilters(enquiry)" title="Apply Filters">filter_list</i>
+                <i class="material-icons managecustomericon" style="font-size:40px;color:red;margin-left:18px;" ng-click="clear()" title="Clear Filters">close</i>
+        </div>
+    </div>
+</div>
+<hr/>
+

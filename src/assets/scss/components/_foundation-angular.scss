@@ -1,0 +1,38 @@
+// Foundation Angular
+
+// Dropdown
+
+// Ensure submenu shows up
+.is-dropdown-submenu.js-dropdown-active{
+  display: block!important;
+}
+
+// triangle color
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after{
+  //border-color: $primary-color transparent transparent!important;
+}
+
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-right > a::after{
+  border-color: transparent transparent transparent $primary-color!important;
+}
+
+.dropdown.menu.vertical > li.opens-right > a::after{
+  border-color: transparent transparent transparent $primary-color!important;
+}
+
+div.dropdown-pane{
+  width: auto;
+  padding: 0;
+}
+
+div .orbit-container{
+  height: auto;
+}
+div .orbit-bullets button{
+  cursor: pointer;
+}
+
+// Alert
+div .callout{
+  padding: 0.5rem;
+}

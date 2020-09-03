@@ -1,0 +1,571 @@
+<div class="container manage-company-section general-form padding-15 margin-t-15">
+    <div class="clear-fix"></div>
+    <div layout="row" layout-align="end end" layout-xs="column">
+        <md-button ng-click="ListPage()" class="md-icon-button">
+            <md-icon class="material-icons managecustomericon" title="Back to list">keyboard_backspace</md-icon>
+        </md-button>
+        <span flex></span>
+        <div layout-xs="row">
+            <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
+            <md-button class="md-raised md-primary" ng-click="editCustomer(companyData)">Edit {[{type}]}</md-button>
+        </div>
+        <div layout-xs="row">
+            <md-button class="md-raised md-primary" ng-click="viewOffer(companyData)" ng-if="customerDetails">View Offer
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="viewContacts(companyData)">View Contacts</md-button>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="viewProjectsDetails(companyData)" ng-if="supplierDetails">View
+                Projects</md-button>
+        <!-- <md-button class="md-raised md-primary" ng-click="viewProjects(companyData)" ng-if="!hide">View Projects</md-button> -->
+    
+    </div>
+    <div class="content-body padding-15">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-25">
+                    <div class="company-pic-holder">
+                        <img class="width-100p-xs height-100"
+                            ng-src="{[{companyData.logo?companyData.logo:'assets/img/sample-pro.jpg'}]}" alt="{[{companyData.logo ? companyData.logo.split('/').pop() : companyData.name}]}">
+                    </div>
+                </div>
+                <div class="col-md-755">
+                    <div class="col-md-12 padding-l-r-15">
+                        <label class="label-l" for="lname">Company name</label>
+                        <h5>{[{companyData.name ? companyData.name : 'NA'}]}</h5>
+                    </div>
+                    <div class="col-md-12 padding-l-r-15">
+                        <label class="label-l" for="lname">Company web address</label>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{companyData.website?companyData.website:'NA'}]}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15 addAddress">
+        <div class="col-md-12">
+            <h5>Company Contact</h5>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="col-md-12 padding-15 address-container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Phone</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p ng-if="!(companyData.phonenumber1||companyData.phonenumber2)" class="label-r">N/A</p>
+                        <p ng-if="companyData.phonenumber1||companyData.phonenumber2" class="label-r">
+                            {[{companyData.phonenumber1?((companyData.countryCode1?companyData.countryCode1+'-':'')+companyData.phonenumber1):''}]}
+                            <br>{[{companyData.phonenumber2?((companyData.countryCode2?companyData.countryCode2+'-':'')+companyData.phonenumber2):''}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Email</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{companyData.emailid1 || companyData.emailid2 ?
+                            ((companyData.emailid1?companyData.emailid1:'') + (companyData.emailid2?',
+                            '+companyData.emailid2:'')) : 'N/A'}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15" ng-repeat="contact in companyData.contacts"
+        ng-if="companyData.contacts.length">
+        <div class="col-md-12">
+            <h5>Contacts</h5>
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="firstName">First Name</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.firstname?contact.firstname:'NA'}]}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname">Last Name</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.lastname?contact.lastname:'NA'}]}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="phoneNumber">Phone Number</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r" ng-if="contact.phonenumber1">{[{contact.phonenumber1?
+                                contact.phonenumber1 : 'NA' }]}</p>
+                            <p class="label-r" ng-if="contact.phonenumber2">{[{contact.phonenumber2?
+                                contact.phonenumber2 : 'NA' }]}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname">Email</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r" ng-if="contact.emailid1">{[{contact.emailid1?contact.emailid1:'NA'}]}</p>
+                            <p class="label-r" ng-if="contact.emailid2">{[{contact.emailid2?contact.emailid2:'NA'}]}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="contact.nameofaddress">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname">Address</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">
+                                     {[{contact.nameofaddress}]}
+                                <br> {[{contact.addressline1}]}
+                                     {[{contact.addressline2 ? contact.addressline2:''}]}
+                                <br> {[{contact.cityname}]}, {[{contact.state}]},{[{contact.country}]}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="phoneNumber">GoogleMap url</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.googlemap_url ? contact.googlemap_url : 'NA'}]}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname">Facebook url</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.facebook_url?contact.facebook_url:'NA'}]}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="phoneNumber">Twitter url</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.twitter_url? contact.twitter_url : 'NA'}]}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <label class="label-l" for="lname">Youtube url</label>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="label-r">{[{contact.youtube_url?contact.youtube_url:'NA'}]}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15 addAddress">
+        <div class="col-md-12">
+            <h5>Tax Details</h5>
+            <div class="clear-fix"></div>
+        </div>
+        <div ng-if="!taxData.length">
+            <p>N/A</p>
+        </div>
+        <div ng-if="taxData.length" class="col-md-12 padding-15 address-container" ng-repeat="tax in taxData" track by
+            $index>
+            <h6>Tax</h6>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="fname">Tax Type</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{tax.taxType ? tax.taxType.name : 'NA'}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{tax.number ? tax.number : 'NA'}]}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="fname">Issue Date</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{tax.issue_date ? tax.issue_date : 'NA'}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Valid Date</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{tax.valid_date ? tax.valid_date : 'NA'}]}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Issuing Authority</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{tax.issuing_authority ? tax.issuing_authority : 'NA'}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">URL</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-4 padding-5">
+                            <img src="{[{tax.url}]}" alt="{[{tax.url ? tax.url.split('/').pop() : 'tax-url'}]}" class="width-100p-xs">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15 addAddress">
+        <div class="col-md-12">
+            <h5>Bank Details</h5>
+            <div class="clear-fix"></div>
+        </div>
+        <div ng-if="!bankData.length">
+            <p>N/A</p>
+        </div>
+        <div ng-if="bankData.length" class="col-md-12 padding-15 address-container" ng-repeat="bank in bankData" track
+            by $index>
+            <h6>bank details {[{$index+1}]} </h6>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">Beneficiary Name</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{bank.beneficiary_name}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">Account Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">{[{bank.account_number}]}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l"> Bank Name</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.bank_name ? bank.bank_name : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l"> Branch Address</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.branch_address ? bank.branch_address : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">city</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.city ? bank.city : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l"> State</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.state ? bank.state : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">Country</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.country ? bank.country : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l"> Pin Code</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.pin_code ? bank.pin_code : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">IFSC Code</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.ifsc_code ? bank.ifsc_code : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l"> SWIFT Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.swift_number ? bank.swift_number : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">IBAN Code</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.iban_code ? bank.iban_code : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l">MICR Code</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            <p class="label-r">{[{ bank.micr_code ? bank.micr_code : 'NA'}]}</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-4 padding-5">
+                        <img src="{[{bank.url}]}" alt="{[{bank.url ? bank.url.split('/').pop() : 'bank-url'}]}" class="width-100p-xs">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15 addAddress">
+        <div class="col-md-12">
+            <h5>Addresses</h5>
+            <div class="clear-fix"></div>
+        </div>
+        <div ng-if="!companyData.addresses.length">
+            <p>N/A</p>
+        </div>
+        <div ng-if="companyData.addresses.length" class="col-md-12 padding-15 address-container"
+            ng-repeat="contact in companyData.addresses" track by $index>
+            <h6>Address {[{$index+1}]} </h6>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Address</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{contact.nameofaddress}]}
+                            <br> {[{contact.addressline1}]}
+                            <br> {[{contact.addressline2}]}
+                            <br> {[{contact.cityname}]}, {[{contact.country}]}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- <div class="col-md-12">
+                                        <label class="label-l" for="lname">Phone</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p ng-if="!(companyData.phonenumber1||companyData.phonenumber2)" class="label-r">N/A</p>
+                                        <p ng-if="companyData.phonenumber1||companyData.phonenumber2" class="label-r">
+                                            {[{companyData.phonenumber1?((companyData.countryCode1?companyData.countryCode1+'-':'')+companyData.phonenumber1):''}]}
+                                            <br>{[{companyData.phonenumber2?((companyData.countryCode2?companyData.countryCode2+'-':'')+companyData.phonenumber2):''}]}
+                                        </p>
+                                    </div> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Facebook url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{contact.facebook_url?contact.facebook_url:'N/A' | limitTo:55}]}
+                            <span ng-if="contact.facebook_url.length>50">...</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Twitter url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{contact.twitter_url?contact.twitter_url:'N/A' | limitTo:55}]}
+                            <span ng-if="contact.twitter_url.length>50">...</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Linkedin url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{contact.linkedin_url?contact.linkedin_url:'N/A' | limitTo: 55}]}
+                            <span ng-if="contact.linkedin_url.length>50">...</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label class="label-l" for="lname">Youtube url</label>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="label-r">
+                            {[{contact.youtube_url?contact.youtube_url:'N/A' | limitTo:55}]}
+                            <span ng-if="contact.youtube_url.length>50">...</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="content-body padding-15" ng-if="companyData.categories.length">
+        <h5>Categories</h5>
+        <div class="row">
+            <div class="col-md-12 about-img">
+                <div class="col-md-12 attachments">
+                    <div ng-if="!companyData.categories.length">
+                        <h5>N/A</h5>
+                    </div>
+                    <div ng-repeat="category in companyData.categories" ng-if="companyData.categories.length">
+                        <div class="col-md-12">
+                            <p class="label-r">
+                                <span>{[{category.category_id}]}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-body padding-15">
+        <h5>Catalog</h5>
+        <div class="row">
+            <div class="col-md-12 about-img">
+                <div class="col-md-12 attachments">
+                    <div ng-if="!companyData.catalogs.length">
+                        <h5>N/A</h5>
+                    </div>
+                    <div ng-repeat="image in companyData.catalogs" ng-if="companyData.catalogs.length"
+                        class="margin-18">
+                        <a ng-href="{[{image}]}" target="_blank" download>
+                            <i class="fa fa-paperclip"></i> {[{image.split('/').pop()}]} </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-body padding-15">
+        <h5>Attachments</h5>
+        <div class="row">
+            <div class="col-md-12 about-img">
+                <div class="col-md-12 attachments">
+                    <div ng-if="!companyData.attachments.length">
+                        <h5>N/A</h5>
+                    </div>
+                    <div ng-repeat="image in companyData.attachments" ng-if="companyData.attachments.length">
+                        <div>
+                            <a ng-href="{[{image}]}" target="_blank" download>
+                                <i class="fa fa-paperclip"></i> {[{image.split('/').pop()}]} </a>
+                        </div>
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+</div>

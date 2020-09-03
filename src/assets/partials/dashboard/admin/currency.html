@@ -1,0 +1,28 @@
+<div class="row column align-center expanded layout-padding">
+    <h3 class="margin-top-1 margin-bottom-1">Currency</h3>
+    <div class="primary-line margin-bottom-2 margin-0"></div>
+    <tabset ng-init="show={}">
+  
+      <tab heading="View">
+        <p class="margin-bottom-1 primary-color">Please remember to click on <span class="filter-message">Clear</span> before applying filters.</p>
+        <div handsontable-django-readonly api-service="CurrencyTypeService" hot-id="guide_djangorest_User_readonly" exclude_fields="messages,shortlists,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions" min-rows="0" height='300' params='{}'></div>
+      </tab>
+  
+      <tab heading="Edit" ng-click="show.edit=true">
+        <div ng-if="show.edit">
+          <ul>
+            <li><p class="margin-bottom-1 primary-color">Please remember to click on <span class="filter-message">Clear</span> before applying filters.</p></li>
+            <li><p class="margin-bottom-1 primary-color">To permanently delete a record, right click on that record and press <span class="filter-message">Remove row</span></p></li>
+          </ul>
+          
+          <div handsontable-django-fullaccess api-service="CurrencyTypeService" hot-id="guide_djangorest_User_readonly" height='400' min-rows="0" min-spare-rows="0" exclude_fields="messages,shortlists,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined" params='{}' ></div>
+        </div>
+      </tab>
+      
+      <tab heading="Add" ng-click="show.add=true">
+        <div ng-if="show.add">
+          <div handsontable-django-fullaccess api-service="CurrencyTypeService" hot-id="guide_djangorest_User_readonly" height='400' min-rows="0" min-spare-rows="10" exclude_fields="messages,shortlists,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined" populate-data="false" ></div>
+        </div>
+      </tab>
+    </tabset>
+  </div>

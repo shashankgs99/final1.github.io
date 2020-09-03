@@ -1,0 +1,54 @@
+<div layout="row" class="md-margin md-padding md-display-1">
+    Manage Users
+</div>
+<div ng-controller="layout.standard.filtersController" ng-include="'assets/js/modules/filters/user-filters.html'"></div>
+<div layout="column" class="md-padding">
+    <div layout="row" flex layout-align="end end" hide-xs="">
+        <md-checkbox ng-model="selectAll" ng-click="checkAll(selectAll)">
+            Select All
+        </md-checkbox>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="addUser()">Create User</md-button>
+        <md-button class="md-raised md-primary" ng-click="addMultipleUsers()">Create MultipleUser</md-button>
+        <md-button class="md-raised md-primary" ng-click="viewUser(table_changes)">View User</md-button>
+        <md-button class="md-raised md-primary" ng-click="editUser(table_changes)">Edit User</md-button>
+        <md-button class="md-raised md-warn" ng-click="deleteData(table_changes, table_deletes, data)">Delete
+        </md-button>
+    </div>
+    <div layout-xs="column" hide-gt-xs="">
+        <div layout-xs="row">
+            <md-checkbox ng-model="selectAll" ng-click="checkAll(selectAll)">
+                Select All
+            </md-checkbox>
+        </div>
+        <div layout-xs="row" layout-align-xs="start start" flex>
+            <div flex-xs="50">
+                <md-button class="md-raised md-primary" ng-click="addUser()">Create User</md-button>
+
+            </div>
+            <div flex-xs="50">
+                <md-button class="md-raised md-primary" ng-click="viewUser(table_changes)">View User</md-button>
+
+            </div>
+        </div>
+        <div layout-xs="row" layout-align-xs="start start">
+            <div flex-xs="50">
+                <md-button class="md-raised md-primary" ng-click="viewUser(table_changes)">View User</md-button>
+            </div>
+            <div flex-xs="50">
+                <md-button class="md-raised md-warn" ng-click="deleteData(table_changes, table_deletes, data)">Delete
+                </md-button>
+            </div>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="addMultipleUsers()">Create MultipleUser</md-button>
+    </div>
+    <div handsontable-django-fullaccess api-service="UserService" hot-id="guide_djangorest_User_readonly" height='400'
+        min-rows="0" min-spare-rows="0"
+        exclude_fields="location_city,location_country,message,edited_by_user,sent_by_user,customer_owner,project_owner,offer_owner,offer_edited_by_user,designation,address,signature,role_type,image,messages,shortlists,logentry,
+    auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined,directories,password,last_login,username,email_verification_hash,avatar,
+    image_url,supplier,country_code,auth_token,pr_group_owner,pr_owner,po_owner,mto_group_owner,mto_owner,supplier_categories,user
+    ,project_edited_by_user,po_authorized_by_user,po_edited_by_user,invoice_owner,so_authorized_by_user,so_owner,so_edited_by_user,
+    inspected_user,grn_item_owner,internal_inventory_owner,payment_request_owner,store_owner,MR_owner,MR_Item_owner,owner,blog_owner,user,grn_owner,inspected_user"
+        params='{"type":"usersPage"}'>
+    </div>
+</div>

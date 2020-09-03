@@ -1,0 +1,76 @@
+(function(){
+    var app = angular.module('app');
+  
+    // Factory are better than Services
+  
+    app.factory('MRService',['$http','$cookies',function($http,$cookies){
+      
+      $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+      var factory = {};
+
+      factory.get = function(params){
+        if(!params){
+          params = {};
+        }
+        return $http.get('api/v1/material-requisition/',{
+          params: params,
+        });
+      };
+
+      factory.getOne = function(id){
+        return $http.get('api/v1/material-requisition/'+id);
+      };
+
+      factory.post = function(data){
+        return $http.post('api/v1/material-requisition/',data);
+      };
+
+      factory.update = function(id,data){
+        return $http.patch('api/v1/material-requisition/'+id+'/',data);
+      };
+
+      factory.delete = function(id){
+        return $http.delete('api/v1/material-requisition/'+id+'/');
+      };
+
+      factory.getItems = function(params){
+        if(!params){
+          params = {};
+        }
+        return $http.get('api/v1/material-requisition-items/',{
+          params: params,
+        });
+      };
+
+      factory.getOneItem = function(id){
+        return $http.get('api/v1/material-requisition-items/'+id);
+      };
+
+      factory.postItems = function(data){
+        return $http.post('api/v1/material-requisition-items/',data);
+      };
+
+      factory.updateItems = function(id,data){
+        return $http.patch('api/v1/material-requisition-items/'+id+'/',data);
+      };
+
+      factory.deleteItem = function(id){
+        return $http.delete('api/v1/material-requisition-items/'+id+'/');
+      };
+
+      factory.getRequestType = function(){
+        return $http.get('api/v1/mr-request-type/');
+      };
+
+      factory.getPurpose = function(){
+        return $http.get('api/v1/mr-purpose/');
+      };
+
+      factory.getStatus = function(){
+        return $http.get('api/v1/mr-status/');
+      };
+      
+      return factory;
+
+    }]);
+  })();

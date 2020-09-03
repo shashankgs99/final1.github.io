@@ -1,0 +1,1 @@
+"use strict";!function(){var app=angular.module("app");app.factory("SendGridService",["$http","$cookies",function($http,$cookies){$http.defaults.headers.post["X-CSRFToken"]=$cookies.csrftoken;var factory={};return factory}])}();

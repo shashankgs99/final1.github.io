@@ -1,0 +1,70 @@
+<md-dialog flex-xs=100 flex-gt-xs="50" flex>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Generate GRN</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Document Reference</label>
+                            <input type="text" ng-model="grn.document_reference"/>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Document Date</label>
+                                <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="grn.document_date"></md-datepicker>
+                            </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Date Of Delivery</label>
+                                <md-datepicker type="date" class="date-picker" required layout="row" name="Date" id="datefrom" ng-model="grn.delivery_date"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Date Of Receipt</label>
+                                    <md-datepicker class="date-picker" required type="date" layout="row" name="Date" id="datefrom" ng-model="grn.receipt_date"></md-datepicker>
+                                </md-input-container>
+                        </div>
+                 </div>
+                 <div layout="row" class="ml-padding-t-16">
+                        <div layout-margin flex>
+                                <md-input-container class="md-block">
+                                    <label>Document Description</label>
+                                    <textarea ng-model="grn.description" rows="5"></textarea>
+                                </md-input-container>
+                        </div>
+                 </div>
+                 <div layout="row" class="ml-padding-t-16">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Remarks</label>
+                                <textarea ng-model="grn.remarks" rows="5"></textarea>
+                            </md-input-container>
+                        </div>
+                 </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="save(grn)" class="md-primary">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

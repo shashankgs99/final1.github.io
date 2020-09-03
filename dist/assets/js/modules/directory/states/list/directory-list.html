@@ -1,0 +1,54 @@
+<section class="directory-list-section">
+<div class="col-md-12 page-title">
+    <div class="container">
+        <div class="navigation-header">
+            <div class="row align-center align-middle">
+                <div class="column center" ng-class='{active: (itemType=="directory")}'>
+                    <a href="/companies/list" id="directory-list" target="_self">
+                        <p>Directory</p>
+                    </a>
+                </div>
+                <div class="column center" ng-class='{active: (itemType=="inventory")}'>
+                    <a href="/inventory/list/category" id="stock-inventory-list" target="_self">
+                        <p>Stock & Inventory</p>
+                    </a>
+                </div>
+                <div class="column center" ng-class='{active: (itemType=="rental")}'>
+                    <a href="/rental/list/category" id="rental-list" target="_self">
+                        <p>Rental</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+</div>
+</section>
+<div class="clear-fix"></div>
+<div class="clear-fix"></div>
+<div class="container list">
+    <div class="col-md-12">
+        <div class="directory-list">
+            <div class="col-md-3 padding-l-r-15 no-padding-xs col-xs-12 filters-list-xs" ng-style="showFilters"><!-- deprecated class .filter-view .column .shrink  -->
+              <div class="col-md-12 padding-l-r-15 left-filters-box scroll">
+                  <button  class="button hidden-md top-5" ng-click="showFilters = {'display':'none'}">Ok</button>
+                  <div ui-view="filters"></div>
+                  <button class="button hidden-md bottom-5" ng-click="showFilters = {'display':'none'}">Ok</button>
+              </div> 
+            </div>
+            <div class="col-md-9 padding-l-r-15 col-xs-12 no-padding-xs"><!-- deprecated class .list-view column -->
+                <div class="col-md-12 hidden-md filter-icon-xs" ng-click="showFilters = {'display':'block','position':'absolute'}">
+                    <span><i class="fa fa-filter"></i> Filters</span>
+                </div>
+                <div class="col-md-12 padding-l-r-15 no-padding-xs right-filtered-box">
+                    <div ui-view="content"></div>
+                </div>    
+            </div>
+          <div class="clear-fix"></div>
+          </div>
+    </div>
+    <div class="clear-fix"></div>
+</div>
+
+
+

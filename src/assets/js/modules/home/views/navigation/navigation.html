@@ -1,0 +1,182 @@
+<div class="col-md-12 page-title nav-bg">
+  <div class="container" ng-if="current_user.data.username">
+    <div class="navigation-header">
+      <div class="row align-center align-middle">
+        <div class="column center" ng-class='{active: (itemType=="directory")}'>
+          <a href="/companies/list" id="directory-list" target="_self">
+            <p class="tab-style color-white">Directory</p>
+          </a>
+        </div>
+        <div class="column center" ng-class='{active: (itemType=="inventory")}'>
+          <a href="/inventory/list/category" id="stock-inventory-list" target="_self">
+            <p class="tab-style color-white">Stock & Inventory</p>
+          </a>
+        </div>
+        <div class="column center" ng-class='{active: (itemType=="rental")}'>
+          <a href="/rental/list/category" id="rental-list" target="_self">
+            <p class="tab-style color-white">Rental</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <section class="fullscreen-image slide  scroll login-bg">
+    <div class="row container align-center scroll align-middle main-3-boxesS mh-90" ng-cloak>
+      <!-- <div class="col-md-12">
+        <div class="wrap">
+          <div class="row nav-bar">
+            <div class="search-dropdown nav-items">
+              <select ng-model="searchOption" class="margin-0">
+                <option value="directory">Directory</option>
+                <option value="inventory">Inventory</option>
+                <option value="rental">Rental</option>
+                <option value="supplier">Supplier</option>
+              </select>
+            </div>
+            <div class="search-suggest-preview">
+              <input maxlength="100" ng-model="searchText" class="form-control form-control-lg search-query"
+                placeholder="By Product Category">
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary searchButton"
+              ng-click="searchGlobal(searchOption,searchText)">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" ng-controller="home.navigation.controller" ng-init="getProductsData()">
+        <div class="col-md-6 col-xs-12 padding-15 supplierbox-content">
+          <div class="main-boxS" id="suppliers">
+            <div class="col-md-12">
+
+              <h4 class="font-w-600">Suppliers</h4>
+
+              <div class="col-md-12 content">
+                <a id="ccp" target="_blank">Create Company profiles</a>
+              </div>
+              <div class="col-md-12 content">
+                <a id="re" href="/supplier-dashboard/projects/list" target="_blank">Receive enquiries</a>
+              </div>
+              <div class="col-md-12 content">
+                <a id="lyp" href="/supplier-dashboard/directory/list" target="_blank"> List your products</a>
+              </div>
+              <div class="col-md-12 content">
+                <a id="ssi" href="/market-dashboard/inventory" target="_blank">Sell stock & inventory </a>
+              </div>
+              <div class="col-md-12 content">
+                <a id="reta" href="/market-dashboard/rental" target="_blank">Rent Equipment,tools</a>
+              </div>
+            </div>
+            <div class="clear-fix"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12 padding-15 buyerbox-content">
+          <div class="main-boxS" id="buyers">
+            <div class="col-md-12">
+              <div class="col-md-12 title">
+                <h4 class="font-w-600">Buyers</h4>
+              </div>
+
+              <div class="col-md-12 content">
+                <a target="_blank" id="findSuppliers">Find Suppliers</a>
+              </div>
+              <div class="col-md-12 content">
+                <a target="_blank" href="/companies/list" id="exploreProducts">Explore products</a>
+              </div>
+              <div class="col-md-12 content">
+                <a target="_blank" href="/inventory/list/category" id="inventoryList">Buy Surplus material</a>
+              </div>
+              <div class="col-md-12 content">
+                <a target="_blank" href="/rental/list/category" id="rentalList">Rent Equipment,tools</a>
+              </div>
+              <div class="col-md-12 content">
+                <a target="_blank" href="/buyer-dashboard/enquiries" id="shortList">Send bulk enquiries </a>
+              </div>
+            </div>
+            <div class="clear-fix"></div>
+          </div>
+        </div>
+      </div> -->
+      <div flex layout="column" layout-xs="column">
+        <slick class="slider home-slick" settings="slickConfig" layout-xs="column">
+          <div>
+              <div layout="row">
+                  <img src="/assets/img/Pipes2.jpg" alt="Surplus Material image ( Pipes)">
+              </div>
+              <div layout="column" class="p-4-35">
+                  <div layout="row">
+                      <h4>Unlock Inventory, Ease cash-flows!</h4>
+                  </div>
+                  <div layout="row">
+                    <p class="md-subhead text-align-justify">Contractors often scrap surplus inventory leftover after project Completion, writing off a significant inventory value from the balance sheet!</p>
+                  </div>
+                  <div layout="row" class="m-t-4">
+                      <p class="md-subhead text-align-justify">Stockists are often left with non-moving inventory due to market conditions.
+                        </p>
+                  </div>
+                  <div layout="column" layout-align="center center" class="margin-t-1">
+                      <md-button class="text-capitalize"><a href="/register/options">Unlock Inventory</a></md-button>
+                  </div>
+                  <div layout="column" layout-align="center center">
+                      <md-button class="text-capitalize"><a href="https://www.blog.supplierscave.com/?p=60">Read More</a></md-button>
+                  </div>
+              </div>
+          </div>
+          <div>
+              <div layout="row">
+                  <img src="/assets/img/Rental Equipment and tools.jpg" alt="Rental Equipment and tools">
+              </div>
+              <div layout="column" class="p-4-35">
+                  <div layout="row">
+                      <h4>List Equipment for Rent !</h4>
+                  </div>
+                  <div layout="row">
+                    <p class="md-subhead text-align-justify">Supplierscave supplies various contractors and industry players in the construction and oil & Gas sectors. There is a good chance that they are looking to rent tools and Equipment you have. 
+                      </p>
+                  </div>
+                  <div layout="row" class="m-t-4">
+                      <p class="md-subhead text-align-justify">You might be a Contractor with assets which are idle during certain periods.  You can rent equipment not in use for effective asset utilisation and cost recovery.
+                      </p>
+                  </div>
+                  <div layout="column" layout-align="center center" class="margin-t-1">
+                      <md-button class="text-capitalize"><a href="/register/options">List Equipment for Rent</a></md-button>
+                  </div>
+                  <div layout="column" layout-align="center center">
+                    <md-button class="text-capitalize"><a href="https://www.blog.supplierscave.com/?p=44">Read More</a></md-button>
+                  </div>
+              </div>
+          </div>
+
+          <div>
+              <div layout="row">
+                  <img src="/assets/img/Warehouse Covered and open.jpg" alt="Warehouse Covered and open">
+              </div>
+              <div layout="column" class="p-4-35">
+                  <div layout="row">
+                      <h4>List warehouse for / store space for Rent !</h4>
+                  </div>
+                  <div layout="row">
+                    <p class="md-subhead text-align-justify">Supplierscave supplies various contractors and industry players in the construction and oil & Gas sectors. There is a good chance that they are looking to rent additional yard or store space  you have.  
+                      </p>
+                  </div>
+                  <div layout="row" class="m-t-4">
+                      <p class="md-subhead text-align-justify">You might be a Contractor with unused yard space.  You can rent the space not in use for effective asset utilisation and cost recovery. 
+                      </p>
+                  </div>
+                  <div layout="column" layout-align="center center" class="margin-t-1">
+                      <md-button class="text-capitalize"> <a href="/register/options">List warehouse for Rent </a></md-button>
+                  </div>
+                  <div layout="column" layout-align="center center">
+                    <md-button class="text-capitalize"><a href="https://www.blog.supplierscave.com/?p=62">Read More</a></md-button>
+                  </div>
+              </div>
+          </div>
+
+        </slick>
+      </div>
+    </div>
+
+  </section>
+  <div class="clear-fix"></div>
+</div>

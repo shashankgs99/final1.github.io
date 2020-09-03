@@ -1,0 +1,109 @@
+<div class="side-nav-bg col-xs-12 fade hidden-md hidden-sm hidden-lg" ng-show="toggle" ng-click="toggleClick(toggle)" ng-style="windowInnerHeight"></div>
+<div class="side-navigation" ng-class="{toggle0:toggle==true, toggleMinus230:toggle==false}">
+    <div class="row align-middle align-center title">
+        <div class="logo columns">
+            <i class="fa fa-bars fade admin-sidenav" ng-click="toggleClick(toggle)"></i>
+            <div class="sidenav-logo" ng-if="current_user.data.company.logo">
+                <img class="sidenav-img" ng-src="{[{current_user.data.company.logo}]}" ng-click="changeIcon($event)" alt="{[{current_user.data.company.company_name}]}">
+            </div>
+        </div>
+    </div>
+    <div class="row columns align-center center">
+        <h6 class="light-color margin-top-2 margin-bottom-1">Marketplace</h6>
+        <h6 class="secondary-color">
+            <span ng-bind="current_user.data.company.company_name"></span>
+        </h6>
+    </div>
+    <ul class="left-navigation" id="left-navigation" ng-style="leftNavigationHeight">
+        <li>
+            <a ui-sref="marketDashboard.inventory.list" id="supplier-inventory" ng-class="{active: ('marketDashboard.inventory'| includedByState)}"  class="sub-menu">
+                Inventories
+                <i ng-click="openInventoryInstructions()" class="fa fa-info-circle instruction-icon m-l-65"></i>
+                <i ng-click="startVideo('inventory-video')" class="fa fa-question-circle instruction-icon m-l-4p"></i>
+            </a>
+        </li>
+        <li>
+            <a ui-sref="marketDashboard.rental.list" id="supplier-rental" ng-class="{active: ('marketDashboard.rental'| includedByState)}" class="sub-menu">
+                Rental
+                <i ng-click="openInventoryInstructions()" class="fa fa-info-circle instruction-icon m-l-93"></i>
+                <i ng-click="startVideo('inventory-video')" class="fa fa-question-circle instruction-icon m-l-4p"></i>
+            </a>
+        </li>
+        <li>
+            <a ui-sref="marketDashboard.directory.list" id="supplier-directory" ng-class="{active: ('marketDashboard.directory'| includedByState)}" class="sub-menu">
+                Products & Services
+                <i ng-click="openProductInstructions()" class="fa fa-info-circle instruction-icon"></i>
+                <i ng-click="startVideo('directory-video')" class="fa fa-question-circle close_popup instruction-icon m-l-4p"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="dlgbox close-popup" ng-if="inventoryInstructions">
+        <div class="dig-head">Instruction
+            <button type="button" class="fa fa-times-circle introduction" ng-click="Introduction('inventory-introduction')"></button>
+        </div>
+        <div class="dig-body">
+            <p> 1) Click on Add. Select industry or industries.</p>
+            <p> 2) Select the item type Add Documents. Data Sheets, Drawings etc.</p>
+            <p> 3) Import the inventory. Save the changes.</p>
+            <p> 4) You can use the download button to download format to upload inventory or rental items.</p>
+            <p> Note: Please refer the video link for additional details</p>
+        </div>
+        <div class="dig-foot">
+            <button ng-click="openInventoryInstructions()">Ok</button>
+        </div>
+    </div>
+    <div class="video-bg-color" ng-if="inventoryVideo">
+        <span class="iconStyle">Learn how to manage inventories and rental page
+            <button type="button" class="video-xbtn" ng-click="stopVideo('inventory-video')">X</button>
+            <iframe class="video-bg" id="inventory-video" src="https://www.youtube.com/embed/SLV1xpzzog4?rel=0&enablejsapi=1"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                
+        </span>
+    </div>
+    <div class="dlgbox close-popup" ng-if="productProfileSection">
+            <div class="dig-head">Instruction
+                <button type="button" class="fa fa-times-circle introduction" ng-click="Introduction('product-introduction')"></button>
+            </div>
+            <div class="dig-body">
+                <p> 1) Select industry /industries.</p>
+                <p> 2) Upload all applicable documents for the material being listed. Select the document type, name it and upload the file. The acceptable file 
+                    types are mentioned next to the upload button. Users can see these files next to the items in the output screen.</p>
+                <p> 3) Upload the items through the excel file. Format can be downloaded using the download button. The categories pre-approved are mentioned in 
+                    the file and are updated from time to time..</p>
+                <p> Note: Contact us to include new categories that are not already part of the existing categories.</p>
+            </div>
+            <div class="dig-foot">
+                <button ng-click="openProductInstructions()">Ok</button>
+            </div>
+        </div>
+    <div class="video-bg-color" ng-if="directoryVideo">
+        <span class="iconStyle">Learn how to manage directory page
+            <button type="button" class="video-xbtn" ng-click="stopVideo('directory-video')">X</button>
+            <iframe class="video-bg" id="directory-video" src="https://www.youtube.com/embed/L5cTAfgftZA?rel=0&enablejsapi=1"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </span>
+        <!-- <button type="button" style class="fa fa-times-circle icon-cog Cbutton" ng-click="stopVideo('directory-video')"></button> -->
+    </div>
+    <div class="iconD" ng-if="companyVideo">
+        <span class="iconStyle">Learn how to manage company page
+            <iframe ng-model="player_id" id="company-video" width="560" height="315" src="https://www.youtube.com/embed/RFhIKI_18Cw?rel=0&enablejsapi=1"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </span>
+        <button type="button" class="fa fa-times-circle icon-cog  Cbutton" ng-click="stopVideo('company-video')"></button>
+    </div>
+    <div class="sn-footer">
+            <div class="row align-middle align-center title m-b-4">
+                <div class="logo columns">
+                    <a target="_self" href="/" class="site-logo" id="site-logo">
+                        <img src="/assets/img/supplierscave-logo.png" class="h-80" alt="supplierscave">
+                        <div class="clear-fix"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="row align-middle align-center">
+            <div class="columns center">
+                <p class="light-color small-font bold">Version 0.1.3</p>
+            </div>
+        </div>
+    </div>
+</div>

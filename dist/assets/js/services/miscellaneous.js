@@ -1,0 +1,1 @@
+"use strict";!function(){var app=angular.module("app");app.service("Miscellaneous",[function(){var service={};return service.humanize=function(str){for(var frags=str.split("_"),i=0;i<frags.length;i++)frags[i]=frags[i].charAt(0).toUpperCase()+frags[i].slice(1);return frags.join(" ")},service}])}();

@@ -1,0 +1,69 @@
+<div layout="column" layout-align="start center">
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <!-- <div layout="column">
+            <slick class="slider" style="padding: 0px !important;" settings="slickConfig2">
+                <div ng-repeat="item in postedBlogs track by $index">
+                     <div style="height: 260px;" ng-click="">
+                        <a href="#"><img style="height: 100%;width: 100%;background-position: center center;background-repeat: no-repeat;
+                         background-size: cover;" ng-src="{[{item.image?item.image:'/assets/img/sample-pro.jpg'}]}"
+                                alt="{[{item.logo?item.logo.split('/').pop(): item.name}]}"></a>
+                        <div class="shadow">
+                            <a href="#" class="text">{[{item.title}]}</a>
+                        </div>
+                    </div> 
+                       Blog
+                </div>
+            </slick>
+        </div> -->
+        <md-card flex md-theme-watch class="blog-card">
+            <div layout="column">
+                <div layout="row" layout-margin layout-padding layout-align="center">
+                    <p class="md-subhead blog-card-title">Official SuppliersCave Blog </p>
+                </div>
+            </div>
+            <div layout="column" ng-repeat="item in postedBlogs track by $index">
+                <div layout="row" class="blog-item" ng-click="viewBlog($event,item)">
+                    <div layout="column" flex="45">
+                        <a ui-sref="{[{viewBlog()}]}" class="blog-img-layout">
+                            <img class="blog-img"
+                                ng-src="{[{item.cover_image?item.cover_image:(item.catalogs.length ? item.catalogs[0]:'/assets/img/sample-pro.jpg')}]}"
+                                alt="{[{item.cover_image?item.cover_image.split('/').pop():'/assets/img/sample-pro.jpg'}]}">
+                        </a>
+                    </div>
+                    <div layout="column" flex="55" class="blog-item-text">
+                        <div layout="row">
+                            <div class="m-10">
+                                <h2 class="b-title">
+                                    <a ui-sref="{[{viewBlog()}]}" class="blog-title">
+                                        {[{item.title}]}
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="blog-border"></div>
+                        <div layout="row">
+                            <div class="blog-description">
+                                <span ng-bind-html="item.description"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="column" ng-if="$index > 2">
+                    <div layout="row">
+                        <div layout="row" flex>
+                            <a href="#">
+                                <img style="height:50%;width:50%"
+                                    ng-src="{[{item.image?item.image:'/assets/img/sample-pro.jpg'}]}"
+                                    alt="{[{item.logo?item.logo.split('/').pop(): item.name}]}">
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </md-card>
+    </div>
+</div>
+<style>
+   
+</style>

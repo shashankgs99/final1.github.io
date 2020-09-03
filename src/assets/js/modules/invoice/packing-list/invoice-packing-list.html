@@ -1,0 +1,26 @@
+<md-dialog flex>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Packing Item Details</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="row" layout-margin>
+                    <md-checkbox ng-model="checked"  ng-click="selectAll(checked)">Select All</md-checkbox>
+                    <span flex></span>
+                    <md-button class="md-primary md-raised"  ng-click="UpdatePackingList($event)">Update Details</md-button>
+            </div>
+            <div flex layout-margin>
+                <div id="packing-list-grid" ui-grid="uiGridOptions" class="grid" ui-grid-edit flex flex-xs="100"></div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-click="save()" ng-if="!saveItem">
+                Save
+            </md-button>
+        </md-dialog-actions>
+</md-dialog>

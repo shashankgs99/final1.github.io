@@ -1,0 +1,54 @@
+(function () {
+    var app = angular.module('app');
+    app.controller('layout.standard.sendPO', ['$scope', '$window', '$mdDialog', '$log', '$state', 'Notification', 'MessageService', '$http', 's3Service', 'dateService', 'OfferService','$rootScope','$timeout','$stateParams','MTOService','MTOOfferService','$dialogScope','CompanyService',
+        function ($scope, $window, $mdDialog, $log, $state, Notification, MessageService, $http, s3Service, dateService, OfferService,$rootScope,$timeout,$stateParams,MTOService,MTOOfferService,$dialogScope,CompanyService) {
+       
+            $scope.cancel= function(){
+              $mdDialog.cancel();
+            };
+
+            $scope.data = $dialogScope.data;
+            $scope.subject = `Purchase order # ${$scope.data.po_number} Dated ${$scope.data.po_date} - From ${$scope.data.buyer_company_name}`
+            $scope.email ={
+                po_number             : $scope.data.po_number,
+                po_date               : $scope.data.po_date,
+                buyer_company         : $scope.data.buyer_company_name,
+                supplier_contact_name : $scope.data.supplier_contact_name,
+                po_description        : $scope.data.po_description,
+                POId                  : $scope.data.id,
+                po_reference          : $scope.data.po_reference,
+               // attachments           : $scope.data.attach,
+                buyer_contact_name    : $scope.data.buyer_contact_name,
+                buyer_contact_email   : $scope.data.buyer_contact_email,
+                buyer_contact_mobile  : $scope.data.buyer_contact_mobile
+            };
+
+            $scope.sendEmail = function () {
+              
+                $http.get('/sendgrid/po-send-email/',
+                    {
+                        params: {
+                            to: $scope.data.supplier_contact_email,
+                            buyerEmail : $dialogScope.userData.email,
+                            buyerName : $dialogScope.userData.first_name +' '+$dialogScope.userData.last_name,
+                            emailBody: $scope.email
+                        }
+                    }).then(function (response) {
+                        $mdDialog.hide();
+                        Notification.success({
+                            message: 'Sent email to the Email Address specified',
+                            positionX: 'right',
+                            positionY: 'top'
+                        });
+                    }).catch(function (error) {
+                        Notification.error({
+                            message: 'Something went wrong. Please try again.',
+                            positionX: 'right',
+                            positionY: 'top'
+                        });
+                    });
+                
+            };                
+          
+        }]);
+})();

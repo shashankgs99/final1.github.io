@@ -1,0 +1,206 @@
+<div layout="column" layout-align="start center" class="md-padding md-margin">
+    <div layout="column" class="main-card" flex>
+        <div layout="row" class="layout-padding md-title">
+            <div flex class="md-display-1">Offer Details</div>
+        </div>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-card md-theme-watch class="view-enquiryCard">
+                    <md-card-content>
+                        <div layout="column">
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Offer Number</label>
+                                    <p class="md-body-1">{[{offerData.offer_number? offerData.offer_number :'NA'}]}
+                                        {[{offerData.revision_number?('Rev:
+                                        '+offerData.revision_number):''}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Validity</label>
+                                    <p class="md-body-1">{[{offerData.expiry_date?offerData.expiry_date:'NA'}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Offer Details</label>
+                                    <div ng-style="myObj" description-content id="description">
+                                        <p class="md-body-1" ng-bind-html="offerData.description"></p>
+                                        <p class="md-body-1" ng-if="!offerData.description">NA</p>
+                                    </div>
+                                    <div ng-if="offerData.description.length>250" class="col-md-12">
+                                        <a ng-if="readMore" ng-click="showContent()">+Read More</a>
+                                        <a ng-if="!readMore" ng-click="showContent()">-Read Less</a>
+                                    </div>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Offer Created by</label>
+                                    <p class="md-body-1">{[{offerData.owner.first_name}]}
+                                        {[{offerData.owner.last_name}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Remarks</label>
+                                    <p class="md-body-1 offer-remarks"
+                                        ng-bind="offerData.remarks ? offerData.remarks :NA"></p>
+                                </div>
+                                <div flex>
+
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Attachments</label>
+                                    <p ng-repeat="image in  offerData.attachments">
+                                        <a ng-href="{[{image}]}" target="_blank" download>
+                                            <i class="fa fa-paperclip"></i> {[{image.split('/').pop()}]} </a>
+                                    </p>
+                                    <p class="md-body-1 ng-if=" !offerData.attachments.length">N/A</p>
+                                </div>
+                                <div flex>
+
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card md-theme-watch class="view-enquiryCard">
+                    <md-card-content>
+                        <div layout="column">
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Project/Enquiry Details</label>
+                                    <p class="md-body-1" ng-if="offerData.enquiry">{[{offerData.enquiry.project?
+                                        offerData.enquiry.project.name :'NA'}]}
+                                    </p>
+                                    <p class="md-body-1" ng-if="offerData.project">{[{offerData.project?
+                                        offerData.project.name :'NA'}]}</p>
+                                </div>
+                                <div flex ng-if="showSupplier">
+                                    <label class="md-caption">Customer</label>
+                                    <p class="md-body-1" ng-if="offerData.project">{[{offerData.project.customer.name}]}
+                                    </p>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.company">
+                                        {[{offerData.enquiry.sender.company.company_name}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Enquiry Number</label>
+                                    <p class="md-body-1">
+                                        {[{offerData.enquiry.enquiry_number?offerData.enquiry.enquiry_number:'NA'}]}
+                                        {[{offerData.enquiry.revision_number?('Rev:
+                                        '+offerData.enquiry.revision_number):''}]}
+                                    </p>
+                                </div>    
+                                <div flex>
+                                    <label class="md-caption">Internal Reference Number</label>
+                                    <p class="md-body-1">{[{offerData.project
+                                        ?offerData.project.internal_reference_number:'NA'}]}
+                                        {[{offerData.project.revision_number?('Rev:
+                                        '+offerData.project.revision_number):''}]}
+                                    </p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                        <label class="md-caption">Project Date</label>
+                                        <p class="md-body-1">{[{offerData.project ? offerData.project.created_date:'NA'}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Due Date</label>
+                                    <p class="md-body-1">{[{offerData.expiry_date?offerData.expiry_date:'NA'}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Offer Status</label>
+                                    <p class="md-body-1">{[{offerData.offer_state}]}</p>
+                                </div>
+                                <div flex>
+                                    <!-- <label class="md-caption">Sales Representative</label>
+                                    <p class="md-body-1">{[{offerData.offer_state}]}</p> -->
+                                </div>
+                            </div>
+                            <!-- <div layout="row" flex layout-margin ng-if="showSupplier" layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Customer</label>
+                                    <p class="md-body-1" ng-if="offerData.project">{[{offerData.project.customer.name}]}
+                                    </p>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.company">
+                                        {[{offerData.enquiry.sender.company.company_name}]}</p>
+                                </div>
+                                <div flex></div>
+                            </div> -->
+                            <div layout="row" flex layout-margin ng-if="showAdmin" layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Supplier Details</label>
+                                    <p class="md-body-1" ng-if="offerData.owner.company">
+                                        {[{offerData.owner.company.company_name}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.first_name">
+                                        {[{offerData.owner.first_name}]}{[{offerData.enquiry.sender.last_name ? + "
+                                        "+offerData.enquiry.sender.last_name
+                                        : ''}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.email">{[{offerData.owner.email}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.contact_no">
+                                        {[{offerData.owner.contact_no}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Buyer Details</label>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.company">
+                                        {[{offerData.enquiry.sender.company.company_name}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.first_name">
+                                        {[{offerData.enquiry.sender.first_name}]}{[{offerData.enquiry.sender.last_name ?
+                                        + " " +offerData.enquiry.sender.last_name
+                                        : ''}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.email">
+                                        {[{offerData.enquiry.sender.email}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.enquiry.sender.contact_no">
+                                        {[{offerData.enquiry.sender.contact_no}]}</p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin ng-if="showBuyer" layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Supplier Details</label>
+                                    <p class="md-body-1" ng-if="offerData.owner.company">
+                                        {[{offerData.owner.company.company_name}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.first_name">
+                                        {[{offerData.owner.first_name}]}{[{offerData.enquiry.sender.last_name ? + " "
+                                        +offerData.enquiry.sender.last_name
+                                        : ''}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.email">{[{offerData.owner.email}]}</p>
+                                    <p class="md-body-1" ng-if="offerData.owner.contact_no">
+                                        {[{offerData.owner.contact_no}]}</p>
+                                </div>
+                                <div flex>
+
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+
+                <div layout="row" class="md-margin md-padding" layout-align="end end" layout-xs="column">
+                    <div layout-xs="row">
+                        <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                        <md-button class="md-raised md-primary" ng-if="type==='Sent' && offerData.offer_state==='Offer Created'"
+                            ng-click="editOffer(offerData)">Edit Offer</md-button>
+                    </div>
+                    <div layout-xs="row">
+                        <md-button class="md-raised md-primary" ng-if="type==='Sent' && offerData.offer_state==='Offer Sent'"
+                            ng-click="editOffer(offerData)">
+                            Revise Offer</md-button>
+                        <md-button class="md-raised md-primary" ng-if="type==='Sent'"
+                            ng-click="sendOffer('large',offerData,totalOffers)">Send
+                            Offer</md-button>
+                    </div>
+                    <div layout-xs="row">
+                        <md-button class="md-raised md-warn" ng-if="type==='Sent'" ng-click="deleteOffer(offerData,0,totalOffers)">
+                            Delete
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

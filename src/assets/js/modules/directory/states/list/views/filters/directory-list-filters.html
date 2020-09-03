@@ -1,0 +1,93 @@
+<div class="col-md-12 padding-t-b-15 search-filters" id="search-filters">
+    <div id="hierarchical-categories">
+      <!-- hierarchical-categories widget will appear here -->
+    </div>
+    <div id="hierarchical-cities" class="padding-t-b-15">
+      <!-- hierarchical-categories widget will appear here -->
+    </div>
+    <div ng-if="itemType==='inventory'" id="refinement-itemtype" class="padding-t-b-15">
+      <!-- RefinementList widget will appear here -->
+    </div>
+    <div ng-if="itemType==='directory'" id="refinement-supplier" class="padding-t-b-15">
+      <!-- RefinementList widget will appear here -->
+    </div>
+    <div ng-if="itemType==='inventory' || itemType==='rental'" id="refinement-supplier-inv" class="padding-t-b-15">
+      <!-- RefinementList widget will appear here -->
+    </div>
+    <div id="refinement-manufacturer" class="padding-t-b-15">
+      <!-- RefinementList widget will appear here -->
+    </div>
+</div>
+<!-- <div ng-init="selected={}"> 
+  <p class="category-title">CATEGORIES</p>
+  <ul class="filters-list">
+    <li 
+        ng-repeat="parent_category in directory_data.categories" 
+        ng-click="
+          selected.parent_category = parent_category.category_name">
+          <span ng-bind="parent_category.category_name" ng-click="addToFilters(parent_category.category_name,'category')"></span>
+          
+          <span ng-if="parent_category.sub_category.length>0">
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </span>
+      <ul 
+          ng-if="parent_category.sub_category.length>0"
+          ng-show="selected.parent_category == parent_category.category_name">
+        <li 
+            ng-repeat="sub_category in parent_category.sub_category" 
+            ng-click="
+              selected.sub_category = sub_category.name">
+              <span ng-bind="sub_category.name" ng-click="addToFilters(sub_category.name,'category')"></span>
+              
+              <span ng-if="sub_category.sub_sub_category.length>0">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </span>
+          <ul 
+              ng-if="sub_category.sub_sub_category.length > 0"
+              ng-show="selected.sub_category == sub_category.name">
+            <li 
+                ng-repeat="sub_sub_category in sub_category.sub_sub_category"
+                ng-click="
+                  selected.sub_sub_category = sub_sub_category.name">
+                  <span ng-bind="sub_sub_category.name" ng-click="addToFilters(sub_sub_category.name,'category')"></span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+    <div class="filter-box">
+      <div class="dropdown-title">Countries</div>
+      <div 
+          events="onCountryChange"
+          ng-dropdown-multiselect="" 
+          options="country" 
+          selected-model="selectedCountriesModel" 
+          extra-settings="countryDropdownSettings">
+      </div>
+    </div>
+    <div class="filter-box">
+      <div class="dropdown-title">States</div>
+      <div 
+        events="onStateChange"
+          ng-dropdown-multiselect=""
+          options="states" 
+          selected-model="selectedStatesModel" 
+          extra-settings="stateDropdownSettings">
+      </div>
+    </div>
+    <div class="filter-box">
+      <div class="dropdown-title">Cities</div>
+      <div 
+        ng-dropdown-multiselect="" 
+        options="cities" 
+        selected-model="selectedCitiesModel" 
+        extra-settings="cityDropdownSettings" events="yourEvents">
+      </div>
+    </div>
+    
+    <div class="apply-section">
+        <button class="button4" ng-click="clearFilters()">Clear</button>
+        <button class="button4" ng-click="applyFilters(appliedFilters)">Apply</button>
+    </div>      
+</div> -->

@@ -1,0 +1,115 @@
+<div class="container team-section general-form padding-15 margin-t-15">
+        <div class="content-body padding-15">
+            <div class="col-md-12">
+                <button type="button" class="button4" id="add-team-members" ng-click="open('tiny', message)">Add Team Member</button>
+            </div>
+        </div>
+        <div class="content-body padding-15">
+            <div class="col-md-12 general-list-container">
+                <div class="col-md-12 general-list-content">
+                    <div class="col-md-12 general-list-item" ng-repeat="member in members">
+                        <div class="col-md-12 row">
+                            <div class="col-md-12">
+                                <div class="col-md-4 col-xs-12 div-group">
+                                    <label class="g-label">Name</label>
+                                    <p class="label-value">{[{member.first_name}]} {[{member.last_name}]}</p>
+                                </div>
+                                <div class="col-md-4 col-xs-12 div-group">
+                                    <label class="g-label">Designation</label>
+                                    <p class="label-value">{[{member.designation}]}</p>
+                                </div>
+                                <div class="col-md-4 col-xs-12 div-group">
+                                    <label class="g-label">Date joined</label>
+                                    <p class="label-value">{[{member.date_joined}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <div class="col-md-4 col-xs-12">
+                                <div class="col-md-12 div-group">
+                                    <label class="g-label">Phone</label>
+                                    <p class="label-value">{[{member.country_code}]}-{[{member.contact_no}]}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="col-md-12 div-group">
+                                    <label class="g-label">Email Id</label>
+                                    <p class="label-value">{[{member.email}]}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="col-md-12 div-group">
+                                    <label class="g-label">Is email verified ?</label>
+                                    <p class="label-value" ng-bind="member.is_email_verified?'Yes':'No'"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <div class="col-md-4 col-xs-12">
+                                <div class="col-md-12 div-group">
+                                    <label class="g-label">Last login</label>
+                                    <p class="label-value">{[{member.last_login}]}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="col-md-12 div-group">
+                                    <label class="g-label">Location</label>
+                                    <p class="label-value">{[{member.location_city}]}, {[{member.location_country}]}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <div class="col-md-12 div-group">
+                                    <label class="g-label">Is email verified ?</label>
+                                    <p class="label-value" ng-bind="member.is_email_verified?'Yes':'No'"></p>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    <script type="text/ng-template" id="addTeam.html">
+        <div class="col-md-12 modal-container">
+            <div class="col-md-12 modal-box">
+                <div class="col-md-12 modal-title">
+                    <h4 class="margin-0">Add team member</h4>
+                    <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="clear-fix"></div>
+                <div class="modal-body add-team-member-modal general-form padding-15">
+                    <form name="TeamRegistrationForm" novalidate>
+                        <div class="col-md-12 padding-15">
+                            <div class="col-md-3">
+                                <label>Member name</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input  type="text"  ng-model="user.name" required ng-required="true" placeholder="Name*">
+                                <p ng-if="TeamRegistrationForm.$error.name && TeamRegistrationForm.name.$touched" ng-cloak class="ng-cloak alert-color margin-bottom-dot5">Please enter Name</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-15">
+                            <div class="col-md-3">
+                                <label>Member email</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input  type="email" name="email" ng-model="user.email" required ng-required="true" placeholder="Email*" class="team-email">
+                                <p ng-if="TeamRegistrationForm.$error.email && TeamRegistrationForm.email.$touched" ng-cloak class="ng-cloak alert-color margin-bottom-dot5">Please enter a valid email id</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="modal-footerr padding-15">
+                    <button class="button4 mb1" ng-click="cancel()">Cancel</button>
+                    <button class="button4" id="send-team-registration" ng-click="Submit(user,TeamRegistrationForm.$valid)">Send</button>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </script>

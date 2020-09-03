@@ -1,0 +1,187 @@
+<div layout="column" layout-align="start center" ng-cloak>
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <md-content>
+            <div layout="column" layout-align="start center" class="md-margin" ng-if="MR.id">
+                <p class="md-title"> MR #{[{MR.id}]} Dated {[{MR.created_date | date:'dd/MM'}]} </p>
+            </div>
+            <md-tabs md-dynamic-height md-border-bottom layout-margin md-selected="selectedTab">
+                <md-tab label="Material Requisition">
+                    <md-content class="md-padding md-margin">
+                        <form name="MRForm">
+                            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Request Type</label>
+                                        <md-select required ng-model="MR.request_type"
+                                            ng-change="FilterList(MR.request_type)">
+                                            <md-option ng-repeat="MRtype in requestType" ng-value="MRtype.id">
+                                                {[{MRtype.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Purpose Type</label>
+                                        <md-select ng-model="MR.purpose" ng-change="selectDestination(MR)">
+                                            <md-option ng-repeat="MRtype in purposeType" ng-value="MRtype.id">
+                                                {[{MRtype.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Order Reference</label>
+                                        <md-select required ng-model="MR.order_reference">
+                                            <md-option ng-repeat="order in SOList" ng-value="order.id">
+                                                {[{order.so_number}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label class="label-l">Source Type</label>
+                                        <md-select required ng-model="MR.source_type"
+                                            ng-change="selectSourceList(MR.source_type)">
+                                            <md-option
+                                                ng-if="store.name == 'Inward Store' || store.name == 'Store(Others)'"
+                                                ng-repeat="store in storeTypesList" ng-value="store.id">
+                                                {[{store.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Source Detail</label>
+                                        <md-select ng-model="MR.source_detail"
+                                            ng-change="filterStoresData(MR.source_detail)">
+                                            <md-option ng-repeat="store in sourceNames" ng-value="store.store_name">
+                                                {[{store.store_name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label class="label-l">Destination Type</label>
+                                        <md-select required ng-model="MR.destinationType"
+                                            ng-change="FilterDestinationDetails(MR.destinationType)">
+                                            <md-option ng-repeat="store in storeTypesData" ng-value="store">
+                                                {[{store.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Destination Detail</label>
+                                        <md-select ng-model="MR.destinationDetail"
+                                            ng-change="SelectContactsData(MR.destinationDetail)">
+                                            <md-option ng-repeat="store in storeNames" ng-value="store">
+                                                {[{store.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                            <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label class="label-l">Contact Person</label>
+                                        <md-select required ng-model="MR.contact_person" ng-disabled="disabled">
+                                            <md-option ng-repeat="contact in contactPersons" ng-value="contact.id">
+                                                {[{contact.name}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-margin flex>
+                                    <md-input-container class="md-block">
+                                        <label>Address</label>
+                                        <md-select required ng-model="MR.location" ng-disabled="disabled">
+                                            <md-option ng-repeat="address in addresses" ng-value="address.id">
+                                                {[{address.address}]}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                            <div layout="row" class="ml-padding-t-16" layout-align="end end">
+                                <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
+                                <md-button class="md-raised md-primary" ng-click="save(MR)" ng-disabled="disableSave">Save</md-button>
+                            </div>
+                        </form>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Select Inventory" ng-click="changeTabOneAccess()" ng-disabled="disableTabs.first">
+                    <md-content>
+                        <!-- <div layout="row" layout-margin>
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label>PO</label>
+                                    <md-select required ng-model="MR.po" ng-change="FilterItems(MR.po)">
+                                        <md-option ng-repeat="po in poList" ng-value="po.id">
+                                            {[{po.po_number}]}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div flex></div>
+                            <div flex></div>
+                            <div flex></div>
+                        </div> -->
+                        <div layout="row" layout-margin>
+                            <md-checkbox ng-model="checked" ng-click="selectAll(checked,UiGridOptions.data)">Select all
+                            </md-checkbox>
+                        </div>
+                        <div layout-margin layout="column">
+                            <div id="items-grid" ui-grid="UiGridOptions" class="grid grid-table-width w-1000" flex flex-xs="100"></div>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                                Cancel
+                            </md-button>
+                            <md-button type="submit" class="md-primary md-raised cr-md-primary" ng-click="saveToList()">
+                                Add to List
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="View Selection" ng-click="changeTabAccess()" ng-disabled="disableTabs.second">
+                    <md-content>
+                        <div layout="row" layout-margin layout-xs="column" flex-xs="100">
+                            <md-checkbox ng-model="check" ng-click="selectAll(check,itemsGridOptions.data)">Select all
+                            </md-checkbox>
+                            <span flex></span>
+                            <md-button class="md-raised md-primary" ng-click="updateDetails($event)">UpdateDetails
+                            </md-button>
+                            <md-button class="md-raised md-warn" ng-click="remove()">Remove</md-button>
+                        </div>
+                        <div layout-margin layout="column">
+                            <div id="items-grid" ui-grid="itemsGridOptions" class="grid grid-table-width" flex flex-xs="100"></div>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                                Cancel
+                            </md-button>
+                            <md-button type="submit" name="createOrder" class="md-primary md-raised cr-md-primary"
+                                ng-click="saveItems()">
+                                Save
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

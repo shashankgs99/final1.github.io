@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="row column center margin-top-2">
+    <h6>Subscribe for updates</h6>
+    <div class="primary-line margin-top-1 margin-bottom-1"></div>
+     <form class="newsletter margin-bottom-2" name="newsletterForm" class="column small-12" ng-submit="submit(newsletterForm.$valid)" novalidate>
+      <!-- Show the form -->
+      <div ng-if="!newsletter.success">
+        <div  layout="row" layout-align="center center">
+            <md-input-container>
+                <input  type="email" name="emailid" ng-model="newsletter.emailid" id="newsletter-emailid" placeholder="Please enter your email id" required ng-required="true" ng-pattern="emailFormat">
+                <md-button class="md-raised md-primary">Submit</md-button>
+              </md-input-container>
+          <!-- <div class="input-group-button">
+                <button type="submit" id="subscriptionButton" class="button2 search-button-xs" ng-submit="submit(newsletterForm.$valid)" ng-disabled="!newsletterForm.$valid">Submit</button>       
+          </div> -->
+        </div>
+        <p class="alert-color bold large-font ng-cloak" ng-cloak ng-show="newsletterForm.emailid.$error.pattern && newsletterForm.emailid.$touched">Not a valid email id</p>
+        <p class="alert-color bold large-font ng-cloak newsletter-err" ng-cloak ng-show="newsletter.error && newsletter.errorMessage.length>0" ng-bind="newsletter.errorMessage[0]"></p>
+        <p class="alert-color bold large-font ng-cloak" ng-cloak ng-show="newsletter.error && !newsletter.errorMessage.length>0">Something went wrong. Please refresh and try again.</p>
+      </div>
+      <!-- Hide the form -->
+      <div ng-if="newsletter.success" class="ng-cloak">
+        <div class="callout success"><h5>You have successfully subscribed! We will keep you posted.</h5></div>
+      </div>
+    </form>
+  </div>
+</section>
+<div class="cookie-alert" ng-show="cookieData">
+  <p class="light-color">By Continuing to use this 
+  website,you conset to the use of cookies in accordance with our 
+  <a class="cookie-style" href="/cookie-policy">Cookie Policy</a></p>
+  <button type="button" class="light-color cookie-Cbutton" ng-click="Cancel()">X</button>
+  </div>

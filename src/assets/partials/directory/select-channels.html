@@ -1,0 +1,86 @@
+<!-- Heading -->
+<div class="center margin-top-1">
+  <p class="larger-font margin-bottom-dot5">Select a Channel</p>
+  <div class="small-line center margin-bottom-dot5"></div>
+  <p class="margin-bottom-1 italic">Channels help you broadcast your requirements to Suppliers</p>
+</div>
+<!-- Content -->
+<div class="row align-top" style="align-items: stretch">
+  <!-- Category -->
+  <div class="column no-padding" ng-init="categorySelection={}">
+    <div class="card-container" style="height:100%">
+      <p class="larger-font primary-color margin-bottom-1">Primary Category</p>
+      <div ng-if="!isPrimaryCategoryLoaded">
+        Loading...
+      </div>
+      <div ng-if="isPrimaryCategoryLoaded">
+      <ul style="list-style: none; margin-left: 0;" class="category-list">
+        <li ng-repeat="primaryCategory in primaryCategories" ng-bind="primaryCategory.category" ng-click="loadSubCategoryOptions(primaryCategory);categorySelection.primaryCategorySelected=primaryCategory.category" ng-class="{'active': (categorySelection.primaryCategorySelected==primaryCategory.category)}"></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Sub Category -->
+  <div class="column no-padding">
+    <div class="card-container" style="height:100%;min-height:60vh;">
+      <p class="larger-font primary-color margin-bottom-1">Sub Category</p>
+      <!-- Load the list only when primary category is selected -->
+      <div ng-if="!isSubCategoryLoaded">
+        Select a Primary Category
+      </div>
+      <div ng-if="isSubCategoryLoaded">
+        <ul style="list-style: none; margin-left: 0;" class="category-list">
+          <!-- Using Angular Filter to Split SubCategory to show only relevant part -->
+          <li ng-repeat="subCategory in subCategories" ng-bind="subCategory.category|split:'-'|last" ng-click="loadSubSubCategoryOptions(subCategory);categorySelection.subCategorySelected=subCategory.category" ng-class="{active: categorySelection.subCategorySelected==subCategory.category}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Sub Sub Category -->
+  <div class="column no-padding">
+    <div class="card-container" style="height:100%;min-height:60vh;">
+      <p class="larger-font primary-color margin-bottom-1">Secondary Sub Category</p>
+      <!-- Load the list only when primary category is selected -->
+      <div ng-if="!isSubSubCategoryLoaded && isSubCategoryLoaded">
+        Select a Sub Category
+      </div>
+      <div ng-if="isSubSubCategoryLoaded">
+        <ul style="list-style: none; margin-left: 0;" class="category-list">
+          <li ng-repeat="subSubCategory in subSubCategories" ng-bind="subSubCategory.category|split:'-'|last" ng-click="loadSubSubSubCategoryOptions(subSubCategory);categorySelection.subSubCategorySelected=subSubCategory.category" ng-class="{active: categorySelection.subSubCategorySelected==subSubCategory.category}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Sub Sub Sub Category -->
+  <div class="column no-padding">
+    <div class="card-container" style="height:100%;min-height:60vh;">
+      <p class="larger-font primary-color margin-bottom-1">Tertiary Sub Category</p>
+      <!-- Load the list only when primary category is selected -->
+      <div ng-if="!isSubSubSubCategoryLoaded && isSubSubCategoryLoaded">
+        Select a Sub Sub Category
+      </div>
+      <div ng-if="isSubSubSubCategoryLoaded">
+        <ul style="list-style: none; margin-left: 0;" class="category-list">
+          <li ng-repeat="subSubSubCategory in subSubSubCategories" ng-click="selectSubSubSubCategory(subSubSubCategory);categorySelection.subSubSubCategorySelected=subSubSubCategory.category" ng-class="{active: categorySelection.subSubSubCategorySelected==subSubSubCategory.category}" ng-bind="subSubSubCategory.category|split:'-'|last"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row align-center align-middle margin-top-2">
+  <div class="column small-6 center">
+
+    <div ng-if="!selectedDirectory">
+      <button class="button success-bg" disabled="">Select a channel to continue<i class="fa fa-chevron-right margin-dot5" aria-hidden="true"></i></button>
+    </div>
+    <div ng-if="selectedDirectory">
+    <button class="button success-bg" ng-click="addDirectoryToChannelList">Add <span ng-bind="selectedDirectory.category"></span> to Channel List<i class="fa fa-chevron-right margin-dot5" aria-hidden="true"></i></button>
+      <p class="gray-color underline">Current Status</p>
+      <h6 style="line-height: 1rem;" class="gray-color"><span ng-bind="selectedDirectory.supplier.length" class="gray-color no-padding"></span><br><span class="small-font">Supplier(s) Available</span></h6>
+      <button ng-repeat="supplier in selectedDirectory.supplier" class="large-font button gray-color hollow dark" ng-bind="supplier" style="display: inline-block;margin-left: 3px;border-color:#ccc;"></button><br>
+      
+      
+    </div>
+  </div>
+</div>

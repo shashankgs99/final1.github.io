@@ -1,0 +1,3 @@
+## Yeoman gitignore - https://github.com/github/gitignore/blob/master/Yeoman.gitignore
+.vscode/
+node_modules/*

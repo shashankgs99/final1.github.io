@@ -1,0 +1,92 @@
+<div class="row align-middle align-center height-100">
+  <div class="column medium-6">
+    <div class="login-box">
+      <div class="row collapse expanded">
+        <div class="small-12 medium-12 column small-order-2 medium-order-1">
+          <div class="login-box-form-section">
+            <h1 class="login-box-title">Step2
+              <small>Additional Information</small>
+            </h1>
+            <div layout="row">
+              <form  name="UpdateForm" novalidate ng-init="update={}">
+                <div layout="row">
+                  <div flex="50">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="first_name">First Name</label>
+                      <input type="text" name="first_name" ng-model="update.first_name" required ng-required="true" ng-disabled="disableFirstName">
+                    </md-input-container>
+                  </div>
+                  <div flex="50">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="last_name">Last Name</label>
+                      <input type="text" name="last_name" ng-model="update.last_name" required ng-required="true" ng-disabled="disableLastName">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div layout="row">
+                  <div flex="30">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="country_code">Country Code</label>
+                      <input type="text" name="std_code" ng-model="update.country_code" required ng-required="true" ng-disabled="disableCountryName">
+                    </md-input-container>
+                  </div>
+
+                  <div flex="70">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="mobile_number"> Mobile Number</label>
+                      <input type="text" name="contact_no" ng-model="update.contact_no" required ng-required="true" ng-disabled="disableMobileNumber">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div layout="row">
+                  <md-input-container class="md-block flex md-input-invalid">
+                    <label for="designation">Designation (Optional)</label>
+                    <input type="text" name="designation" ng-model="update.designation" ng-disabled="disableDesignation">
+                  </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-input-container class="md-block flex md-input-invalid">
+                    <label for="address">Address (Optional)</label>
+                    <input type="text" name="address" ng-model="update.address" ng-disabled="disableAddress">
+                  </md-input-container>
+                </div>
+                <div layout="row">
+                  <div flex="50">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="city">City</label>
+                      <input type="text" name="location_city" ng-model="update.location_city" required ng-required="true" ng-disabled="disableCity">
+                    </md-input-container>
+                  </div>
+                  <div flex="50">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label for="country">Country</label>
+                      <input type="text" name="location_country" ng-model="update.location_country" required ng-required="true" ng-disabled="disableCountry">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div layout="row" flex>
+                  <md-checkbox ng-model="update.is_admin_supplier" ng-init="update.is_admin_supplier=true">Are You Company Admin?</md-checkbox>
+                </div>
+                <div layout="row" flex>
+                  <md-input-container class="md-block flex md-input-invalid">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" name="supplier_name" ng-disabled="!update.is_admin_supplier" ng-model="update.company" ng-required="update.is_admin_supplier" ng-disabled="disableCompanyName">
+                  </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-button name="testing" name="signup_submit" id="update-user" ng-click="updateUser(update,UpdateForm.$valid)" ng-disabled="UpdateForm.$invalid"
+                    class="width-95" class="md-raised md-primary">Submit</md-button>
+                </div>
+              </form>
+            </div>
+
+            <div ng-if="error" ng-cloak class="ng-cloak margin-top-1 callout alert">Something went wrong. Please refresh and try again</div>
+            <div ng-if="success" ng-cloak class="ng-cloak margin-top-1 callout success">
+              <span class="bold">Successfully updated.</span> Redirecting to login page. Please verify your email address to login.</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div

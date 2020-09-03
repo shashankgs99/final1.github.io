@@ -1,0 +1,198 @@
+<div layout="row" class="account-card" layout-align="center start">
+    <div layout="column" class="account-card-wrapper">
+        <div layout="row" class="card-block">
+            <md-card flex md-theme-watch>
+                <md-card-title-text>
+                    <div layout="row" class="md-padding">
+                        <span class="md-title" flex></span>
+                        <md-icon class="material-icons icon edit-icon" ng-click="editAccoountProfile($event,'update_prfile')">edit
+                            <md-tooltip> Edit </md-tooltip>
+                        </md-icon>
+                    </div>
+                </md-card-title-text>
+                <div layout="column" layout-align="start center">
+                    <div>
+                        <img ng-src="{[{current_user.data.image_url?current_user.data.image_url:'/assets/img/user-img.png'}]}" class="profile-pic" alt="{[{current_user.data.image_url? current_user.data.image_url.split('/').pop() : 'user-img.png'}]}">
+                    </div>
+                    <div layout="row" class="md-headline">
+                        <span>{[{current_user.data.first_name}]}</span>
+                        <span>&nbsp;</span>
+                        <span>{[{current_user.data.last_name}]} </span>
+                    </div>
+                    <div layout="row" class="md-title">
+                        <div>
+                            <label>Buyer</label>
+                            <span ng-if="current_user.data.is_buyer" ng-class="{yesActive:current_user.data.is_buyer}" class="" title="Verified email">
+                                <i class="fa fa-check fa-2x checked-icon font-size-15"></i>
+                            </span>
+                            <span ng-if="!current_user.data.is_buyer" ng-class="{notActive:!current_user.data.is_buyer}" class="" title="Please verify email">
+                                <i class="fa fa-close fa-2x checked-icon font-size-15"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <label>Seller</label>
+                            <span ng-if="current_user.data.is_seller" ng-class="{yesActive:current_user.data.is_seller}" class="" title="Verified email">
+                                <i class="fa fa-check fa-2x checked-icon font-size-15"></i>
+                            </span>
+                            <span ng-if="!current_user.data.is_seller" ng-class="{notActive:!current_user.data.is_seller}" class="" title="Please verify email">
+                                <i class="fa fa-close fa-2x checked-icon font-size-15"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <label>Store</label>
+                            <span ng-if="current_user.data.is_store" ng-class="{yesActive:current_user.data.is_store}" class="" title="Verified email">
+                                <i class="fa fa-check fa-2x checked-icon font-size-15"></i>
+                            </span>
+                            <span ng-if="!current_user.data.is_store" ng-class="{notActive:!current_user.data.is_store}" class="" title="Please verify email">
+                                <i class="fa fa-close fa-2x checked-icon font-size-15"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div layout="row">&nbsp;</div>
+                </div>
+            </md-card>
+        </div>
+        <div layout="row" layout-wrap layout-align="start start" flex class="md-cr-page-8-column">
+            <div layout="column" flex>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-card class="ml-grid-col-card ml-card-padding-lr">
+                            <div layout="column" class="md-padding md-margin">
+                                <md-card-title-text>
+                                    <div layout="row">
+                                        <span class="md-title" flex>General Information</span>
+                                        <md-icon class="material-icons icon edit-icon" ng-click="editAccoountProfile($event,'general')">edit
+                                            <md-tooltip> Edit</md-tooltip>
+                                        </md-icon>
+                                    </div>
+                                </md-card-title-text>
+                                <div flex layout-padding>
+                                    <div ng-hide="true">
+                                        <div layout="row">
+                                            <label class="md-caption">User Name</label>
+                                        </div>
+                                        <div layout="row">
+                                            <h6>{[{current_user.data.username?current_user.data.username:'N/A'}]}</h6>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">First Name</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.first_name?current_user.data.first_name:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Last Name</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.last_name?current_user.data.last_name:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Designation</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.designation?current_user.data.designation:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Role Type</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">
+                                            <span ng-repeat="item in current_user.data.role_type" track by $index>
+                                                <span>{[{$last?item.role_type_name:(item.role_type_name+', ')}]}</span>
+                                            </span>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-card>
+                        <md-card class="ml-grid-col-card ml-card-padding-lr">
+                            <div layout="column" class="md-padding md-margin">
+                                <md-card-title-text>
+                                    <div layout="row">
+                                        <span class="md-title" flex>Company Information</span>
+                                    </div>
+                                </md-card-title-text>
+                                <div flex layout-padding>
+                                    <div layout="row">
+                                        <label class="md-caption">Company</label>
+                                    </div>
+                                    <div layout="row">
+                                        <h6>{[{current_user.data.company.company_name?current_user.data.company.company_name:'N/A'}]}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-card>
+                    </div>
+                    <div flex>
+                        <md-card class="ml-grid-col-card ml-card-padding-lr" ng-init="Address=false">
+                            <div layout="column" class="md-padding md-margin" ng-click="Address = !Address">
+                                <md-card-title-text>
+                                    <div layout="row">
+                                        <span class="md-title" flex>Address</span>
+                                        <md-icon class="material-icons icon edit-icon" ng-click="editAccoountProfile($event,'address')">edit
+                                            <md-tooltip> Edit</md-tooltip>
+                                        </md-icon>
+                                    </div>
+                                </md-card-title-text>
+                                <div flex layout-padding>
+                                    <div layout="row">
+                                        <label class="md-caption">Address</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.address?current_user.data.address:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">City</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.location_city?current_user.data.location_city:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Country</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.location_country?current_user.data.location_country:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Contact Number</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.country_code?current_user.data.country_code:'N/A'}]}-{[{current_user.data.contact_no?current_user.data.contact_no:'N/A'}]}</p>
+                                    </div>
+                                    <div layout="row">
+                                        <label class="md-caption">Email</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p class="md-body-1">{[{current_user.data.email?current_user.data.email:'N/A'}]}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-card>
+                        <md-card class="ml-grid-col-card ml-card-padding-lr">
+                            <div layout="column" class="md-padding md-margin">
+                                <md-card-title-text>
+                                    <div layout="row">
+                                        <span class="md-title" flex>Signature</span>
+                                        <md-icon class="material-icons icon edit-icon" ng-click="editAccoountProfile($event,'signature')">edit
+                                            <md-tooltip> Edit</md-tooltip>
+                                        </md-icon>
+                                    </div>
+                                </md-card-title-text>
+                                <div flex layout-padding>
+                                    <div layout="row">
+                                        <label class="md-caption">Added Signature</label>
+                                    </div>
+                                    <div layout="row">
+                                        <p> {[{current_user.data.signature?current_user.data.signature:'N/A'}]} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

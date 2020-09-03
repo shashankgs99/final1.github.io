@@ -1,0 +1,52 @@
+<md-dialog aria-label="Login" id="login.html" ng-controller="login.controller">
+    <form ng-cloak name="LoginForm" ng-submit="current_user.login(login,LoginForm.$valid)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Login</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label>Username</label>
+                      <input type="text" name="username" id="login-username" ng-model="login.username" required ng-required="true" ng-disabled="disableEmail">
+                    </md-input-container>
+                  </div>
+                  <div layout="row">
+                    <md-input-container class="md-block flex md-input-invalid">
+                      <label>Password</label>
+                      <input type="password" name="password" id="login-password-id" ng-model="login.password" required ng-required="true" ng-disabled="disableEmail">
+                    </md-input-container>
+                  </div>
+                  <div layout="row">
+                    <md-button class="md-primary md-raised cr-md-primary" type="submit" id="login-submit" name="login-submit" ng-disabled="LoginForm.$invalid" ng-click="login(loginLoginForm.$valid)">
+                      Login
+                    </md-button>
+                  </div>
+                  <div layout="row" ng-if="current_user.unsuccessful_attempt" ng-cloak class="ng-cloak callout alert margin-top-1">Incorrect username or password. Please try again.</div>
+                  <div layout="column" class="md-subhead md-margin">
+                    <div layout="row" class="md-margin">
+                      New User? Please register
+                      <!-- <a href="/register/options" target="_self"> here</a> -->
+                      <a ng-click="companySignUp()" target="_self"> here</a>
+                    </div>
+                    <div layout="row" class="md-margin">
+                      <a ng-click="open()" target="_self" id="login-forgot-password">Forgot Password ?</a>
+                    </div>
+                  </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

@@ -1,0 +1,79 @@
+<div class="row column align-center expanded padding-l-r-40 padding-xs-15">
+  <div>
+    <div ng-controller="layout.standard.filtersController" ng-include="'assets/js/modules/filters/directory-filters.html'"></div>
+    <section class="col-md-12 manage-products-section">
+      <div class="section-row">
+        <div class="col-md-12 col-xs-12 padding-b-15-xs filters" ng-if="hideMore">
+          <button class="button2 col-xs-6 float-right" ng-click="addMulProducts()">Add Multiple Products</button>
+          <button class="button2 col-xs-6 float-right" ng-click="viewDirectory(table_changes)">View Details</button>
+          <button class="button2 col-xs-6 float-right" ng-click="addDirectory()">Add Directory</button>
+          <button class="button2 col-xs-6 float-right" ng-click="editDirectory(table_changes)">Edit Details</button>
+          <button class="button2 col-xs-6 float-right" ng-click="openModal(table_changes, table_deletes, data,'attachments')">Attach Files</button>
+          <button class="button2 col-xs-6 float-right" ng-click="openModal(table_changes, table_deletes, data,'manageItem')">Manage Item</button>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div class="clear-fix"></div>
+    </section>
+    <div ng-include="'assets/js/modules/inventory/manage-price.html'"></div>
+    <div class="col-md-12">
+      <ul>
+        <li>
+          <p class="margin-bottom-1 primary-color">Please remember to click on
+            <span class="filter-message">Clear</span> before applying filters.</p>
+        </li>
+        <li>
+          <p class="margin-bottom-1 primary-color">To permanently delete a record, right click on that record and press
+            <span class="filter-message">Remove row</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div ng-include="'assets/js/modules/inventory/attachfiles-modal.html'"></div>
+    <div class="col-md-12" handsontable-django-fullaccess api-service="DirectoryService" hot-id="guide_djangorest_User_readonly"
+      height='400' min-rows="0" min-spare-rows="0" exclude_fields="message,shortlists,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined,supplier,attachments,product_images"
+      params='{"supplier_company":"{[{current_user.data.company.id}]}","type":"disablecolumns"}'>
+    </div>
+  </div>
+  <div ng-if="show.editOne">
+    <button ng-click="cancelEdit()">
+      <i class="fa fa-angle-double-left"></i> Back to list</button>
+    <div ng-include="'assets/js/modules/directory/add-product/add-product.html'"></div>
+  </div>
+</div>
+<script type="text/ng-template" id="instructionsModal.html">
+  <div class="col-md-12 modal-container">
+    <div class="col-md-12 modal-box">
+        <div class="col-md-12 modal-title">
+           <h4>Instructions:</h4>
+        </div>
+        <div class="modal-body">
+
+            <p> 1. Select industry /industries </p>
+
+            <p> 2. Upload all applicable documents for the material being listed. 
+                   Select the document type, name it and upload the file. 
+                   The acceptable file types are mentioned next to the upload button. 
+                   Users can see these files next to the items in the output screen. </p>
+            
+            <p> 3. Upload the items through the excel file. 
+                   Format can be downloaded using the download button. 
+                   The categories pre-approved are mentioned in the file and are 
+                   updated from time to time.
+            
+            <p> Note: Contact us to include new categories that are not already part of
+               the existing categories.</p>
+        </div>
+        <div class="modal-footerr padding-15">
+            <button class="button5" ng-click="ok()">OK</button>
+        </div>
+    <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+</script>
+<script type="text/ng-template" id="userNoteModal.html">
+  <div ng-include="'assets/partials/dashboard/supplier/userNoteModal.html'"></div>
+</script>

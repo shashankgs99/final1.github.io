@@ -1,0 +1,660 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="supplierscave@gmail.com">
+  <meta property="fb:app_id" content="464831073953602" />
+  <title></title>
+  <base href="/">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.2.2/ui-grid.css"> -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3/dist/instantsearch.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3/dist/instantsearch-theme-algolia.min.css">
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <!--Start of Bugsnag script-->
+  <script src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>
+  <script>window.bugsnagClient = bugsnag('d794f0cbcfd1ec922aeae7f38e7e7b02')</script>
+  <!--End of Bugsnag script-->
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],  
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=  
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  
+    })(window,document,'script','dataLayer','GTM-MH8W2CG');
+  </script>  
+  <!-- End Google Tag Manager -->
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+  0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+  for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a.i.push([b,d,g])};a._SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+  MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+  mixpanel.init("871069c3b6b2b2def5d8e3914e23172b");</script>
+  <!-- end Mixpanel -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-72619847-1', 'auto');
+      ga('require', 'linkid',{
+    'cookieName': '_ela',
+    'duration': 45,
+    'levels': 5
+    });
+    ga('send', 'pageview');
+  </script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '464831073953602',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v3.0'
+      });
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- Google Ads start -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-5573690028425329",
+      enable_page_level_ads: true
+    });
+  </script>
+  <!-- Google Ads end -->
+  <!-- Start of Async Drift Code -->
+  <!-- <script>
+    "use strict";
+    !function() {
+     var t = window.driftt = window.drift = window.driftt || [];
+     if (!t.init) {
+       if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+       t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+       t.factory = function(e) {
+         return function() {
+           var n = Array.prototype.slice.call(arguments);
+           return n.unshift(e), t.push(n), t;
+         };
+       }, t.methods.forEach(function(e) {
+         t[e] = t.factory(e);
+       }), t.load = function(t) {
+         var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+         o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+         var i = document.getElementsByTagName("script")[0];
+         i.parentNode.insertBefore(o, i);
+       };
+     }
+    }();
+    drift.SNIPPET_VERSION = '0.3.1';
+    drift.load('7xsz5w7czctf');
+    </script> -->
+  <!-- End of Async Drift Code -->
+  <!-- Required when we will decide to switch to expressJs -->
+  <!-- <base href="/"> -->
+</head>
+<body ng-app="app" ng-controller="AppGlobalController">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MH8W2CG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>  
+  <!-- End Google Tag Manager (noscript) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+  <script src="/assets/js/bower/jquery.min.js"></script> 
+  <script src="/assets/js/angular.js"></script>
+  <script src="/assets/js/bower/Chart.min.js"></script>
+  <script src="/assets/js/bower/angular-chart.min.js"></script>
+  <script src="/assets/js/handsontable/handsontable.full.min.js"></script>
+  <script src="/assets/js/bower/slick.min.js"></script> 
+  <script src="/assets/js/bower/angular-slick.min.js"></script> 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.2.2/ui-grid.js"></script>   -->
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+  <!--Start Sentry script-->
+  <script src="https://browser.sentry-cdn.com/5.10.1/bundle.min.js" integrity="sha384-sAOze6ZTBIpiWBF3VlUteSInM4rYpjxrejp1wMmmKqA9clRZ1vZJ36Ihmt1ilTrG" crossorigin="anonymous"></script>
+
+  <!-- If you include the integration it will be available under Sentry.Integrations.Angular -->
+  <script src="https://browser.sentry-cdn.com/5.10.1/angular.min.js" crossorigin="anonymous"></script>
+
+  <script>
+    Sentry.init({
+      dsn: 'https://12ff13898da74b0987ce80e6f083dd07@sentry.io/1548100',
+      integrations: [
+        new Sentry.Integrations.Angular(),
+      ],
+    });
+  </script>
+  <!--End Sentry script-->
+  <section class="container">
+    <div class="row column">
+      <h4 class="primary-color">Angular Foundation</h4>
+      <p class="large-font margin-bottom-1">A directive maintained by <a href="http://circlingthesun.github.io/angular-foundation-6/">
+      Pinecone</a></p>
+    </div>
+    <div class="row small-up-2">
+      <!-- Accordion -->
+      <div class="column margin-bottom-2">
+        <h6>Accordion</h6>
+        <p class="alert bold">This demo uses a controller. However a controller is not required for a basic usage. See <a href="/guide/nginx">this</a></p>
+        <div ng-controller="guide.AccordionDemoCtrl">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="oneAtATime">
+            Open only one at a time
+          </label>
+  
+          <accordion close-others="oneAtATime">
+            <accordion-group heading="Static Header, initially expanded" is-open="true">
+              This content is straight in the template.
+            </accordion-group>
+            <accordion-group heading="{[{group.title}]}" ng-repeat="group in groups">
+              {[{group.content}]}
+            </accordion-group>
+            <accordion-group heading="Dynamic Body Content">
+              <p>The body of the accordion group grows to fit the contents</p>
+                <button class="button small" ng-click="addItem()">Add Item</button>
+                <div ng-repeat="item in items">{[{item}]}</div>
+            </accordion-group>
+            <accordion-group is-open="isopen">
+                <accordion-heading>
+                    I can have markup, too!
+                </accordion-heading>
+                This is just some content to illustrate fancy headings.
+            </accordion-group>
+          </accordion>
+        </div> 
+      </div>
+      <!-- Alert -->
+      <div class="column margin-bottom-2">
+        <h6>Alert</h6>
+        <div ng-controller="guide.AlertDemoCtrl">
+          <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{[{alert.msg}]}</alert>
+          <button class='button' ng-click="addAlert()">Add Alert</button>
+        </div>
+      </div>
+      <!-- Buttons -->
+      <div class="column margin-bottom-2">
+        <h6>Button</h6>
+        <p class="alert">Controller is used here to only <span class="bold">set initial values</span>. Else these directives are independent can be used freely.</p>
+        <div ng-controller="guide.ButtonsCtrl">
+            <p class="large-font underline">Single toggle</p>
+            <pre>{[{singleModel}]}</pre>
+            <button type="button" class="button" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                Single Toggle
+            </button>
+            <p class="large-font underline">Checkbox</p>
+            <pre>{[{checkModel}]}</pre>
+            <div class="button-group">
+                <button type="button" class="button" ng-model="checkModel.left" btn-checkbox>Left</button>
+                <button type="button" class="button" ng-model="checkModel.middle" btn-checkbox>Middle</button>
+                <button type="button" class="button" ng-model="checkModel.right" btn-checkbox>Right</button>
+            </div>
+            <p class="large-font underline">Radio</p>
+            <pre>{[{radioModel}]}</pre>
+            <div class="button-group">
+                <button type="button" class="button" ng-model="radioModel" btn-radio="'Left'">Left</button>
+                <button type="button" class="button" ng-model="radioModel" btn-radio="'Middle'">Middle</button>
+                <button type="button" class="button" ng-model="radioModel" btn-radio="'Right'">Right</button>
+            </div>
+        </div>
+      </div>
+      <!-- Dropdown Menu -->
+      <div class="column margin-bottom-2">
+        <h6>Dropdown Menu</h6>
+        <p class="large-font underline">Working</p>
+        <p>This requires no controller as such. It's a pure directive & adds removes following styles on mouse movements:</p>
+        <ol>
+          <li><code>is-active</code> to <code>li</code></li>
+          <li><code>js-dropdown-active</code>to <code>ul</code></li>
+        </ol>
+        <p>You can further customize this dropdown by adding these attributes to <code>dropdown-menu</code> attribute:</p>
+        <ol>
+          <li><code>disable-hover="true"</code></li>
+          <li><code>disable-click-open="true"</code></li>
+          <li><code>closing-time="500"</code> in milli seconds</li>
+        </ol>
+        <div>
+          <p class="large-font underline">Horizontal menu</p>
+          <ul class="dropdown menu" dropdown-menu>
+            <li>
+              <a tabindex="0">Item 1</a>
+              <ul class="menu">
+                <li><a href="#">Item 1A</a></li>
+                <li>
+                  <a href="#">Item 1B</a>
+                  <ul class="menu">
+                    <li><a href="#">Item 1B i</a></li>
+                    <li><a href="#">Item 1B ii</a></li>
+                    <li>
+                      <a href="#">Item 1B iii</a>
+                      <ul class="menu">
+                        <li><a href="#">Item 1B iii alpha</a></li>
+                        <li><a href="#">Item 1B iii omega</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Item 1B iv</a>
+                      <ul class="menu">
+                        <li><a href="#">Item 1B iv alpha</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#">Item 1C</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Item 2</a>
+              <ul class="menu">
+                <li><a href="#">Item 2A</a></li>
+                <li><a href="#">Item 2B</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Item 3</a></li>
+            <li><a href="#">Item 4</a></li>
+          </ul>
+          <br><br><br><br>
+          <p class="large-font underline">Vertical Menu</p>
+          <p>Add <code>vertical</code> to the class</p>
+          <ul class="vertical dropdown menu" dropdown-menu style="max-width: 300px;">
+            <li>
+              <a href="#" tabindex="0">Item 1</a>
+              <ul class="menu">
+                <li><a href="#">Item 1A Loooong</a></li>
+                <li><a href="#">Item 1B</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Item 2</a>
+              <ul class="menu">
+                <li><a href="#">Item 2A</a></li>
+                <li><a href="#">Item 2B</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Item 3</a>
+              <ul class="menu">
+                <li><a href="#">Item 3A</a></li>
+                <li><a href="#">Item 3B</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Item 1</a>
+              <ul class="menu">
+                <li><a href="#">Item 1A Loooong</a></li>
+                <li>
+                  <a href="#"> Item 1 sub</a>
+                  <ul class="menu">
+                    <li><a href="#">Item 1 subA</a></li>
+                    <li><a href="#">Item 1 subB</a></li>
+                    <li>
+                      <a href="#"> Item 1 sub</a>
+                      <ul class="menu">
+                        <li><a href="#">Item 1 subA</a></li>
+                        <li><a href="#">Item 1 subB</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#"> Item 1 sub</a>
+                      <ul class="menu">
+                        <li><a href="#">Item 1 subA</a></li>
+                        <li><a href="#">Item 1 subB</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#">Item 1B</a></li>
+              </ul>
+            </li>
+          </ul>
+  
+        </div>
+      </div>
+      <!-- Dropdown Toggle -->
+      <div class="column margin-bottom-2">
+        <h6>Dropdown Toggle</h6>
+        <p></p>
+        <div ng-controller="guide.DropdownCtrl">
+          <dropdown-toggle>
+            <toggle><p><a>Click me for a dropdown-toggle, yo!</a></p></toggle>
+            <pane>
+              <ul class="menu vertical">
+                <li ng-repeat="choice in items">
+                  <a>{[{choice}]}</a>
+                </li>
+                <li>
+                  <a ng-click="$close()">Close</a>
+                </li>
+              </ul>
+            </pane>
+          </dropdown-toggle>
+  
+          <dropdown-toggle close-on-click="true" pane-align="right">
+            <toggle>
+              <a class="dropdown button">dropdown-toggles can also have links!</a>
+            </toggle>
+            <pane>
+              <ul class="menu vertical">
+                <li ng-repeat="(label, url) in linkItems">
+                  <a href="{[{url}]}" target="_blank">{[{label}]}</a>
+                </li>
+              </ul>
+            </pane>
+          </dropdown-toggle>
+  
+          <div class="button-group">
+            <a class="button">Primary Action</a>
+            <dropdown-toggle close-on-click="true" pane-align="center">
+              <toggle>
+                <a class="dropdown button arrow-only">
+                  <span class="show-for-sr">Show menu</span>
+                </a>
+              </toggle>
+              <pane>
+                <ul class="menu vertical">
+                  <li ng-repeat="choice in items">
+                    <a>{[{choice}]}</a>
+                  </li>
+                </ul>
+              </pane>
+            </dropdown-toggle>
+          </div>
+  
+          <dropdown-toggle toggle-on-hover="true" pane-offset="-2">
+            <toggle>
+              <a class="dropdown button">Hover over me!</a>
+            </toggle>
+            <pane>
+                <ul class="menu vertical">
+                  <li ng-repeat="choice in items">
+                    <a>{[{choice}]}</a>
+                  </li>
+                </ul>
+            </pane>
+          </dropdown-toggle>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="column margin-bottom-2">
+        <h6>Modal</h6>
+        <p>It needs a controller & template to work. Template can be added in html itself. Controller contains a single function called <code>open(options)</code>. <code>open(options)</code> returns an ModelInstance object which can be closed, dismissed, repositioned etc.</p>
+        <ul>
+          <li>
+            <span class="bold">Customize</span>
+            <ul>
+              <li><code>size</code> Controls size of model: <code>tiny</code> <code>small</code> <code>large</code> <code>fullscreen</code></li>
+              <li><code>backdrop</code> Controls presence of backdrop</li>
+            </ul>
+          </li>
+          <li>
+            <span class="bold">Ways to close</span>
+            <ul>
+              <li><code>closeOnClick</code> determines whether clicking model will close the modal or not</li>
+              <li><code>keyboard</code>ESC to close</li>
+            </ul>
+          </li>
+          <li>
+            <span class="bold">Give template</span>
+            <ul>
+              <li class=""><code>templateUrl</code> will give the tempate url location</li>
+              <li><code>template</code> will take in an inline template like <code>"Hello World"</code></li>
+            </ul>
+          </li>
+          <li>
+            <span class="bold">Declare Scope</span>
+            <ul>
+              <li><code>scope</code> We can use this to declare the scope we want to use. Defaults to <code>$rootScope</code> ie. <code>$modal</code> will create a new childscope as <code>$scope</code> from <code>$rootScope</code> and thus will not use scope of the parent controller.</li>
+              <li><code>resolve</code> Passes the current controller's <code>$scope</code> as locals for <code>$modal</code> to use.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="bold">Declare Controller</span>
+            <ul>
+              <li><code>controller</code></li>
+              <li><code>controllerAs</code></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <div ng-controller="guide.ModalDemoCtrl">
+          <!-- Modal Tempalate -->
+          <script type="text/ng-template" id="myModalContent.html">
+            <h3>I'm a modal!</h3>
+            <ul>
+              <li ng-repeat="item in items track by $index">
+                <a ng-click="selected.item = item">{[{ item }]}</a>
+              </li>
+            </ul>
+            <p>Selected: <b>{[{ selected.item }]}</b></p>
+  
+            <button class="button" ng-click="openNested()">Open nested</button>
+            <button class="button" ng-click="ok()">OK</button>
+            <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </script>
+          <!-- Buttons -->
+          <button class="button" ng-click="open()">Open me!</button>
+          <button class="button" ng-click="open('', false)">No backdrop</button>
+          <button class="button" ng-click="open('', true, 40)">Overflow</button>
+          <button class="button" ng-click="open('tiny')">Tiny</button>
+          <button class="button" ng-click="open('small')">Small</button>
+          <button class="button" ng-click="open('large')">Large</button>
+          <button class="button" ng-click="open('full')">Fullscreen</button>
+          <button class="button" ng-click="open('', true, 3, false)">Close via backdrop click disabled</button>
+          <div ng-show="selected">Selection from a modal: {[{ selected }]}</div>
+        </div>
+      </div>
+      <!-- Orbit Controller -->
+      <div class="column margin-bottom-2">
+        <h6>Orbit Controller</h6>
+        <p class="alert bold">This requires a blank controller to work for some reason. For this reason it is in <span class="underline">BETA</span></p>
+        <div ng-controller="guide.OrbitDemoCtrl">
+          <div class="orbit">
+            <ul class="orbit-container">
+              <li class="orbit-slide is-active">
+                <div style="background-color: #20b2aa; padding: 2rem 4rem; color: #fefefe;">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </li>
+              <li class="orbit-slide">
+                <div style="background-color: #663399; padding: 2rem 4rem; color: #fefefe;">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </li>
+              <li class="orbit-slide">
+                <div style="background-color: #b8860b; padding: 2rem 4rem; color: #fefefe;">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </li>
+              <li class="orbit-slide">
+                <div style="background-color: #16b80b; padding: 2rem 4rem; color: #fefefe;">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </li>
+            </ul>
+  
+            <nav class="orbit-bullets">
+            </nav>
+  
+          </div>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div class="column margin-bottom-2">
+        <h6>Pagination</h6>
+        <div ng-controller="guide.PaginationDemoCtrl">
+          <p>Default</p>
+          <pagination total-items="totalItems" page="currentPage"></pagination>
+          <pagination boundary-links="true" total-items="totalItems" page="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+          <pagination direction-links="false" boundary-links="true" total-items="totalItems" page="currentPage"></pagination>
+          <pagination direction-links="false" total-items="totalItems" page="currentPage" num-pages="smallnumPages"></pagination>
+          <pre>The selected page no: {[{currentPage}]}</pre>
+          <button class="button secondary" ng-click="setPage(3)">Set current page to: 3</button>
+  
+          <hr />
+          <p>Pager</p>
+          <pager total-items="totalItems" page="currentPage"></pager>
+  
+          <hr />
+          <p>Limit the maximum visible buttons</p>
+          <pagination total-items="bigTotalItems" page="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
+          <pagination total-items="bigTotalItems" page="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+          <pre>Page: {[{bigCurrentPage}]} / {[{numPages}]}</pre>
+        </div>
+      </div>
+      <!-- Progressbar -->
+      <div class="column margin-bottom-2">
+        <h6>Progressbar</h6>
+        <div ng-controller="guide.ProgressDemoCtrl">
+          <style>
+            .progress .progress-meter {
+              -webkit-transition: width 1s ease-out;
+              transition: width 1s ease-out;
+            }
+          </style>
+  
+          <h3>Static</h3>
+          <div class="row">
+              <div class="columns small-4"><progressbar value="55"></progressbar></div>
+              <div class="columns small-4"><progressbar value="22" type="warning">22%</progressbar></div>
+              <div class="columns small-4"><progressbar max="200" value="166" type="alert">166 / 200</progressbar></div>
+          </div>
+  
+          <hr />
+          <h3>Dynamic <button class="button small" type="button" ng-click="random()">Randomize</button></h3>
+          <progressbar max="max" value="dynamic">{[{dynamic}]} / {[{max}]}</progressbar>
+  
+          <small><em>No animation</em></small>
+          <progressbar animate="false" value="dynamic" type="success">{[{dynamic}]}%</progressbar>
+  
+          <small><em>Object (changes type based on value)</em></small>
+          <progressbar class="progress-striped active" value="dynamic" type="{[{type}]}">{[{type}]} <i ng-show="showWarning">!!! Watch out !!!</i></progressbar>
+        </div>
+      </div>
+      <!-- Rating -->
+      <div class="column margin-bottom-2">
+        <h6>Rating</h6>
+        <div ng-controller="guide.RatingDemoCtrl">
+            <p>Default</p>
+            <rating value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+            <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{[{percent}]}%</span>
+  
+            <pre style="margin:15px 0;">Rate: <b>{[{rate}]}</b> - Readonly is: <i>{[{isReadonly}]}</i> - Hovering over: <b>{[{overStar || "none"}]}</b></pre>
+  
+            <button class="button small alert" ng-click="rate = 0" ng-disabled="isReadonly">Clear</button>
+            <button class="button small" ng-click="isReadonly = ! isReadonly">Toggle Readonly</button>
+            <hr />
+  
+            <p>Custom icons</p>
+            <div ng-init="x = 5">
+              <rating value="x" max="15" state-on="'fa-check-circle'" state-off="'fa-check-circle-o'"></rating>
+              <b>(<i>Rate:</i> {[{x}]})</b>
+            </div>
+            <div ng-init="y = 2">
+              <rating value="y" rating-states="ratingStates"></rating>
+              <b>(<i>Rate:</i> {[{y}]})</b>
+            </div>
+        </div>
+      </div>
+      <!-- Tabs -->
+      <div class="column margin-bottom-2">
+        <h6>Tabs</h6>
+        <div ng-controller="guide.TabsDemoCtrl">
+          <p>Select a tab by setting active binding to true:</p>
+          <p>
+            <button class="button small" ng-click="tabs[0].active = true">Select second tab</button>
+            <button class="button small" ng-click="tabs[1].active = true">Select third tab</button>
+          </p>
+          <hr />
+  
+          <tabset>
+            <tab heading="Static title">Static content</tab>
+            <tab ng-repeat="tab in tabs" heading="{[{tab.title}]}" active="tab.active">
+              {[{tab.content}]}
+            </tab>
+            <tab select="alertMe()">
+              <tab-heading>
+                <i class="fa fa-bell"></i> Alert!
+              </tab-heading>
+              I've got an HTML heading, and a select callback. Pretty cool!
+            </tab>
+          </tabset>
+  
+          <hr />
+  
+          <tabset vertical="true" type="navType">
+            <tab heading="Vertical 1">Vertical content 1</tab>
+            <tab heading="Vertical 2">Vertical content 2</tab>
+          </tabset>
+  
+          <hr />
+        </div>
+      </div>
+      <!-- Tooltip -->
+      <div class="column margin-bottom-2">
+        <h6>Tooltip</h6>
+        <div ng-controller="guide.TooltipDemoCtrl">
+            <div class="form-group">
+              <label>Dynamic Tooltip Text</label>
+              <input type="text" ng-model="dynamicTooltipText" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Dynamic Tooltip Popup Text</label>
+              <input type="text" ng-model="dynamicTooltip" class="form-control">
+            </div>
+            <p>
+              Pellentesque <a href="#" class="has-tip" tooltip="{[{dynamicTooltip}]}">{[{dynamicTooltipText}]}</a>,
+              sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in
+              aliquam. Tincidunt lobortis feugiat vivamus at
+              <a href="#" class="has-tip" tooltip-placement="left" tooltip="On the Left!">left</a> eget
+              arcu dictum varius duis at consectetur lorem. Vitae elementum curabitur
+              <a href="#" class="has-tip" tooltip-placement="right" tooltip="On the Right!">right</a>
+              nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas
+              <a href="#" class="has-tip" tooltip-placement="bottom" tooltip="On the Bottom!">bottom</a>
+              pharetra convallis posuere morbi leo urna, at elementum eu, facilisis sed odio morbi quis commodo odio. In cursus
+              <a href="#" class="has-tip" tooltip-popup-delay='1000' tooltip='appears with delay'>delayed</a> turpis massa tincidunt dui ut.
+            </p>
+  
+            <p>
+              I can even contain HTML. <a href="#" class="has-tip" tooltip-html-unsafe="{[{htmlTooltip}]}">Check me out!</a>
+            </p>
+  
+            <form role="form">
+              <div class="form-group">
+                <label>Or use custom triggers, like focus: </label>
+                <input type="text" value="Click me!" tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="right" class="form-control" />
+              </div>
+            </form>
+        </div>
+      </div>
+  
+    </div>
+  
+  </section>
+  
+  
+  
+</body>
+</html>

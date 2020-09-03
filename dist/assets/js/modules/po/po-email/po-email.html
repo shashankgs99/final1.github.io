@@ -1,0 +1,60 @@
+<md-dialog flex="70">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Send PO</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    X
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout-margin>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>To</label>
+                            <input type="to" name="to" id="email-to" ng-disabled="true" ng-model="data.supplier_contact_email" required ng-required="true" ng-disabled="disableEmail">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>Subject</label>
+                                <input type="subject" name="subject" id="email-subject" ng-model="subject" required ng-required="true">
+                            </md-input-container>
+                        </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                        <div flex class="f-s-15">
+                                Dear {[{email.supplier_contact_name}]},<br/>
+                                <br/>Please find attached the Purchase order #{[{email.po_number}]} Dated {[{email.po_date}]} for the supply of {[{email.po_description}]}
+                                <br/>Please acknowledge the same and confirm your acceptance.
+                                <!-- <br/>Attachments:"PO" -->
+                                <br/>References : {[{email.po_reference}]}
+                                <br/><br/>
+                                Regards,
+                                <br/>{[{email.buyer_contact_name}]}
+                        </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-click="sendEmail()">
+                Send
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>
+
+   
+
+
+
+
+
+

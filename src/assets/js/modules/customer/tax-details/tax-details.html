@@ -1,0 +1,73 @@
+<md-dialog aria-label="Tax Details" flex-gt-xs="75" flex-gt-sm="70">
+    <form ng-cloak name="taxForm" ng-submit="taxForm.$valid && submit(taxForm)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Tax Details</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-padding md-margin">
+            <div class="md-dialog-content">
+                <div class="md-cr-input-block">
+                    <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                        <div flex="45" flex-xs="100">
+                            <md-select ng-model="tax.taxType" ng-change="checkTaxType(tax.taxType)">
+                                <md-option ng-repeat="type in taxTypeList track by $index" ng-value="type">
+                                    {[{type.name}]}
+                                </md-option>
+                            </md-select>
+                        </div>
+                        <div flex="10"></div>
+                        <div flex="45" flex-xs="100">
+                            <md-input-container class="md-block">
+                                <label>Number</label>
+                                <input name="number" required ng-model="tax.number">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                        <div flex="45" flex-xs="100">
+                            <md-input-container class="md-block">
+                                <label>Issue Date</label>
+                                <md-datepicker type="date" layout="row" name="issueDate" id="issueDate" ng-model="tax.issueDate"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div flex="10"></div>
+                        <div flex="45" flex-xs="100">
+                            <md-input-container class="md-block">
+                                <label>Valid Date</label>
+                                <md-datepicker type="date" layout="row" name="validDate" id="validDate" ng-model="tax.validDate"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                        <div flex="45" flex-xs="100">
+                            <md-input-container class="md-block">
+                                <label>Issuing Authority</label>
+                                <input name="issuing_authority" ng-model="tax.issuing_authority">
+                            </md-input-container>
+                        </div>
+                        <div flex="10"></div>
+                        <div flex="45" flex-xs="100">
+                                <label>Attachments</label>
+                                <br/>
+                                <input type="file" class="m-top-5" placeholder="Choose CSV file to import data" valid-file upload="uploadTaxUrl(file,tax)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary md-raised cr-md-primary" ng-click="saveTax(tax,taxForm.$valid)">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

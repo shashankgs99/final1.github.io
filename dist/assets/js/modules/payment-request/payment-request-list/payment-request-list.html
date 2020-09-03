@@ -1,0 +1,155 @@
+<div layout="column" layout-align="start center">
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" ng-controller="layout.standard.filtersController" class="md-padding md-margin main-card">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Payment Request List
+                    </div>
+                    <span layout-xs="column">
+                        <div layout-xs="row" layout-align-xs="end">
+                            <md-button class="md-icon-button" ng-click="grnFilters(filter)">
+                                <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list
+                                </md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="clear()">
+                                <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Customer</label>
+                            <md-select ng-model="filter.customer">
+                                <md-option ng-repeat="customer in customersList" ng-value="customer">
+                                    {[{customer.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">PO</label>
+                            <md-select ng-model="filter.po_type">
+                                <md-option ng-repeat="po in PoTypesInfo" ng-value="po">
+                                    {[{po.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Project</label>
+                            <md-select ng-model="filter.project">
+                                <md-option ng-repeat="project in projectNames" ng-value="project">
+                                    {[{project.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" ng-if="!supplierAcess">
+                            <label>Supplier</label>
+                            <md-select ng-model="filter.supplier">
+                                <md-option ng-repeat="supplier in productSuppliersInfo" ng-value="supplier">
+                                    {[{supplier.label}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Date From</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom"
+                                ng-model="filter.date_from"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Date To</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="dateTo" ng-model="filter.date_to">
+                            </md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label class="md-caption">Payment Request Type</label>
+                            <md-select ng-model="filter.id">
+                                <md-option ng-repeat="po in GRNList" ng-value="po">
+                                    {[{po.internal_reference_number}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex></div>
+                </div>
+            </div>
+        </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+        <div layout="row" class="margin-top-2">
+            <div flex>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="column" layout-align="start center" class="md-margin md-padding">
+    <div class="margin-r-55">Total
+        <b>{[{count}]}</b> records</div>
+    <div layout="column" class="list-cards" flex ng-repeat="order in paymentList" track by $index>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-card md-theme-watch ng-click="ViewPR(order)">
+                    <md-card-content>
+                        <div layout="row" layout-xs="column">
+                            <div layout="column" flex layout-margin layout-gt-xs="row">
+                                <div flex>
+                                    <label class="md-caption">Payment Request#</label>
+                                    <p class="md-body-1" ng-bind="order.internal_reference_number"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Document Reference</label>
+                                    <p class="md-body-1">{[{order.document_reference}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Document Date</label>
+                                    <p class="md-body-1">{[{order.document_date | date:'dd/MM/yyyy'}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">PO #</label>
+                                    <p class="md-body-1">{[{order.po.po_number}]} Dated {[{order.po.po_date}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">MileStone Number</label>
+                                    <p class="md-body-1">{[{order.milestone_number.installment_number+","+order.milestone_number.type}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Invoice Price</label>
+                                    <p class="md-body-1" ng-bind="order.total_price"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-align="center center">
+    <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)"
+        boundary-links="true">
+    </pagination>
+</div>

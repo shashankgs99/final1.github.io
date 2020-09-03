@@ -1,0 +1,40 @@
+//Ng Animations
+.fade.ng-enter {
+  transition:3s ease all;
+  opacity:0;
+}
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+//Scroll effect
+.scroll.ng-enter{
+  transition:0.25s linear all;
+  opacity:0;
+  margin-top: -3rem;
+  @include breakpoint(medium down){
+    margin-top: -1.5rem;
+  }
+}
+.scroll.ng-enter.ng-enter-active {
+    opacity: 1;
+    margin-top: 0;
+    @include breakpoint(medium down){
+        margin-top: 0;
+    }
+}
+.scroll.ng-leave{
+    transition:0.25s linear all;
+    opacity: 1;
+    margin-top: 0rem;
+    @include breakpoint(medium down){
+        margin-top: 0;
+    }
+}
+.scroll.ng-leave.ng-leave-active{
+    transition:0.25s linear all;
+    margin-top: 3em;
+    @include breakpoint(medium down){
+        margin-top: 1.5rem;
+    }
+}

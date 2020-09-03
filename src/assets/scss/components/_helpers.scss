@@ -1,0 +1,176 @@
+// Basic styling
+
+.center{
+    text-align: center;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.bold{
+    font-weight: bold;
+}
+.italic{
+    font-style: italic;
+}
+.underline{
+    text-decoration: underline;
+}
+
+// Colours
+
+.dark-color{
+    color: $black!important;
+}
+.light-color{
+    color: $white!important;
+}
+.primary-color{
+    color: $primary-color!important;
+}
+.secondary-color{
+    color: $secondary-color!important;
+}
+.alert-color{
+    color: $alert-color!important;
+}
+.warning-color{
+    color: $warning-color!important;
+}
+.success-color{
+    color: $success-color!important;
+}
+.gray-color{
+  color: #ccc!important;
+}
+
+
+// Background
+
+.light-bg{
+    background-color: $white;
+}
+.white-bg{
+    background-color: #fff!important;
+}
+.dark-bg{
+    background-color: $black;
+}
+.primary-bg{
+    background-color: $primary-color!important;
+}
+.secondary-bg{
+    background-color: $secondary-color!important;
+}
+.alert-bg{
+    background-color: $alert-color!important;
+}
+.warning-bg{
+    background-color: $warning-color!important;
+}
+.success-bg{
+    background-color: $success-color!important;
+}
+
+.white-line{
+  border-bottom: 2px solid $white;
+  width: 200px;
+  left: 50%;
+  right: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.primary-line{
+  border-bottom: 2px solid $primary-color;
+  width: 150px;
+  left: 50%;
+  right: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbnail{
+    &.circle{
+        border-radius: 100%;
+        img{
+            border-radius: 100%;
+        }
+    }
+}
+
+
+// Paddings & Margins
+
+.no-padding{
+  padding: 0!important;
+}
+.no-margin{
+  margin: 0!important;
+}
+
+.padding-top-1{
+    padding-top: 1rem!important;
+}
+.padding-top-dot5{
+    padding-top: 0.5rem!important;
+}
+.padding-top-2{
+    padding-top: 2rem!important;
+}
+.padding-bottom-dot5{
+    padding-bottom: 0.5rem!important;
+}
+.padding-bottom-1{
+    padding-bottom: 1rem!important;
+}
+.padding-bottom-2{
+    padding-bottom: 2rem!important;
+}
+.padding-dot5{
+    padding: 0.5rem!important;
+}
+.padding-1{
+    padding: 1rem!important;
+}
+.padding-2{
+    padding: 2rem!important;
+}
+
+
+.margin-top-1{
+    margin-top: 1rem!important;
+}
+.margin-top-dot5{
+    margin-top: 0.5rem!important;
+}
+.margin-top-2{
+    margin-top: 2rem!important;
+}
+.margin-bottom-dot5{
+    margin-bottom: 0.5rem!important;
+}
+.margin-bottom-1{
+    margin-bottom: 1rem!important;
+}
+.margin-bottom-2{
+    margin-bottom: 2rem!important;
+}
+.margin-dot5{
+    margin: 0.5rem!important;
+}
+.margin-1{
+    margin: 1rem!important;
+}
+.margin-2{
+    margin: 2rem!important;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.single-line{
+  text-overflow: ellipsis;white-space: nowrap; overflow-x: hidden;
+}

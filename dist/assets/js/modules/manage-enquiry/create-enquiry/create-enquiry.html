@@ -1,0 +1,242 @@
+<div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+    <div layout="column">
+        <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+    </div>
+</div>
+<div layout="column" layout-align="start center" ng-controller="createEnquiry">
+    <div layout="column" flex class="md-padding md-margin main-card">
+
+        <div layout="row">
+            <div flex class="md-display-1">{[{buttonName}]}</div>
+        </div>
+        <md-content class="md-margin md-padding">
+            <form name="projectForm">
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Project</label>
+                            <md-select ng-change="selectedProject(enquiry.parent_project,'project')"
+                                ng-model="enquiry.parent_project">
+                                <md-option ng-repeat="project in projects track by project.id" ng-value="project">
+                                    {[{project.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex="10">
+                        <i class="fa fa-plus-square-o fa-lg"  aria-hidden="true"
+                            title="Create Project" ng-model="create_project"
+                            ng-click="createProject($event,'Project')"></i>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Sub-Project</label>
+                            <md-select ng-change="selectedProject(enquiry.sub_project)" ng-model="enquiry.sub_project">
+                                <md-option ng-repeat="project in sub_projects track by project.id" ng-value="project">
+                                    {[{project.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex="10">
+                        <i ng-if="enquiry.parent_project" class="fa fa-plus-square-o fa-lg"
+                            aria-hidden="true" title="Create Sub-Project"
+                            ng-click="createProject($event,'Sub-Project')"></i>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" ng-if="displayProject">
+                    <div layout-margin flex>
+                        <label>Customer</label>
+                        <p>{[{displayProject.customer?displayProject.customer.name:'NA'}]}</p>
+                    </div>
+                    <div layout-margin flex>
+                        <span>Enquiry Type</span>
+                        <p>{[{displayProject.project_type?displayProject.project_type.name:'NA'}]}</p>
+                    </div>
+                </div>
+                <div class="ml-padding-t-16" ng-if="displayProject&&MTOList.length">
+                    <div layout="row" layout-margin>
+                        <label>
+                            <b>MTO List</b>
+                            <i class="fa fa-info-circle">
+                                <md-tooltip md-direction="right">Select below to add all mto items or click on view
+                                    button and
+                                    select.
+                                </md-tooltip>
+                            </i>
+                        </label>
+                    </div>
+                    <div layout="row" ng-repeat="list in MTOList track by $index" class="m-l-3">
+                        <div flex="10">
+                            <md-checkbox ng-model="list.checked" md-indeterminate="list.indeterminate"
+                                ng-click="selectedMTO(list,$index,list.checked)">
+                            </md-checkbox>
+                        </div>
+                        <div flex>
+                            {[{list.fileName}]}
+                        </div>
+                        <div flex>
+                            <i class="fa fa-eye font-s-20" ng-click="viewMtoData(event,list,$index)"></i>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Email Subject</label>
+                            <input name="subject" ng-model="enquiry.subject" required>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <label class="label-l" for="emailBody">Description
+                            <i class="fa fa-info-circle">
+                                <md-tooltip md-direction="right">This information will be seen in the body of the email
+                                    sent to suppliers.</md-tooltip>
+                            </i>
+                        </label>
+                        <textarea ng-model="enquiry.message" row="10" coloum="100" id="message"
+                            ui-tinymce="tinymceOptions" class="margin-top-2 enquiry-msg"></textarea>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" ng-if="enquiry.id">
+                    <div layout-margin flex>
+                        <label class="label-l" for="revisionNotes">Revision Notes
+                            <i class="fa fa-info-circle">
+                                <md-tooltip md-direction="right">Add notes for revising the enquiry. This info will help
+                                    for
+                                    traceability in future</md-tooltip>
+                            </i></label>
+                        <md-input-container class="md-block">
+                            <textarea id="revision-notes" name="revisionnotes" ng-model="enquiry.revision_notes"
+                                rows="2"></textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16"
+                    ng-if="!enquiry.id || enquiry.enquiry_state==='Enquiry Created'">
+                    <div layout-margin flex>
+                        <label class="label-l" for="editNotes">Edit Notes
+                            <i class="fa fa-info-circle">
+                                <md-tooltip md-direction="right">Add notes for revising the enquiry. This will help for
+                                    maintaining edit
+                                    history.</md-tooltip>
+                            </i>
+                        </label>
+                        <md-input-container class="md-block">
+                            <textarea id="edit-notes" rows="2" name="editnotes"
+                                ng-model="enquiry.edit_notes"></textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <label class="md-headline">Add MTO:</label>
+                    </div>
+                    <div layout-margin flex class="margin-top-n-1 margin-l-n-6">
+                        <a href="https://s3-ap-southeast-1.amazonaws.com/suppliers-cave-templates/MTOFormat.csv">
+                            <md-button class="md-raised md-primary">Download MTO Format</md-button>
+                        </a>
+                    </div>
+                    <div layout-margin flex></div>
+                </div>
+                <div ng-repeat="file in PRFiles" layout-margin>
+                    <div layout="row">
+                        <label class="label-l" for="addFile">Add File</label>
+                    </div>
+                    <div layout="row">
+                        <div flex>
+                            <input id="mto-file" type="file" ng-disabled="disabledData"
+                                placeholder="Choose CSV file to import data" file-model="csvfile"
+                                file-reader="fileContent" on-load-callback="getFileName(csvfile)" />
+                        </div>
+                        <div flex>
+                            <md-button class="md-raised md-primary margin-t-n-3" ng-disabled="disableImport"
+                                ng-click="importData(fileContent)">Import Data</md-button>
+                        </div>
+                        <div flex></div>
+                    </div>
+                </div>
+                <div class="ml-padding-t-16" ng-if="uploadedFilesList.length">
+                    <div layout="row" ng-repeat="file in uploadedFilesList track by $index" layout-padding>
+                        <div flex>
+                            MT - {[{file.fileName}]} -uploaded
+                        </div>
+                        <div flex="10">
+                            <i class="fa fa-eye font-s-20" title="View" ng-click="ViewInfo(event,$index)"></i>
+                        </div>
+                        <div flex="10">
+                            <i class="fa fa-trash font-s-20" title="Delete" ng-click="deleteMTO($index)"></i>
+                        </div>
+                        <div flex="10">
+                            <md-button class="fa fa-save font-s-20 margin-t-n-9" title="Save" ng-disabled="file.save"
+                                ng-click="save(mto,$index)"></md-button>
+                        </div>
+                        <div flex></div>
+                    </div>
+                </div>
+                <div class="ml-padding-t-16 margin-t-1" ng-if="enquiryMtoList.length" layout-margin>
+                    <div ng-repeat="mto in enquiryMtoList">
+                        <div class="row">
+                            <div flex>
+                                <i>{[{mto.attachment ? mto.attachment.split('/').pop():''}]}</i>
+                            </div>
+                            <div flex="10">
+                                <i class="fa fa-eye font-s-20" ng-click="viewMtoData(event,mto,$index)"></i>
+                            </div>
+                            <div flex="10">
+                                <i class="fa fa-trash" ng-click="remove(mto,$index)"></i>
+                            </div>
+                            <div flex></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <label class="md-headline">Upload Files:</label>
+                    </div>
+                    <div layout-margin flex="10">
+                        <i class="fa fa-plus-square-o fa-lg font-s-20 margin-t-n-3 margin-l-n-41" aria-hidden="true"
+                            title="Add File" ng-model="create_project" ng-click="AddUploadFiles()"></i>
+                    </div>
+                    <div layout-margin flex></div>
+                    <div layout-margin flex></div>
+                    <div layout-margin flex></div>
+                </div>
+                <div ng-repeat="file in fileUploads" layout-margin>
+                    <div flex layout="row">
+                        <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                    </div>
+                    <div flex layout="row" class="margin-b-3">
+                        <div flex>
+                            <input type="file" placeholder="Choose CSV file to import data" valid-file
+                                upload="uploadFile(file,$index)" />
+                        </div>
+                        <div flex="10">
+                            <i class="fa fa-times-circle icon-cog enquiry-rf-icon" 
+                                aria-hidden="true" title="Remove" ng-model="remove"
+                                ng-click="removeFiles(fileUploads,$index,true)"></i>
+                        </div>
+                        <div flex></div>
+                    </div>
+                </div>
+                <div layout="row" class="ml-padding-t-16" layout-margin>
+                    <p ng-repeat="file in productFiles">
+                        {[{file.fileName}]}<i class="fa fa-times-circle icon-cog enquiry-rf-icon margin-l-5"
+                            ng-click="removeFiles(productFiles, $index)" title="Delete file"></i>
+                    </p>
+                </div>
+                <div layout="row" class="ml-padding-t-16 margin-b-5" layout-align="end end">
+                    <md-button class="md-raised md-primary" ng-click="cancelEdit()">Cancel</md-button>
+                    <md-button class="md-raised md-primary"
+                        ng-if="!enquiry.id || enquiry.enquiry_state==='Enquiry Created'" id="save-enquiry"
+                        ng-click="saveEnquiry(enquiry)">Save</md-button>
+                    <md-button class="md-raised md-primary" ng-click="saveEnquiryNewVersion(enquiry)"
+                        ng-if="enquiry.id"> Save as new version</md-button>
+                </div>
+            </form>
+        </md-content>
+    </div>
+</div>

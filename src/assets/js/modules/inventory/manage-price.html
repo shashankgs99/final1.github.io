@@ -1,0 +1,148 @@
+<script type="text/ng-template" id="manageprice.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4 class="margin-0">Manage Price</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container">
+                    <form>
+                       <div class="col-md-12">
+                          <div class="col-md-3">
+                                <label>
+                                    <input type="radio" ng-model="price" value="hideprice">
+                                        Hide price
+                                    </label>
+                           </div>      
+                          <div class="col-md-3">
+                                <label>
+                                    <input type="radio" ng-model="price" value="unhideprice">
+                                        UnHide Price
+                                </label>
+                            </div>
+                        </div>
+                       <div>
+                            <label>Discount(%)</label>
+                            <input type="text"  ng-model="discount"/>
+                       </div> 
+                       <div>
+                            <label>Premium(%)</label>
+                            <input type="text"  ng-model="premium"/>
+                       </div>  
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button class="button4" ng-click="SaveData(price,discount,premium)">Ok</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script><script type="text/ng-template" id="manageSupplier.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4 class="margin-0">Manage Supplier</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container p-t-20">
+                    <form>
+                       <div class="col-md-12">
+                          <div class="col-md-3">
+                                <label>
+                                    <input type="radio" ng-model="supplier" value="hideSupplier">
+                                        Hide Supplier
+                                    </label>
+                           </div>      
+                         
+                        </div> 
+                        <div>
+                                <div class="col-md-3">
+                                        <label>
+                                            <input type="radio" ng-model="supplier" value="unhideSupplier">
+                                                UnHide Supplier
+                                        </label>
+                                    </div>
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button class="button4" ng-click="SaveSupplier(supplier)">Ok</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script>
+</script><script type="text/ng-template" id="manageItem.html">
+    <div class="col-md-12 modal-container">
+        <div class="col-md-12 modal-box">
+            <div class="col-md-12 modal-title">
+                <h4 class="margin-0">Manage Item</h4>
+                <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="modal-body">
+                <div class="col-md-12 padding-15 supplier-details-container p-t-20">
+                    <form>
+                       <div class="col-md-12">
+                          <div class="col-md-3">
+                                <label>
+                                    <input type="radio" ng-model="item" value="hideItem">
+                                        Hide Item
+                                    </label>
+                           </div>      
+                         
+                        </div> 
+                        <div>
+                                <div class="col-md-3">
+                                        <label>
+                                            <input type="radio" ng-model="item" value="unhideItem">
+                                                UnHide Item
+                                        </label>
+                                     </div>
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="col-md-12 modal-footerr">
+            <div class="col-md-12 padding-15">
+                <button class="button4" ng-click="cancel()">Cancel</button>
+                <button class="button4" ng-click="SaveItem(item)">Ok</button>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+</script>

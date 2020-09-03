@@ -1,0 +1,106 @@
+<div layout="column" layout-align="start center" class="md-padding md-margin">
+    <div layout="column" class="main-card" flex>
+        <div layout="row" class="layout-padding md-title">
+            <div flex>Project Details</div>
+        </div>
+        <div layout="row" flex>
+            <md-button class="md-icon-button" ng-click="BackToList()">
+                <md-icon class="material-icons managecustomericon" title="Back To List">arrow_back</md-icon>
+            </md-button>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="EditProject(project)">
+                <md-icon class="material-icons managecustomericon" title="Edit Project">edit</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-if="current_user.data.company.id" ng-click="makeOffer($event,project)">
+                <md-icon class="material-icons managecustomericon" title="Create Offer">local_offer</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-if="view" ng-click="viewOffers()">
+                    <md-icon class="material-icons managecustomericon" title="View Offers">visibility</md-icon>
+            </md-button>
+        </div>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <div layout="column">
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Project Name</label>
+                                    <p class="md-body-1" ng-bind="project.name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Project Type</label>
+                                    <p class="md-body-1" ng-bind="project.project_type.name"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Customer(Project/Enquiry/Contract) Ref no</label>
+                                    <p class="md-body-1" ng-bind="project.internal_reference_number"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Revision Number Project Date</label>
+                                    <p class="md-body-1" ng-bind="project.revision_number"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Manual#</label>
+                                    <p class="md-body-1" ng-bind="project.internal_revision_number"></p>
+                                </div>
+                                <div flex></div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Project Date</label>
+                                    <p class="md-body-1" ng-bind="project.project_date"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Due Type</label>
+                                    <p class="md-body-1" ng-bind="project.due_date"></p>
+                                </div>
+
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Customer Name</label>
+                                    <p class="md-body-1" ng-bind="project.customer.name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Customer Contacts</label>
+                                    <p class="md-body-1" ng-repeat="name in project.customer_contacts">
+                                        {[{name.fullName}]}
+                                    </p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Details of Project/Enquiry/Contracts</label>
+                                    <p class="md-body-1">
+                                        {[{project.description}]}
+                                    </p>
+                                </div>
+                                <div flex ng-if="project.edit_notes">
+                                    <label class="md-caption">Edit Notes</label>
+                                    <p class="md-body-1" ng-bind="project.edit_notes"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin>
+                                <div flex>
+                                    <label class="md-caption">Attachments</label>
+                                    <p ng-repeat="image in project.attachments">
+                                        <a ng-href="{[{image.s3_url}]}" target="_blank" download>
+                                            <i class="fa fa-paperclip"></i> {[{image.s3_url.split('/').pop()}]} </a>
+                                    </p>
+                                </div>
+                                <div flex>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

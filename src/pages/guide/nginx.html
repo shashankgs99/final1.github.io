@@ -1,0 +1,56 @@
+<section class="container">
+  <h4 class="primary">Nginx</h4>
+  <p class="large-font underline">For Amazon Linux Instance</p>
+  <ol>
+    <li><code>sudo yum install nginx</code></li>
+    <li><code>sudo service nginx start</code></li>
+    <li>root configuration directive in the nginx configuration file <code>/etc/nginx/nginx.conf</code></li>
+    <li><code>sudo vim</code> to edit the config file</li>
+    <li>Use <code>service nginx restart</code> to restart the server</li>
+  </ol>
+  <p class="large-font underline">How to configure config file</p>
+  <accordion close-others="true">
+    <accordion-group is-open="true">
+      <accordion-heading>
+           For Django Instance 
+      </accordion-heading>
+        Django needs <code>0.0.0.0</code> to be specified to be able to run on ec2 instance since<br>
+        <span class="alert">Ensure to add 0.0.0.0 in Allowed hosts of Django config file</span><br><br>
+        <code>python manage.py runserver 0.0.0.0:8000</code>
+        <br><br><br>
+        <span class="alert"> Add this line of code in nginx to ensure that main url is passed to api so that it show real domain name while Hyperlinking & not <code>0.0.0.0</code></span><br><br>
+        <code>proxy_set_header        Host $host;</code>
+        <br>
+        For Development work you can use
+        <code>proxy_set_header        Host $host:$server_port;</code>
+        
+        <p>You can refer to <span class="bold">nginx</span> file of supplierscave to understand this better</p>
+    </accordion-group>
+    <accordion-group ">
+      <accordion-heading>
+           For ExpressJS/NodeJS instance
+      </accordion-heading>
+        ExpressJS needs 127.0.0.1 since it points to localhost
+        <code>127.0.0.1:3000</code>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            For handling redirection to HTTPS in case of AWS Load Balancer
+        </accordion-heading>
+        While working with AWS Load Balancer there are two parts of this solution. Remember here the EC2 instance is only listening at port 80 & Elastic load balancer is providing the request from port 80 & port 223. Also elastic load balancer is checking at port 80 to ensure health is good. <br>
+        1. For handling redirection <br><br>
+        <code>
+          server{ <br>
+            listen 80; <br>
+            if ( $http_x_forwarded_proto != 'https' ) { <br>
+                return 301 https://$host$request_uri; <br>
+            } <br>
+          }<br>
+        </code><br>
+        2. For checking health <br><br>
+        <code>
+          TCP based health check validation at PORT 3000 using ExpressJS. Make sure port 3000 is open in the security group.
+        </code>
+    </accordion-group>
+  </accordion>
+</section>

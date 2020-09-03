@@ -1,0 +1,24 @@
+# robotstxt.org
+Sitemap: https://www.supplierscave.com/sitemap.xml
+User-agent: *
+Allow: /assets/js/modules/home/home.html
+Allow: /assets/js/modules/home/contact.html
+Allow: /assets/partials/dashboard/admin/faq.html
+Allow: /assets/js/modules/home/how-it-works.html
+Allow: /assets/js/modules/home/about-us.html
+Allow: /assets/js/modules/directory/states/list/views/content/directory-list-content.html
+Allow: /assets/js/modules/company/company-list/views/company-list-content.html
+Allow: /assets/js/modules/company/company-details/company-details.html
+Allow: /login 
+Allow: /register
+Disallow: /admin-dashboard*
+Disallow: /supplier-dashboard*
+Disallow: /buyer-dashboard*
+Disallow: /stores-dashboard*
+Disallow: /market-dashboard*
+
+
+
+
+
+

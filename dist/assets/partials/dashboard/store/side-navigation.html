@@ -1,0 +1,48 @@
+<div class="side-nav-bg col-xs-12 fade hidden-md hidden-sm hidden-lg" ng-show="toggle" ng-click="toggleClick(toggle)" ng-style="windowInnerHeight"></div>
+<div class="side-navigation" ng-class="{toggle0:toggle==true, toggleMinus230:toggle==false}">
+    <div class="row align-middle align-center title">
+        <div class="logo columns">
+            <i class="fa fa-bars fade admin-sidenav" ng-click="toggleClick(toggle)"></i>
+            <div class="sidenav-logo" ng-if="current_user.data.company.logo">
+                <img class="sidenav-img" ng-src="{[{current_user.data.company.logo}]}" ng-click="changeIcon($event)" alt="{[{current_user.data.company.company_name}]}">
+            </div>
+        </div>
+    </div>
+    <div class="row columns align-center center">
+        <h6 class="light-color margin-top-2 margin-bottom-1">Stores Dashboard</h6>
+    </div>
+    <ul class="left-navigation" id="left-navigation" ng-style="leftNavigationHeight">
+        <li>
+            <a ui-sref="storeDashboard.inventory.list" id="stores" ng-class="{active: ('storeDashboard.inventory'| includedByState)}"
+                class="sub-menu">
+                Inventory
+            </a>
+        </li>
+        <li>
+            <a ui-sref="storeDashboard.materialRequisition.list" id="stores" ng-class="{active: ('storeDashboard.materialRequisition'| includedByState)}" class="sub-menu">
+                Material Requisitions
+            </a>
+        </li>
+        <li>
+            <a ui-sref="storeDashboard.stores.list" id="stores" ng-class="{active: ('storeDashboard.stores'| includedByState)}" class="sub-menu">
+                Stores
+            </a>
+        </li>
+    </ul>
+
+    <div class="sn-footer">
+        <div class="row align-middle align-center title m-b-4">
+            <div class="logo columns">
+                <a target="_self" href="/" class="site-logo" id="site-logo">
+                    <img src="/assets/img/supplierscave-logo.png" class="h-80" alt="supplierscave">
+                    <div class="clear-fix"></div>
+                </a>
+            </div>
+        </div>
+        <div class="row align-middle align-center">
+            <div class="columns center">
+                <p class="light-color small-font bold">Version 0.1.3</p>
+            </div>
+        </div>
+    </div>
+</div>

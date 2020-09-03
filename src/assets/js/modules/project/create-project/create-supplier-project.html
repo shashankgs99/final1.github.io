@@ -1,0 +1,159 @@
+<div layout="column" layout-align="start center" layout-wrap>
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="space-around" class="loader">
+            <md-progress-circular md-mode="indeterminate" class="loader1"></md-progress-circular>
+        </div>
+        <div layout="row" layout-xs="column">
+            <div flex class="md-display-1" layout-xs="row">{[{name}]} Project / Enquiry / Contracts</div>
+            <div layout-xs="row" layout-align-xs="end">
+                <md-button type="submit" ng-if="saveNewRevision" class="md-primary md-raised"
+                    ng-click="UpdateStatus(UiGridOptions.data,$event)">
+                    Update Status
+                </md-button>
+            </div>
+        </div>
+        <md-content  class="md-margin md-padding">
+            <form name="projectForm">
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Project Name</label>
+                                <input required name="name" ng-model="project.name">
+                                <div ng-messages="projectForm.name.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Customer(Project/Enquiry/Contract) Ref no</label>
+                                <input name="contractNumber" ng-model="project.contract_number">
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Revision Number</label>
+                                <input name="customerName" ng-model="project.revision_number">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label class="md-caption">Project Date</label>
+                                <md-datepicker name="Date" ng-model="project.project_date"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Due Date</label>
+                                <md-datepicker name="Date" ng-model="project.due_date"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                            <label>Project Type*</label>
+                            <span layout-margin>
+                                <md-radio-group layout="row" ng-model="project.project_type">
+                                    <md-radio-button value="Budgetary">Budgetary</md-radio-button>
+                                    <md-radio-button value="Firm"> Firm </md-radio-button>
+                                </md-radio-group>
+                            </span>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Customer</label>
+                                <md-select ng-model="project.customer_client" ng-change="selectContacts(project)">
+                                    <md-option ng-repeat="customer in customers" ng-value="customer.id">
+                                        {[{customer.name}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex="5">
+                            <span>
+                                <i  class="fa fa-plus-square-o fa-lg create-customer-icon" aria-hidden="true"
+                                    title="Create Customer" ng-model="create_client" ng-click="createClient($event,'client')"></i>
+                            </span>
+                        </div>
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label class="label-l" for="client">Contacts</label>
+                                <md-select ng-model="project.customer_contacts" multiple>
+                                    <md-option ng-repeat="contact in clientContacts" ng-value="contact.id">
+                                        {[{contact.label}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex ng-if="saveNewRevision">
+                            <!-- <md-input-container class="md-block">
+                                <label class="label-l" for="client">Status</label>
+                                <md-select ng-model="project.project_status">
+                                    <md-option ng-repeat="status in projectStatus" ng-value="status.id">
+                                        {[{status.name}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container> -->
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label class="md-caption">Description</label>
+                                <textarea id="description" required name="description" ng-model="project.description" rows="5"> </textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" ng-if="saveNewRevision" layout-xs="column">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label class="md-caption">Edit Notes</label>
+                                <textarea id="editNotes" required name="editNotes" ng-model="project.edit_notes" rows="5"> </textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                                <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16">
+                        <div layout-margin flex>
+                            <input type="file" id="project-image" valid-file upload="uploadAttachmentsToS3(file,$index)" />
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <div ng-repeat="file in images" class="margin-top-n-1">
+                                {[{file.split('/').pop()}]}
+                                <md-button class="md-icon-button">
+                                    <md-icon class="material-icons" ng-click="removeAttachment(images,$index)" title="Remove Attachment">clear</md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" class="ml-padding-t-16" layout-xs="column">
+                        <div layout-margin flex>
+                            <div ng-repeat="file in existingAttachments" track by $index class="margin-top-n-1">
+                                {[{file.split('/').pop()}]}
+                                <md-button class="md-icon-button">
+                                    <md-icon class="material-icons remove-icon" ng-click="removeAttachments(existingAttachments, $index)" title="Remove Attachment">clear</md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="end end" layout-xs="column" layout-align-xs="start center">
+                        <div layout-xs="row" flex-xs="100">
+                                <md-button class="md-raised md-primary" ng-click="saveProject(project,projectForm.$valid)">Save</md-button>
+                                <md-button class="md-raised md-primary" ng-click="cancelProjectInternal()">Cancel</md-button>
+                        </div>
+                        <div layout-xs="row" flex-xs="50">
+                                <md-button class="md-raised md-primary" ng-if="saveNewRevision" ng-click="saveAsNewRevision(project,projectForm.$valid)">Save as new revision</md-button>
+                        </div>
+                    </div>
+            </form>
+        </md-content>
+    </div>
+</div>

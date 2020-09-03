@@ -1,0 +1,34 @@
+<md-dialog flex-gt-sm="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Link City</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout="row" class="md-margin md-padding">
+                <div flex="50">
+                        <md-autocomplete flex class="ml-margin-l-4" flex md-input-name="autocompleteField" md-input-minlength="2"
+                            md-input-maxlength="18" md-no-cache="noCache" md-selected-item="selectedItem"
+                            md-search-text="searchText"
+                            md-items="item in querySearch(searchText)" md-item-text="item.city" md-require-match
+                            md-floating-label="city">
+                            <md-item-template>
+                                <span md-highlight-text="searchText">{{item.city}}</span>
+                            </md-item-template>
+                    </md-autocomplete>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button  class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button class="md-primary md-raised cr-md-primary" ng-click="save()">
+            save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

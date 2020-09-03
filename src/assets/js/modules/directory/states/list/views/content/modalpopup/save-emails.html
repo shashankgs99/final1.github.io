@@ -1,0 +1,47 @@
+<md-dialog flex-gt-sm="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Details</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div ng-repeat="data in emails">
+                <div layout="row" class="ml-padding-t-16">
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Company Name</label>
+                            <input type="text" ng-model="data.name" />
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Name</label>
+                            <input type="text" ng-model="data.contact_name" />
+                        </md-input-container>
+                    </div>
+                    <div layout-margin flex>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input type="text" ng-disabled="data.disabled" ng-model="data.email" />
+                            <md-icon class="material-icons managecustomericon" ng-if="data.disabled"
+                                ng-click="data.disabled= false">edit</md-icon>
+                            <md-icon class="material-icons managecustomericon" ng-if="!data.disabled"
+                                ng-click="data.disabled = true">clear</md-icon>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button type="submit" ng-click="save(emails)">
+            save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

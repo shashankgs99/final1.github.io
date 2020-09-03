@@ -1,0 +1,15 @@
+<div>
+  <div ng-if="!isDataLoaded" class="min-h-200">
+      Please wait ......
+    </div>
+  <div ng-if="isDataLoaded">
+    <p class="margin-bottom-1">Total <span class="bold">{[{count}]}</span> records</p>
+    <hot-table
+     hot-id="guide_djangorest_viewonly"
+     settings="settings"
+     datarows="::data"
+     col-headers class="hot-table">
+    </hot-table>
+    <div handsontable-addons-pagination></div>
+  </div>
+</div>

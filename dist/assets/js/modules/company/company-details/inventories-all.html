@@ -1,0 +1,36 @@
+<div id="Inventories">
+    <div flex="100">
+        <div class="md-padding md-margin" layout="column">
+            <div class="md-title">
+                <a ui-sref="layout.standard.companyIntro.intro({companyId:params.companyId,companyName:params.companyName,supplierId:params.supplierId})">
+                    <i class="fa fa-arrow-left" id="view-all-products-back" aria-hidden="true"></i> BACK
+                </a>
+            </div>
+            <div>
+                <label class="item-heading">
+                    <div class="md-display-2">Inventory Items</div>
+                </label>
+            </div>
+        </div>
+        <div layout="row" layout-align="center center" ng-if="!inventories.length">
+            <h4 align="center">No inventories</h4>
+        </div>
+        <div>
+            <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2"
+                md-gutter="12px" md-gutter-gt-sm="8px" class="item-grid">
+                <div class="productcard" ng-repeat="product in inventoryProducts" ng-click="open(product,'inventory')">
+                    <div class="h-150">
+                        <img ng-src="{[{product.image_url?product.image_url:'/assets/img/sample-pro.jpg'}]}" alt="{[{product.image_url?product.image_url.split('/').pop() :product.title}]}">
+                    </div>
+                    <div layout="row" class="md-subhead producttitle">{[{product.title | limitTo:20}]} {[{product.title.length>20?'....':''}]}</div>
+                    <div layout="row" class="productdiscription">{[{product.description | limitTo:100}]} {[{product.description.length>100?'....':''}]}</div>
+                    <div class="m-l-30" layout="row">
+                        <md-button class="md-raised md-primary"> View details</md-button>
+                    </div>
+                </div>
+            </md-grid-list>
+        </div>
+    </div>
+</div>
+<div ng-include="'/assets/js/modules/directory/states/list/views/content/modalpopup/view-product-details.html'"></div>
+<div ng-include="'/assets/js/modules/directory/states/list/views/content/modalpopup/send-enquiry.html'"></div>

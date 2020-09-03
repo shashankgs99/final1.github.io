@@ -1,0 +1,18 @@
+<div class="container-full-width title-box">
+    <div class="container">
+            <div>
+                <h1>Frequently asked questions</h1>
+            </div>
+    </div>
+</div>
+<div class="container faq-section padding-t-b-15">
+    <accordion class="group-accordian" close-others="true">
+        <accordion-group heading="{[{groupName}]}" ng-repeat="(groupName, faqs) in faqdata | groupBy:'faq_type'">
+                <accordion class="faq-accordian" close-others="true">
+                    <accordion-group heading="{[{questionAndAnswer.question}]}" ng-repeat="questionAndAnswer in faqs">
+                        {[{questionAndAnswer.answer}]}
+                    </accordion-group>
+                </accordion>
+        </accordion-group>
+    </accordion>
+</div>

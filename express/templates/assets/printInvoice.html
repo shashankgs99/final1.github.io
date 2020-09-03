@@ -1,0 +1,366 @@
+<html>
+
+<head>
+    <style>
+        .porow {
+            width: 100%;
+            float: left;
+        }
+
+        .pocol-2 {
+            width: 50%;
+            float: left;
+        }
+
+        .pocol-3 {
+            width: 30.333%;
+            float: left;
+        }
+
+        .pocol-4 {
+            width: 25%;
+            float: left;
+        }
+
+        .pocol-5 {
+            width: 20%;
+            float: left;
+        }
+
+        .pocol-8 {
+            width: 80%;
+            float: left;
+        }
+
+        .pocol-70 {
+            width: 55%;
+            float: left;
+        }
+
+        .pocol-30 {
+            width: 45%;
+            float: left;
+        }
+
+
+        .buyerlogo {
+            max-width: 100px !important;
+            width: 100%;
+            margin-left: 95px !important;
+        }
+
+        table {
+            width: 100%;
+            margin: auto;
+        }
+
+        table {
+            page-break-before: always
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+    <div class="page">
+        <table border="1" cellpadding="5" cellspacing="5">
+            <thead>
+                <tr>
+                    <td colspan="9">
+                        <div class="porow">
+                            <h2 style="font-size:30px;text-align:center;">Invoice</h2>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div class="pocol-2">
+                                        <img class="buyerlogo" src="{{logo}}" alt="Company Logo">
+                                    </div>
+                                    <div class="pocol-2">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div class="pocol-2">&nbsp;</div>
+                                    <div class="pocol-2">
+                                        <div style="font-weight:600;">
+                                            {{company_name}}
+                                        </div>
+                                        <div>{{company_addressline1}}, {{company_addressline2}} </div>
+                                        <div>{{company_city}}</div>
+                                        <div>{{company_state}}</div>
+                                        <div>{{company_country}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="9">
+                        <div class="porow" style="margin-left:9%;">
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div>
+                                        <div>Order No :
+                                            <span>{{so_number}}</span>
+                                        </div>
+                                        <div>Ordered Date :
+                                            <span>{{so_date}}</span>
+                                        </div>
+                                        <div>Customer PO#: 
+                                            <span>{{customer_po}}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="pocol-2">
+                                <div class="porow">
+                                    <div>Invoice NO :
+                                        <span>{{invoice_number}}</span>
+                                    </div>
+                                    <div>Invoice Date :
+                                        <span>{{invoice_date}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9">
+                        <div class="porow" style="margin-left:8%;">
+                            <div class="pocol-3">
+                                <div>
+                                    <h3>Invoiced by :</h3>
+                                </div>
+                                <div>{{invoice_from_name}}</div>
+                                <div>{{ invoice_from_address.addressline1}}, {{ invoice_from_address.addressline2}}</div>
+                                <div>{{ invoice_from_address.cityname}}</div>
+                                <div>{{ invoice_from_address.state}}</div>
+                                <div>{{ invoice_from_address.country}}</div>
+                                <div>Lisence No: #
+                                    <span>{{fromLisenceno}}</span>
+                                </div>
+                            </div>
+                            <div class="pocol-3" style="word-break: break-all;">
+                                <div>
+                                    <h3>Invoice to :</h3>
+                                </div>
+                                <div>{{invoice_to_name}}</div>
+                                <div>{{ invoice_to_address.addressline1}}, {{ invoice_to_address.addressline2}}</div>
+                                <div>{{ invoice_to_address.cityname}}</div>
+                                <div>{{ invoice_to_address.state}}</div>
+                                <div>{{ invoice_to_address.country}}</div>
+                                <div></div>
+                                <div>TRN :
+                                    <span>{{tinNo}}</span>
+                                </div>
+                            </div>
+                            <div class="pocol-3" style="word-break: break-all;">
+                                <div>
+                                    <h3>Shipped to :</h3>
+                                </div>
+                                <div>{{invoice_ship_to_name}}</div>
+                                <div>{{ invoice_ship_to_address.addressline1}}, {{ invoice_ship_to_address.addressline2}}</div>
+                                <div>{{ invoice_ship_to_address.cityname}}</div>
+                                <div>{{ invoice_ship_to_address.state}}</div>
+                                <div>{{ invoice_ship_to_address.country}}</div>
+                                <div>TRN :
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="font-size:21px;">
+                    <td>
+                        SNO
+                    </td>
+                    <td>
+                        SO#
+                    </td>
+                    <td>
+                        PO S.No#
+                    </td>
+                    <td width="450px">
+                        Item
+                    </td>
+                    <td width="450px">
+                        Description
+                    </td>
+                    <td>
+                        Quantity (Units)
+                    </td>
+                    <td>
+                        Unit Price ({{currency}})
+                    </td>
+                    <td>
+                        Vat (%)
+                    </td>
+                    <td>
+                        Total Value Incl.Vat ({{currency}})
+                    </td>
+
+                </tr>
+                {{#each items}}
+                <tr>
+                    <td>{{inc @index}}</td>
+                    <td>{{so_serial_number}}</td>
+                    <td>{{so_item.customer_po_number}}</td>
+                    <td width="300px">
+                        {{details}}
+                    </td>
+                    <td width="300px">
+                        {{so_item.description}}
+                    </td>
+                    <td>{{quantity}}</td>
+                    <td>{{item_price}}</td>
+                    <td>{{vat_value}}</td>
+                    <!-- <td>{{sgst_value}}</td> -->
+                    <td>{{total_price_with_tax}}</td>
+                </tr>
+                {{/each}}
+                </tr>
+                <tr>
+                    <td colspan="5" style="border:none;"></td>
+                    <td colspan="2">
+                        Cost Of Goods
+                    </td>
+                    <td>
+                        {{currency}}
+                    </td>
+                    <td>
+                        {{total_price}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="border:none;"></td>
+                    <td colspan="2">
+                        Total Vat Value
+                    </td>
+                    <td>
+                        {{currency}}
+                    </td>
+                    <td>
+                        {{vatAmount}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="border:none;"></td>
+                    <td colspan="2">
+                        Total Cost ( Including VAT )
+                    </td>
+                    <td>
+                        {{currency}}
+                    </td>
+                    <td>
+                        {{total_price_with_tax}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="border:none;">
+                    </td>
+                    <td colspan="2">
+                        Total Price In Words
+                    </td>
+                    <td colspan="2">
+                        {{totalPriceInWords}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9">
+
+                        <div class="porow">
+                            <div class="pocol-3">
+                                Payment Terms :
+                            </div>
+                            <div class="pocol-3">
+                                {{payment_terms}}
+                            </div>
+                            <div class="pocol-3">&nbsp;</div>
+                        </div>
+                        <!-- <div class="porow">
+                            <div class="pocol-3">
+                                Payment Through :
+                            </div>
+                            <div class="pocol-3">
+                                {{payment_through}}
+                            </div>
+                            <div class="pocol-3">&nbsp;</div>
+                        </div> -->
+                        <div class="porow">
+                            <div class="pocol-3">Benefciary Bank :</div>
+                            <div class="pocol-3">{{bank_name}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-3">Branch :</div>
+                            <div class="pocol-3">{{branch_address}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-3">Swift code :</div>
+                            <div class="pocol-3">{{swift_number}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-3">Benefciary Name :</div>
+                            <div class="pocol-3">{{beneficiary_name}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-3">Benefciary Account :</div>
+                            <div class="pocol-3">{{account_number}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+                        <div class="porow">
+                            <div class="pocol-3">IBAN NO :</div>
+                            <div class="pocol-3">{{iban_code}}</div>
+                            <div class="pocol-3"></div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9" height="20">
+                        <div class="porow">
+                            Declaration :
+                        </div>
+                        <div style="height:100px;">
+                           {{declaration}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9" style="border:none;">
+                        <div class="porow" style="height:80px;margin-left:75%;">
+                            <div style="margin-top:2%;">For {{company_name}}</div>
+                            <div>{{invoice_from_name}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr></tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div>
+        {{#data}}{{body}}{{/data}}
+    </div>
+</body>
+
+</html>

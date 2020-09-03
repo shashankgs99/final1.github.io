@@ -1,0 +1,192 @@
+<div handsontable-django-fullaccess ng-hide="true" api-service="MessageService" hot-id="guide_djangorest_User_readonly" height='400' min-rows="0" min-spare-rows="0" exclude_fields="messages,shortlists,logentry,auth_token,social_auth,snippets,snippets_group,categories,inventories,sentMessages,receivedMessages,groups,user_permissions,last_login,date_joined,directories,password,last_login,username,email_verification_hash,avatar,image_url,supplier,country_code"  ></div>
+<div ng-controller="view.enquiries" class="row column align-center expanded layout-padding">
+    <h3 class="margin-top-1 margin-bottom-1">Enquiry Details </h3>
+    <div class="primary-line margin-bottom-2 margin-0"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-8 padding-15">
+            <div class="col-md-12 col-sm-12 col-xs-12  card-container view-enquiryCard">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="label-l">Customer</label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <span>{[{viewenquiry.project.customer?viewenquiry.project.customer.name:'NA'}]}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="label-l">Project</label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <span>{[{viewenquiry.parent_project?viewenquiry.parent_project:'NA'}]}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="label-l">Sub Project</label>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <span>{[{viewenquiry.sub_project?viewenquiry.sub_project:'NA'}]}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label class="label-l" for="Client">Enquiry Type</label>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span>{[{viewenquiry.project.project_type.name?viewenquiry.project.project_type.name:'NA'}]}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label class="label-l" for="contractor">Internal Reference</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span>{[{viewenquiry.enquiry_number?viewenquiry.enquiry_number:'NA'}]} {[{viewenquiry.revision_number?('Rev: '+viewenquiry.revision_number):''}]}</span>
+                        </div>
+                    </div>
+                </div>
+                <div  class="row">
+                    <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label class="label-l" for="Client">Enquiry Number</label>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span>{[{viewenquiry.project && viewenquiry.project.internal_reference_number?viewenquiry.project.internal_reference_number: viewenquiry.project.contract_number?viewenquiry.project.contract_number:'NA'}]}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-10 col-xs-12 padding-15">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label class="label-l" for="Client">Subject</label>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span>{[{viewenquiry.subject?viewenquiry.subject:'NA'}]}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-10 col-xs-12 padding-15" ng-if="mtoItems.length">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label class="label-l" for="Client">MTO List</label>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button ng-click="openDialog($event)" class="button1">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 padding-15">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label class="label-l" for="contractor">Enquiry Details</label>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <span ng-bind-html="viewenquiry.message"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 padding-15" ng-if="type==='Received'">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label class="label-l" for="contractor">Buyer Message</label>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <span ng-bind-html="receiverHistory[0].message"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-10 col-xs-12 padding-15">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label class="label-l" for="Client">Attachments</label>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h5 ng-if="!viewenquiry.attachments.length">N/A</h5>
+                        <div ng-repeat="image in viewenquiry.attachments">
+                            <a href="{[{image}]}" target="_blank">{[{image.split('/').pop()}]}</a>
+                        </div>
+                    </div>
+                </div>                
+        </div>
+        </div>
+        <!-- <div class="col-md-4 padding-15" ng-if="type==='Sent'">
+            <div class="col-md-12 col-sm-12 col-xs-12 card-container view-enquiryCard enquiry-sent">
+                <div class="row">
+                        <h6 class="margin-top-1 primary-line">Enquiry Sent To </h6>
+                        
+                    <div class="col-md-12 enquiry-font"  ng-repeat="receiver in receiverHistory">
+                        <p class="enquiry-companyInfo">{[{receiver.created}]}: {[{receiver.receiver_email}]}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 card-container view-enquiryCard m-t-10">
+                <div class="row">
+                        <h6 class="margin-top-1 primary-line">Offers Recieved</h6>
+                    <div class="col-md-12 enquiry-font edit-icon"  ng-repeat="offer in offers" ng-click="viewOffer(offer)">
+                       <p>{[{$index+1}]}: {[{offer.supplier.company_name}]} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 padding-15" ng-if="type==='Received'">
+            <div class="col-md-12 col-sm-12 col-xs-12 card-container view-enquiryCard">
+                <div class="row">
+                        <h6 class="margin-top-1 primary-line">Enquiry Sent By </h6>
+                        
+                    <div class="col-md-12 enquiry-font" ng-repeat="receiver in receiverHistory">
+                        <p class="enquiry-companyInfo">{[{receiver.created}]}: {[{receiver.owner}]}</p>
+                        <div class="show-company-info">
+                                <p ng-if="receiver.userName">Name : {[{receiver.userName}]}</p>
+                                <p ng-if="receiver.companyName">Company Name:{[{receiver.companyName}]}<p>
+                                <p>Email : {[{receiver.email ? receiver.email : receiver.owner}]}</p>
+                                <p ng-if="receiver.phoneNumber">Contact No:{[{receiver.phoneNumber}]}<p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 card-container view-enquiryCard m-t-10">
+                <div class="row">
+                        <h6 class="margin-top-1 primary-line">Offers Sent</h6>
+                    <div class="col-md-12 enquiry-font edit-icon" ng-repeat="offer in offers" ng-click="viewOffer(offer)">
+                        <p>{[{offer.offer_number}]} Rev:{[{offer.revision_number}]} {[{offer.offer_state}]}</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="clear-fix"></div>
+    <div class="margin-l-2">
+        <div class="md-margin">
+            <p class="md-headline">Enquiry Status</p>
+        </div>
+        <div class="md-margin">
+            <div layout="row" layout-margin>
+                <md-checkbox ng-model="selected" ng-click="selectAll(selected)">Select all</md-checkbox>
+                <span flex></span>
+                <md-button type="submit"  class="md-primary md-raised cr-md-primary"
+                    ng-click="UpdateStatus(UiGridOptions.data,$event)">
+                    Update Status
+                </md-button>
+                <span flex></span>
+            </div>
+            <div id="enquiry-status-grid" ui-grid="UiGridOptions" class="grid enquiry-grid" ui-grid-edit></div>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12 padding-15">
+        <div class="row float-right">
+            <button class="button2 col-xs-6" ng-click="back()">Back</button>
+            <button ng-if="type==='Sent'" class="button2 col-xs-6" ng-click="editEnquiry(viewenquiry)">Edit Details</button>
+            <button ng-if="type==='Sent'" class="button2 col-xs-6" ng-click="sendEnquiry($event,viewenquiry,totalEnquiries)">Send Enquiry</button>
+            <button ng-if="type==='Received'" class="button2 col-xs-6" ng-click="makeOffer($event,viewenquiry,totalEnquiries)">Create Offer</button>
+            <button ng-if="type==='Sent'" class="button2 col-xs-6 delete-button" ng-click="deleteOneEnquiry(viewenquiry)">Delete</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<div layout="column" layout-align="start center">
+        <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+            <div layout="column">
+                <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+            </div>
+        </div>
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Manage Customers
+                    </div>
+                    <span layout-xs="column">
+                        <div layout-xs="row" layout-align-xs="end">
+                            <md-button class="md-icon-button" ng-click="CustomersFilters(filter)">
+                                <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="clear()">
+                                <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close</md-icon>
+                            </md-button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column" layout-margin>
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex ng-if="adminAccess">
+                        <md-autocomplete flex md-input-name="autocompleteField" md-input-minlength="2" md-input-maxlength="18" md-no-cache="noCache"
+                            md-selected-item="filter.selectedItem" md-search-text="searchText" md-items="item in customerQuerySearch(searchText)"
+                            md-item-text="item.name" md-require-match md-floating-label="Created By">
+                            <md-item-template>
+                                <span md-highlight-text="searchText">{[{item.name}]}</span>
+                            </md-item-template>
+                    </div>
+                    <div flex>
+                        <md-input-container>
+                            <label class="md-caption">Date From</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="filter.date_from"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container>
+                            <label class="md-caption">Date To</label>
+                            <md-datepicker type="date" layout="row" name="Date" id="dateTo" ng-model="filter.date_to"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container>
+                            <label class="md-caption">Search by name</label>
+                            <input ng-model="filter.name" name="name" id="customerName">
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+
+        </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+        <div layout="row" layout-align="end end" class="margin-top-2">
+            <div flex>
+                <!-- <md-checkbox ng-model="item.checked">Select all</md-checkbox> -->
+            </div>
+            <md-menu-bar>
+                <md-menu>
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
+                        <md-icon class="material-icons managecustomericon" title="Add">add</md-icon>
+                    </md-button>
+                    <md-menu-content width="2.5">
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addCustomer()">Add Customer</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addMultiple()">Add Multiple Customers</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="addContacts()">Add Contacts</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            <md-button class="md-icon-button" ng-click="editCustomer(selectedCustomer)">
+                <md-icon class="material-icons managecustomericon" title="Edit">edit</md-icon>
+            </md-button>
+            <md-menu-bar>
+                <md-menu>
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
+                        <md-icon class="material-icons managecustomericon" title="View">visibility</md-icon>
+                    </md-button>
+                    <md-menu-content width="2.5">
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewCompany(selectedCustomer)">View Company</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button class="md-raised md-primary" ng-click="viewProjects(selectedCustomer)">View Projects</md-button>
+                        </md-menu-item>
+                        <md-menu-item class="margin-1">
+                            <md-button flex class="md-raised md-primary" ng-click="viewContacts(selectedCustomer)">View Contacts</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            <md-button class="md-icon-button" ng-click="deleteCustomer(selectedCustomer)">
+                <md-icon class="material-icons managecustomericon color-red" title="Delete Customer">delete</md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>
+</div>
+<div layout="column" layout-align="start center" class="md-margin md-padding">
+    <div class="margin-r-55;">Total
+        <b>{[{count}]}</b> records</div>
+    <div layout="column" class="list-cards" flex ng-repeat="customer in customersList" track by $index>
+        <div layout="row">
+            <md-checkbox ng-model="customer.selected" ng-change="selectedValue(customer,$index,customer.selected)"></md-checkbox>
+            <div layout="column" flex>
+                <md-card md-theme-watch ng-click="viewCompanyDetails(customer)">
+                    <md-card-content>
+                        <div layout="row" layout-xs="column">
+                            <div layout="column" flex layout-margin layout-gt-xs="row">
+                                <div flex>
+                                    <label class="md-caption">Company Name</label>
+                                    <p class="md-body-1" ng-bind="customer.name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Role Type</label>
+                                    <p class="md-body-1" ng-bind="customer.roleType"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Project</label>
+                                    <p class="md-body-1">{[{customer.project}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Contacts</label>
+                                    <p class="md-body-1">{[{customer.contacts[0].firstname}]} {[{customer.contacts[0].lastname}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">City</label>
+                                    <p class="md-body-1" ng-bind="customer.addresses[0].cityname"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">State</label>
+                                    <p class="md-body-1" ng-bind="customer.addresses[0].state"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Country</label>
+                                    <p class="md-body-1" ng-bind="customer.addresses[0].country"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-align="center center">
+    <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)" boundary-links="true">
+    </pagination>
+</div>

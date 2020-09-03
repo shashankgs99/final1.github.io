@@ -1,0 +1,387 @@
+<html>
+
+<head>
+    <style>
+        .porow {
+            width: 100%;
+            float: left;
+        }
+
+        .pocol-2 {
+            width: 50%;
+            float: left;
+        }
+
+        .pocol-3 {
+            width: 33.333%;
+            float: left;
+        }
+
+        .pocol-4 {
+            width: 25%;
+            float: left;
+        }
+
+        .pocol-5 {
+            width: 20%;
+            float: left;
+        }
+
+        .pocol-8 {
+            width: 80%;
+            float: left;
+        }
+
+        .pocol-70 {
+            width: 65%;
+            float: left;
+        }
+
+        .pocol-30 {
+            width: 35%;
+            float: left;
+        }
+
+
+        .buyerlogo {
+            max-width: 100px !important;
+            width: 100%;
+            margin-left: 55px !important;
+            margin: 5%;
+        }
+
+        table {
+            width: 100%;
+            margin: auto;
+        }
+
+        table {
+            page-break-before: always
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div>
+        <div class="page">
+            <table border="1" cellpadding="5" cellspacing="5">
+                <thead>
+                    <tr>
+                        <td colspan="9">
+                            <div class="porow">
+                                <h2 style="font-size:30px;text-align:center;">Sales Order</h2>
+                            </div>
+                            <div class="porow">
+                                <div class="pocol-2">
+                                    <div class="porow">
+                                        <div class="pocol-2">
+                                            <!-- <img class="buyerlogo" src="{{buyer_logo}}" alt="Buyer Logo"> --> &nbsp;
+                                        </div>
+                                        <div class="pocol-2">
+                                            <div style="font-weight:600;">
+                                                {{supplier_name}}
+                                            </div>
+                                            <div>{{supplier_address.addressline1}}, {{supplier_address.addressline2}} </div>
+                                            <div>{{supplier_address.cityname}}</div>
+                                            <div>{{supplier_address.state}}</div>
+                                            <div>{{supplier_address.country}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pocol-2">
+                                    <div class="porow">
+                                        <div class="pocol-30">&nbsp;</div>
+                                        <div class="pocol-70" style="margin-left:-70px;">
+                                            <div>SO NO :
+                                                <span>{{so_number}}</span>
+                                            </div>
+                                            <div>SO Date:
+                                                <span>{{so_date}}</span>
+                                            </div>
+                                            <div>
+                                                Contact :
+                                                <span>{{supplier_contact_name}}</span>
+                                            </div>
+                                            <div> Number:
+                                                <span>{{supplier_contact_mobile}}</span>
+                                            </div>
+                                            <div>Email :
+                                                <span>{{supplier_contact_email}} </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tr>
+                    <td colspan="9">
+                        <div class="porow" style="border:1px">
+                            <div class="pocol-2" style="border:1px">
+                                <div class="porow">
+                                    <h3>Buyer :
+                                        <span> {{buyer_company}} </span>
+                                    </h3>
+                                </div>
+                                <div class="porow">
+                                    <div class="pocol-30">
+                                        <div>{{buyer_address.addressline1}},{{buyer_address.addressline2}}</div>
+                                        <div>{{buyer_address.cityname}}</div>
+                                        <div>{{buyer_address.state}}</div>
+                                        <div>{{buyer_address.country}}</div>
+                                    </div>
+                                    <div class="pocol-70">
+                                        <div>Contact:
+                                            <span> {{buyer_contact_name}}</span>
+                                        </div>
+                                        <div>Number:
+                                            <span> {{buyer_contact_mobile}}</span>
+                                        </div>
+                                        <div>Email :
+                                            <span>{{buyer_contact_email}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pocol-2" style="border:1px">
+                                <div class="porow">
+                                    <h3>General Description:</h3>
+                                    <p>{{so_description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <table cellpadding="5" cellspacing="5">
+                            <tr>
+                                <td>
+                                    Project :
+                                    <span>{{projectName}}</span>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr></tr>
+                            <tr></tr>
+                        </table>
+                    </td>
+                    <td colspan="4">
+                        <table border="1" cellpadding="5" cellspacing="5">
+                            <tr>
+                                <td>Value</td>
+                                <td>{{currency}} {{totalPriceWithTax}}</td>
+                            </tr>
+                            <tr>
+                                <td>Value Words</td>
+                                <td>{{currency}} {{totalPriceInWords}}</td>
+                            </tr>
+                            <tr>
+                                <td>Price Basis</td>
+                                <td>{{price_basis}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>Delivery / Delivery Basis</td>
+                                <td>{{delivery_basis}}</td>
+                            </tr>
+                            <tr>
+                                <td> Authorised By :</td>
+                                <td>{{authorized_by}}</td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9">
+                        SO References :
+                        <p>{{so_reference}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9">
+                        Additional Notes :
+                        <div>
+                            {{edit_notes}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        Received by:
+                        <p>{{received_by_buyer}}</p>
+                    </td>
+
+                    <td colspan="5">
+                        Accepted by:
+                        <p></p>
+                    </td>
+                </tr>
+                <tfoot>
+                    <tr>
+                        <td colspan="9">
+                            <div class="porow">
+                                <div class="pocol-3">
+                                    Continue.
+                                </div>
+                                <div class="pocol-3">
+                                    LC Date Time :
+                                    <span>{{lc}}</span>
+                                </div>
+                                <div class="pocol-3">
+                                    SO NO :
+                                    <span>{{so_number}}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="page">
+            <table border="1" cellpadding="5" cellspacing="5">
+                <thead>
+                    <tr>
+                        <td colspan="11">
+                            <div class="porow">
+                                <h2 style="font-size:30px;text-align:center;">Sales Order</h2>
+                            </div>
+                            <div class="porow">
+                                <div class="pocol-2">
+                                    <div class="porow">
+                                        <div class="pocol-2">
+                                            <!-- <img class="buyerlogo" src="{{buyer_logo}}" alt="Buyer Logo"> --> &nbsp;
+                                        </div>
+                                        <div class="pocol-2">
+                                            <div style="font-weight:600;">
+                                                {{supplier_name}}
+                                            </div>
+                                            <div>{{supplier_address.addressline1}}, {{supplier_address.addressline2}} </div>
+                                            <div>{{supplier_address.cityname}}</div>
+                                            <div>{{supplier_address.state}}</div>
+                                            <div>{{supplier_address.country}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pocol-2">
+                                    <div class="porow">
+                                        <div class="pocol-30">&nbsp;</div>
+                                        <div class="pocol-70" style="margin-left:-70px;">
+                                            <div>SO NO :
+                                                <span>{{so_number}}</span>
+                                            </div>
+                                            <div>SO Date:
+                                                <span>{{so_date}}</span>
+                                            </div>
+                                            <div>
+                                                Contact :
+                                                <span>{{supplier_contact_name}}</span>
+                                            </div>
+                                            <div> Number:
+                                                <span>{{supplier_contact_mobile}}</span>
+                                            </div>
+                                            <div>Email :
+                                                <span>{{supplier_contact_email}} </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size:14px;">
+                        <th>SO SN</th>
+                        <th>Item</th>
+                        <th colspan="3">Description</th>
+                        <th>Qty (Units) </th>
+                        <th>Unit Of Measure</th>
+                        <th>Unit Price ({{currency}})</th>
+                        <th>VAT ({{currency}})</th>
+                        <th>Total Price Incl.Vat ({{currency}})</th>
+                        <th>Delivery Date (DD-MM-YY)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each items}}
+                    <tr style="font-size:14px;">
+                        <td>{{inc @index}}</td>
+                        <td>{{title}}</td>
+                        <td colspan="3">
+                            {{description}}
+                            <div>
+                                notes: {{notes}}
+                            </div>
+                        </td>
+                        <td>{{quantity_ordered}}</td>
+                        <td>{{unit_measure}}</td>
+                        <td>{{unit_price}}</td>
+                        <td>{{vatValue}}</td>
+                        <td>{{priceWithTax}}</td>
+                        <td>{{delivery_date}}</td>
+                    </tr>
+                    {{/each}}
+
+                    <tr>
+                        <td colspan="6" style="border:none;"></td>
+                        <td colspan="2">Cost Of Goods</td>
+                        <td>{{currency}}</td>
+                        <td>{{price_number}}</td>
+                        <td colspan="1"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="border:none;"></td>
+                        <td colspan="2">Total Vat Value</td>
+                        <td>{{currency}}</td>
+                        <td>{{vatAmount}}</td>
+                        <td colspan="1"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="border:none;"></td>
+                        <td colspan="2">Total Cost ( Including VAT )</td>
+                        <td>{{currency}}</td>
+                        <td>{{totalPriceWithTax}}</td>
+                        <td colspan="1"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="border:none;"></td>
+                        <td colspan="2">Total Cost In Words</td>
+                        <td>{{currency}}</td>
+                        <td colspan="2">{{totalPriceInWords}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="15">
+                            <div class="porow">
+                                <div class="pocol-3">
+                                    Continue.
+                                </div>
+                                <div class="pocol-3">
+                                    LC Date Time :
+                                    <span>{{lc}}</span>
+                                </div>
+                                <div class="pocol-3">
+                                    SO NO :
+                                    <span>{{so_number}}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+        <div>
+            {{#data}}{{body}}{{/data}}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<div layout="column" layout-align="start center">
+    <div layout="column" flex class="md-padding md-margin main-card">
+        <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="space-around" class="loader">
+            <md-progress-circular md-mode="indeterminate" class="loader1"></md-progress-circular>
+        </div>
+        <md-content class="md-margin md-padding">
+            <div layout="row" flex layout-xs="column">
+                <img src="{[{blog.cover_image}]}" class="view-blog-img"/>
+            </div>
+            <div layout="row" layout-xs="column" flex class="margin-top-2 view-blog-title">
+                <p class="md-display-1 text-align-center">{[{blog.title}]}</p>
+            </div>
+            <div layout="row" layout-xs="column">
+                <span ng-bind-html="blog.description"></span>
+            </div>
+           
+        </md-content>
+
+        <div layout="column" layout-align="end center margin-t-3">
+                <div layout="row">
+                     <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
+                     <md-button class="md-raised md-primary" ng-click="save(blog)">Publish</md-button>
+                </div>
+             </div>
+    </div>
+</div>

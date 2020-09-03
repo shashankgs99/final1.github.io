@@ -1,0 +1,18 @@
+.category-list{
+  li{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    &:last-child{
+      border-bottom: 1px solid #ccc;
+    }
+    &:hover{
+      border: 1px solid #aaa;
+    }
+    &.active{
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}

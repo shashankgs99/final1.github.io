@@ -1,0 +1,115 @@
+<md-dialog aria-label="Customer Contacts" flex-gt-xs="75" flex-gt-sm="70">
+        <form ng-cloak name="contactsForm" ng-submit="contactsForm.$valid && submit(contactsForm)">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Customer Contacts</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content class="md-padding md-margin">
+                <div class="md-dialog-content">
+                    <div class="md-cr-input-block">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>First Name</label>
+                                    <input required name="firstname" ng-model="contact.firstname">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Last Name</label>
+                                    <input name="lastname" ng-model="contact.lastname">
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex="10" flex-xs="30">
+                                <md-input-container class="md-block">
+                                    <label>Counrty Code</label>
+                                    <input name="countryCode1{[{$index}]}" ng-model="contact.countryCode1">
+                                </md-input-container>
+                            </div>
+                            <div flex="35" flex-xs="70">
+                                <md-input-container class="md-block">
+                                    <label>Phone Number 1</label>
+                                    <input name="phonenumber1" ng-model="contact.phonenumber1">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="10" flex-xs="30">
+                                <md-input-container class="md-block">
+                                    <label>Counrty Code</label>
+                                    <input name="countryCode2{[{$index}]}" ng-model="contact.countryCode2">
+                                </md-input-container>
+                            </div>
+                            <div flex="35" flex-xs="70">
+                                <md-input-container class="md-block">
+                                    <label>Phone Number 2</label>
+                                    <input name="phonenumber2"  ng-model="contact.phonenumber2">
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Email ID 1</label>
+                                    <input name="emailid1"  ng-model="contact.emailid1">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Email ID 2</label>
+                                    <input name="emailid2"  ng-model="contact.emailid2">
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Facebook Url</label>
+                                    <input name="facebook_url" ng-model="contact.facebook_url">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Twitter Url</label>
+                                    <input name="twitter_url" ng-model="contact.twitter_url">
+                                </md-input-container>
+                            </div>
+                        </div> 
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row" layout-xs="column">
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Linked Url</label>
+                                    <input required name="linkedin_url"  ng-model="contact.linkedin_url">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45" flex-xs="100">
+                                <md-input-container class="md-block">
+                                    <label>Youtube Url</label>
+                                    <input required name="youtube_url" ng-model="contact.youtube_url">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-primary md-raised cr-md-primary" ng-click="customerContact(contact,contactsForm.$valid)">
+                    Save
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>

@@ -1,0 +1,183 @@
+<style>
+    .input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+   
+</style>
+<script type="text/ng-template" id="sendEnquiryNestedPopUp.html">
+<div class="col-md-12 modal-container" ng-if="!message.length" ng-controller="send-enquiry">
+    <div class="col-md-12 modal-box">
+        <div class="col-md-12 modal-title">
+            <h4 class="margin-0">Send Enquiry</h4>
+            <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="modal-body">
+            <div class="col-md-12 padding-15 supplier-details-container">
+                <form>
+                    <div>
+                        <div class="row">
+                            <div class="enquiry-subject">
+                                <h6>Subject
+                                    <input type="text" class="input" ng-model="send_enquiry_subject" placeholder="Enquiry for Item">
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Message </h5>
+                            <textarea placeholder="Type your Message here" class="input h-140px" ng-model="messages_text" row="10" coloum="100"
+                                id="mytextarea" ui-tinymce="tinymceOptions"></textarea>
+                        </div>
+                        <div class="m-t-19">
+                                <h5>Item Details</h5>
+                                <div class="row">
+                                        <p class="enquiry-item-details"> Item:#{[{  message.id }]}</p>
+                                        <br/><p ng-if="message.title"> <span class="font-bold"> Title </span>: {[{  message.title }]}</p>
+                                        <p ng-if="message.description" class="text-align-justify"> <span class="font-bold"> Description </span>: {[{ message.description }]}</p>
+                                        <p ng-if="message.category.category_id"> <span class="font-bold"> Category </span>: {[{ message.category.category_id }]}</p>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-12 m-l-3px">
+                                <h5 class="m-t-19">Upload Files:
+                                    <i class="fa fa-plus-square-o fa-lg enquiry-upload" aria-hidden="true" title="Add File"
+                                    ng-model="create_project" ng-click="AddUploadFiles()"></i>
+                                </h5>
+                                <div class="col-md-12 margin-top-2" ng-repeat="file in fileUploads">
+                                    <div class="col-md-3 col-sm-8 col-xs-12 padding-r-sm-8 padding-r-7 no-padding-xs m-l-17">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="adjust-mto-fileupload" 
+                                            type="file" 
+                                            placeholder="Choose CSV file to import data" 
+                                            valid-file upload="uploadFile(file,$index)"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-8 col-xs-12 padding-r-sm-8 padding-r-7 no-padding-xs">
+                                        <i class="fa fa-times-circle icon-cog enquiry-remove" aria-hidden="true" title="Remove"
+                                        ng-model="remove"  ng-click="removeFiles(fileUploads,$index)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                        </div>
+
+                    </div>
+                </form>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="col-md-12 modal-footerr">
+        <div class="col-md-12 padding-15" align="right">
+            <button class="button4" ng-click="cancel()">Cancel</button>
+            <button class="button4" id="send-enquiry"  ng-disabled="disable" ng-style="{ 'opacity' : (disable) ? '0.25' : '' }" ng-click="SelectedRows(sender_name,sender_email,send_enquiry_subject,messages_text,message.supplierEmail)">Send</button>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+<div class="col-md-12 modal-container" ng-if="message.length" ng-controller="send-enquiry">
+    <div class="col-md-12 modal-box">
+        <div class="col-md-12 modal-title">
+            <h4 class="margin-0">Send Enquiry</h4>
+            <button ng-click="cancel()" class="close-button" aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="modal-body">
+            <div class="col-md-12 padding-15 supplier-details-container">
+                <form>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3 enquiry-subject">
+                                <h6>To
+                                    <input type="text" ng-disabled="true" class="input" id="supplier-name-enquiry" ng-model="message.supplier">
+                                </h6>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="enquiry-subject">
+                                <h6>Subject
+                                    <input type="text" class="input" ng-model="send_enquiry_subject" placeholder="Enquiry for Item">
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Message </h5>
+                            <textarea placeholder="Type your Message here" class="input h-140px" ng-model="messages_text"  row="10" coloum="100"
+                                id="mytextarea" ui-tinymce="tinymceOptions"></textarea>
+                            <!-- <textarea id="mytextarea"  ng-model="" placeholder="Enter your message here">{{messages_text}}</textarea> -->
+                        </div>
+                        <div class="send-enquiry-details">
+                            <h5>Item Details</h5>
+                            <div class="row" ng-repeat="item in message track by $index" >
+                                    <p class="font-bold"> Item ID: {[{  item.id }]}</p>
+                                    <p> <span class="font-bold"> Title </span>: {[{  item.title }]}</p>
+                                    <p> <span class="font-bold"> Category </span>: {[{ item.category.category_id }]}</p>
+                                    <p> <span class="font-bold"> Description </span>: {[{ item.description }]}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12" class="m-l-3px">
+                                <h5 class="m-t-17">Upload Files:
+                                    <i class="fa fa-plus-square-o fa-lg enquiry-upload" aria-hidden="true" title="Add File"
+                                    ng-model="create_project" ng-click="AddUploadFiles()"></i>
+                                </h5>
+                                <div class="col-md-12 margin-top-2" ng-repeat="file in fileUploads">
+                                    <div class="col-md-3 col-sm-8 col-xs-12 padding-r-sm-8 padding-r-7 no-padding-xs m-l-17">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label class="label-l" for="addFile">Add File (PDF, JPEG, PNG, DOCS)</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="adjust-mto-fileupload" 
+                                            type="file" 
+                                            placeholder="Choose CSV file to import data" 
+                                            valid-file upload="uploadFile(file,$index)"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-8 col-xs-12 padding-r-sm-8 padding-r-7 no-padding-xs">
+                                        <i class="fa fa-times-circle icon-cog enquiry-remove" aria-hidden="true" title="Remove"
+                                        ng-model="remove"  ng-click="removeFiles(fileUploads,$index)"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="col-md-12 modal-footerr">
+        <div class="col-md-12 padding-15" align="right">
+            <button class="button4" ng-click="cancel()">Cancel</button>
+            <button class="button4" ng-disabled="disable" ng-style="{ 'opacity' : (disable) ? '0.25' : '' }"  ng-click="send(sender_email,sender_mobile,send_enquiry_subject,messages_text,message.supplier,message)">Send</button>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+</script>

@@ -1,0 +1,120 @@
+@import '../../../../../scss/settings';
+
+$height: 40px;
+$main-color: #004f8a;
+
+.navigation-header{
+  .row{
+    height: $height;
+    .column{
+      p{
+        line-height: $height;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #666;
+      }
+      &.active{
+        background-color: $main-color;
+        p{
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.search-area{
+  input {
+    width: 100%;
+    padding:20px;
+    border:1px solid $main-color;
+    transition: all 0.1s;
+    font-size:16px;
+    margin: 9px;
+    &:focus{
+      border:1px solid $main-color;
+    }
+  }
+  .button{
+    margin: 0;
+    padding: 12px 30px;
+    background-color: red;
+    font-size: 16px;
+   // padding: 1.1em 1em
+    //padding: 20px;
+  }
+}
+
+// Animation
+// Ng-show & Hide support Add & Remove
+// on-add, on & on-remove
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.scroll.ng-enter {
+  opacity: 0;
+  margin-top: 0;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: slideInLeft;
+}
+.scroll.ng-enter.ng-enter-active{
+ opacity: 1; 
+}
+.scroll.ng-leave{
+  opacity: 0;
+  display: none;
+}
+@media screen and (max-width:576px){
+  .search-button-xs{
+    width:60px !important;
+  }
+  .col-xs-12{
+    width: 100% !important;
+  }
+  .hidden-xs{
+    display: none;
+  }
+  .button1{
+    width:100px !important;
+  }
+  .button2{
+    height: 40px !important;
+  }
+
+  .navigation-header{
+    .row{
+      height: $height;
+      .column{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p{
+          line-height: 14px !important;
+        }
+        // &.active{
+        //   background-color: $main-color;
+        //   p{
+        //     color: #fff;
+        //   }
+        // }
+      }
+    }
+  }
+  .newsletter .input-group {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+}
+

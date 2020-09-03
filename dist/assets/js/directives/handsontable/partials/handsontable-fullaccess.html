@@ -1,0 +1,41 @@
+<div>
+  <div ng-if="!isDataLoaded">
+    Please wait ......
+  </div>
+  <div ng-if="isDataLoaded">
+      <p class="margin-bottom-1">Total <span class="bold">{[{count}]}</span> records</p>
+    <hot-table 
+               hot-id="guide_djangorest_fullaccess"
+               settings="settings"
+               datarows="data"
+               height='height'
+               col-headers class="hot-table">
+    </hot-table>
+    <div handsontable-addons-pagination></div>
+    <div class="col-md-12">      
+      <div class="col-md-12 text-align-center">
+        <button class="button float-none m-auto" id="mulitple-supplier-save-changes" ng-click="save(table_changes, table_deletes, data)">Save Changes</button>
+      </div> 
+      <div class="col-md-12">
+        <p>Progress:
+          <span ng-bind="progress"></span>
+        </p>
+        <p>Total Changes:
+          <span ng-bind="total_changes"></span>
+        </p>
+        <div class="callout success" ng-if="total_changes==progress && total_changes>0">
+          <p class="bold larger">Success. Window will reload in 5 seconds.</p>
+        </div>
+      </div>      
+    </div> 
+    <div class="error-msg">
+      <div ng-show="errors.length==0">
+        <p class="bold">Here the error log will appear (if it occurs)</p>
+      </div>
+      <div ng-show="errors.length>0">
+        <p class="bold">Error Reported. Changes are preserved. Please debug & save again. Refreshing the page will remove changes.</p>
+        <p ng-repeat="error in errors">Details: {[{error.data}]} & Url: {[{error.config.url}]}</p>
+      </div>
+    </div>
+  </div>
+</div>

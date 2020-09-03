@@ -1,0 +1,143 @@
+<div layout="column" layout-align="start center" class="md-padding md-margin">
+    <div layout="column" class="main-card" flex>
+        <div layout="row" class="layout-padding md-title" layout-xs="column">
+            <div flex flex-xs="row">Invoice Details</div>
+            <span>
+                <div flex-xs="row" flex-xs="100">
+                    <md-button class="md-icon-button" ng-click="ListPage()">
+                        <md-icon class="material-icons managecustomericon" title="Back to list">keyboard_backspace</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="EditInvoice(invoice)">
+                        <md-icon class="material-icons managecustomericon" title="Edit Invoice">edit</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="PrintInvoice(invoice)">
+                        <md-icon class="material-icons managecustomericon" target="_blank" title="Print Invoice">print</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="PackingList(invoice,$event)">
+                        <md-icon class="material-icons managecustomericon" title="Packing List">card_travel</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-primary" ng-click="changeStatus(invoice,$event)">
+                        Change Status
+                    </md-button>
+                </div>
+            </span>
+        </div>
+        <div layout="row" layout-xs="column">
+            <div layout="column" flex>
+                <md-card md-theme-watch>
+                    <md-card-content>
+                        <div layout="column">
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex flex-xs="100">
+                                    <label class="md-caption">Invoice Number</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_number"></p>
+                                </div>
+                                <div flex flex-xs="100">
+                                    <label class="md-caption">Invoice Date</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_date"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Invoice Type</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_type.name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Invoice Title</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_title.name"></p>
+                                </div>
+
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">SO Number</label>
+                                    <p class="md-body-1" ng-bind="invoice.so.so_number"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Created</label>
+                                    <p class="md-body-1" ng-bind="invoice.created"></p>
+                                </div>
+
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Supplier Name</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_from_name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Buyer Name</label>
+                                    <p class="md-body-1">
+                                        {[{invoice.invoice_to_name}]}
+                                    </p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Supplier Contact</label>
+                                    <p class="md-body-1">
+                                        {[{invoice.invoice_from_contact_details}]}
+                                    </p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Buyer Contact</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_to_contact_details"></p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Supplier Address</label>
+                                    <p class="md-body-1" class="break-content">
+                                        {[{invoice.invoice_from_address.nameofaddress}]}
+                                        <br/> {[{invoice.invoice_from_address.addressline1}]} {[{invoice.invoice_from_address.addressline1}]}
+                                        <br/> {[{invoice.invoice_from_address.cityname}]}
+                                        <br/> {[{invoice.invoice_from_address.state}]}
+                                        <br/> {[{invoice.invoice_from_address.country}]}
+                                    </p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Buyer Address</label>
+                                    <p class="md-body-1" class="break-content">
+                                        {[{invoice.invoice_to_address.nameofaddress}]}
+                                        <br/> {[{invoice.invoice_to_address.addressline1}]} {[{invoice.invoice_to_address.addressline2}]}
+                                        <br/> {[{invoice.invoice_to_address.cityname}]}
+                                        <br/> {[{invoice.invoice_to_address.state}]}
+                                        <br/> {[{invoice.invoice_to_address.country}]}
+                                    </p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Shipped To Name</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_ship_to_name"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Shipped To Address</label>
+                                    <p class="md-body-1" class="break-content">
+                                        {[{invoice.invoice_ship_to_address.nameofaddress}]}
+                                        <br/> {[{invoice.invoice_ship_to_address.addressline1}]} {[{invoice.invoice_ship_to_address.addressline2}]}
+                                        <br/> {[{invoice.invoice_ship_to_address.cityname}]}
+                                        <br/> {[{invoice.invoice_ship_to_address.state}]}
+                                        <br/> {[{invoice.invoice_ship_to_address.country}]}
+                                    </p>
+                                </div>
+                            </div>
+                            <div layout="row" flex layout-margin layout-xs="column">
+                                <div flex>
+                                    <label class="md-caption">Shipped To Contact</label>
+                                    <p class="md-body-1" ng-bind="invoice.invoice_ship_to_contact_details"> </p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">View Invoice Items</label>
+                                    <br/>
+                                    <md-button class="md-primary md-raised cr-md-primary" ng-click="viewInvoiceItems($event,existingInvoiceItems)">
+                                        View Items
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<md-dialog flex="50">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add Details</h2>
+                <span flex></span>
+                <md-button ng-click="addTax()">
+                    <md-icon aria-label="Close dialog" ng-if="tax.taxList.length" class="font-s-20 adjust-enquiry-row">add</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+                <div class="md-cr-input-block" layout-margin ng-if="type == 'tax'">
+                    <div ng-repeat="data in tax.taxList track by $index">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex="45">
+                                <md-select ng-model="data.taxType" ng-change="checkTaxType(data.taxType,$index)">
+                                    <md-option ng-repeat="type in taxTypeList" ng-value="type">
+                                        {[{type.name}]}(%)
+                                    </md-option>
+                                </md-select>
+                            </div>
+                            <div flex="5"></div>
+                            <div flex="45">
+                                <div layout="row">
+                                 <md-input-container class="md-block" flex="40">
+                                    <label>{[{data.property}]}</label>
+                                    <input name="number" required ng-model="data.value" ng-change="checkTaxValue(data)">
+                                </md-input-container>
+                                <!-- <md-input-container class="md-block" ng-if="data.taxType.name =='GST'" flex="40">
+                                    <label>SGST</label>
+                                    <input name="number" required ng-model="data.sgst" ng-change="checkTaxValue(data)">
+                                </md-input-container> -->
+                            </div>
+                            </div>
+                            <div flex="5">
+                                    <i class="fa fa-times-circle icon-cog annexure-remove" aria-hidden="true" title="Remove" ng-click="removetax($index)"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="md-cr-input-block" layout-margin ng-if="type == 'selectedQuantity'">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex="45">
+                                <md-input-container class="md-block">
+                                    <label>Selected Quantity</label>
+                                    <input name="selectedQuantity" required ng-model="tax.selected_quantity">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45">
+                               
+                            </div>
+                        </div>
+                </div>
+                <div class="md-cr-input-block" layout-margin ng-if="type == 'unitPrice'">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex="45">
+                                <md-input-container class="md-block">
+                                    <label>Unit Price</label>
+                                    <input name="unitPrice" required ng-model="tax.unitPrice">
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45">
+                               
+                            </div>
+                        </div>
+                </div>
+                <div class="md-cr-input-block" layout-margin ng-if="type == 'deliveryDate'">
+                        <div class="md-cr-input-block" flex flex-xs="100" layout="row">
+                            <div flex="45">
+                                <md-input-container class="md-block">
+                                    <label>Delivery Date</label>
+                                    <md-datepicker type="date" layout="row" name="Date" id="datefrom" ng-model="tax.deliveryDate"></md-datepicker>
+                                </md-input-container>
+                            </div>
+                            <div flex="10"></div>
+                            <div flex="45">
+                               
+                            </div>
+                        </div>
+                </div>
+                <div class="md-cr-input-block" layout-margin  ng-if="type == 'secondary-units'">
+                    <div layout="row" class="ml-padding-t-16">
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Secondary unit</label>
+                                <md-select ng-model="tax.secondary_units">
+                                    <md-option ng-repeat="type in unitsList" ng-value="type.unit">
+                                        {[{type.unit}]}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-margin flex>
+                            <md-input-container class="md-block">
+                                <label>Conversion Rate</label>
+                                <input type="text" ng-model="tax.conversion_rate">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-click="save(tax)">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>

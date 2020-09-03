@@ -1,0 +1,135 @@
+<div layout="column" layout-align="start center">
+    <div layout="row" layout-sm="column" ng-if="showLoader" layout-align="center center" class="loader">
+        <div layout="column">
+            <md-progress-circular md-mode="indeterminate" class="loader-2"></md-progress-circular>
+        </div>
+    </div>
+    <div layout="column" flex  class="md-padding md-margin main-card">
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex class="md-display-1">
+                        Stores<md-button ng-click="toHelp()">
+                            <md-icon class="material-icons fa fa-info-circle help-icon"></md-icon>
+                        </md-button>
+                    </div>
+                    <span layout-xs="column">
+                        <div layout-xs="row" layout-align-xs="end">
+                            <md-button class="md-icon-button" ng-click="applyFilters(filter)">
+                                <md-icon class="material-icons managecustomericon" title="Apply Filters">filter_list</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="clear()">
+                                <md-icon class="material-icons managecustomericon color-red" title="Clear Filters">close</md-icon>
+                            </md-button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div layout="column" flex layout-gt-xs="row">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Store Types</label>
+                            <md-select ng-model="filter.storeType">
+                                <md-option ng-repeat="type in storeTypesList" ng-value="type">
+                                    {[{type.name}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Country</label>
+                            <md-select ng-model="filter.country" ng-change="findStates(filter.country)">
+                                <md-option ng-repeat="country in totalCountries" ng-value="country">
+                                        {[{country}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>State</label>
+                            <md-select ng-model="filter.state" ng-change="findCities(filter)">
+                                <md-option ng-repeat="state in totalStates" ng-value="state.state">
+                                    {[{state.state}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Cities</label>
+                            <md-select ng-model="filter.cityname">
+                                <md-option ng-repeat="city in totalCities" ng-value="city">
+                                    {[{city}]}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            </md-card-content>
+        <div layout="row" class="dotted-border"></div>
+            <div layout="row" class="margin-top-2">
+                <div flex></div>
+                <span>
+                    <md-button class="md-icon-button" ng-click="AddStore()">
+                        <md-icon class="material-icons managecustomericon" title="Add Store">add</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="EditStore(selectedStores)">
+                        <md-icon class="material-icons managecustomericon" title="Edit Store">edit</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="DeleteStore(selectedStores)">
+                        <md-icon class="material-icons managecustomericon color-red" title="Delete Store">delete</md-icon>
+                    </md-button>
+                </span>
+            </div>
+    </div>
+</div>
+<div layout="column" layout-align="start center" class="md-margin md-padding">
+    <div class="margin-r-55">Total
+        <b>{[{count}]}</b> records</div>
+    <div layout="column" class="list-cards" flex ng-repeat="store in storesData" track by $index>
+        <div layout="row">
+            <md-checkbox ng-model="store.selected" ng-change="selectedValue(store,$index,store.selected)"></md-checkbox>
+            <div layout="column" flex>
+                <md-card md-theme-watch ng-click="ViewStoreDetails(store)">
+                    <md-card-content>
+                        <div layout="row" layout-xs="column">
+                            <div layout="column" flex layout-margin layout-gt-xs="row">
+                                <div flex>
+                                    <label class="md-caption">Store ID</label>
+                                    <p class="md-body-1">{[{store.id}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Store Type</label>
+                                    <p class="md-body-1">{[{store.store_type.name}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Description</label>
+                                    <p class="md-body-1" ng-bind="store.description|limitTo:65"></p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Store Name</label>
+                                    <p class="md-body-1">{[{store.store_name}]}</p>
+                                </div>
+                                <div flex>
+                                    <label class="md-caption">Location</label>
+                                    <p class="md-body-1">
+                                    <span>{[{store.location.nameofaddress}]}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-margin layout-align="center center">
+    <div>
+        <pagination page="currentPage" total-items="count" max-size="maxSize" ng-click="setPage(currentPage)" ng-if="storesData.length" boundary-links="true">
+        </pagination>
+    </div>
+</div>
