@@ -454,12 +454,14 @@
     color:darkblue;
     font-size: 20px;
     margin: 10px;
+    text-decoration: underline;
 }
 
 .minihead-1 {
     color:darkblue;
     font-size: 20px;
     margin: 10px 10px 10px 30px;
+    text-decoration: underline;
 }
 
 #headrow1 {
@@ -481,7 +483,6 @@
 .mainheading {
     text-align: center;
     color: black;
-    text-decoration: underline;
     font-size: 25px;
     font-family: 'Raleway', sans-serif;
 }
@@ -963,20 +964,21 @@
         color:darkblue;
         margin: 50px 100px 10px 200px;
         font-size: 30px;
-        font-family: 'Raleway', sans-serif;;
+        font-family: 'Raleway', sans-serif;
+        text-decoration: underline;
     }
 
     .minihead-1 {
         color:darkblue;
         margin: 30px 100px 10px 200px;
         font-size: 30px;
-        font-family: 'Raleway', sans-serif;;
+        font-family: 'Raleway', sans-serif;
+        text-decoration: underline;
     }
 
     .mainheading {
         text-align: center;
         color: black;
-        text-decoration: underline;
         font-size: 35px;
     }
 
