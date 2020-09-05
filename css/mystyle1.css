@@ -431,6 +431,11 @@
   height: 230px;
 }
 
+.video {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 .headbox {
     padding: 5px;
     margin: 10px 10px 10px 20px;
@@ -897,6 +902,11 @@
 
     #sss {
       margin-top: 30px;
+    }
+
+    .video {
+      padding-left: 18%;
+      padding-right: 18%;
     }
 
     .headpara-1 {
