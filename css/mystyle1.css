@@ -164,65 +164,36 @@
     }
 }
 
-.pics {
+#index_pics {
+  border: 3px solid #494B55;
+  width: 90%;
+  height: 600px;
+  margin: 10px 10px 10px 25px;
+  background-size: cover;
+}
+
+.pics1 {
     background-image: url(images2/Products/SP01.jpg);
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 10px 10px 10px 25px;
-    background-size: cover;
 }
-
 .pics2 {
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 10px 10px 10px 25px;
     background-image: url(images2/Products/QRDN01.jpg);
-    background-size: cover;
 }
-
 .pics3 {
     background-image: url(images2/Products/TS01.jpg);
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 10px 10px 10px 25px;
-
-    background-size: cover;
 }
-
 .pics4 {
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 10px 10px 10px 25px;
     background-image: url(images2/Products/FRB01.jpg);
-    background-size: cover;
 }
-
 .pics5 {
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 30px 10px 10px 25px;
     background-image: url(images2/Products/TS01.jpg);
-    background-size: cover;
 }
 .pics10 {
-    border: 3px solid #494B55;
-    width: 90%;
-    height: 600px;
-    margin: 30px 10px 10px 25px;
     background-image: url(images2/Products/QRD01.jpg);
-    background-size: cover;
 }
-
-#pics11 {
-  background-image: url(images2/gallery/QND-01.jpg);
+.pics11 {
+  background-image: url(images2/Products/QND-01.jpg);
 }
-
-#pics12 {
+.pics12 {
   background-image: url(images2/Products/checkered_plates.jpg);
 }
 
@@ -612,59 +583,41 @@
       position: relative;
       top: 80px;
     }
-    .pics {
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        margin:  10px auto;
+
+    #index_pics {
+      border: 3px solid #494B55;
+      width: 90%;
+      height: 600px;
+      margin:  10px auto;
+      background-size: cover;
+      position: relative;
+    }
+
+    .pics1 {
         background-image: url(images2/Products/SP01.jpg);
-        background-size: cover;
-        position: relative;
     }
     .pics2 {
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        margin:  10px auto;
         background-image: url(images2/Products/QRDN01.jpg);
-        background-size: cover;
-        position: relative;
     }
     .pics3 {
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        margin:  10px auto;
         background-image: url(images2/Products/TS01.jpg);
-        background-size: cover;
-        position: relative;
     }
     .pics4 {
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        position: relative;
-        margin:  10px auto;
         background-image: url(images2/Products/FRB01.jpg);
-        background-size: cover;
     }
     .pics5 {
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        margin: 10px auto ;
-        position: relative;
         background-image: url(images2/Products/TS01.jpg);
-        background-size: cover;
     }
     .pics10{
-        border: 3px solid #494B55;
-        width: 60%;
-        height: 600px;
-        position: relative;
-        margin: 10px auto ;
         background-image: url(images2/Products/QRD01.jpg);
-        background-size: cover;
+    }
+
+    .pics11 {
+      background-image: url(images2/Products/QND-01.jpg);
+    }
+
+    .pics12 {
+      background-image: url(images2/Products/checkered_plates.jpg);
     }
 
     .special_steel_img {
@@ -676,15 +629,7 @@
       font-size: larger;
     }
 
-    #pics11 {
-      background-image: url(images2/Products/QND-01.jpg);
-    }
-
-    #pics12 {
-      background-image: url(images2/Products/checkered_plates.jpg);
-    }
-
-    .pics6 {
+        .pics6 {
         border: 3px solid #494B55;
         margin: auto;
         position: relative;
