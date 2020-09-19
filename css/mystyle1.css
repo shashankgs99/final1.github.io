@@ -1,3 +1,36 @@
+#vvv {
+  text-align: end;
+  padding: 14px 20px;
+  color: #00008B;
+  font-size: 20px;
+}
+
+#abcde {
+  position: relative;
+  background-color: white;
+  left: 130px;
+}
+
+#xxx {
+  display: none;
+}
+
+.zzz {
+  top: 0px;
+  left: 0px;
+}
+
+.vvv {
+  top: 0px;
+  left: -140px;
+}
+
+#cvb {
+  color: #00008B;
+  text-align: justify;
+}
+
+
 #Sheet-Piles {
   height: 20px;
 }
