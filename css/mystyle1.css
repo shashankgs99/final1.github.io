@@ -1034,7 +1034,8 @@ nav {
     top:0 ;
     margin: 0;
     padding: 0;
-    background-color: #254441;
+    background-color: #ffffff;
+    color: darkblue;
 }
 
 #logo {
@@ -1078,7 +1079,7 @@ nav ul li {
     margin: 0px;
     display: block;
     float: left;
-    background-color: #254441;
+    background-color: #ffffff;
 }
 
 
@@ -1088,7 +1089,7 @@ nav a {
     text-align: end;
     display: block;
     padding: 14px 20px;
-    color: #FFF;
+    color: #00008B;
     font-size: 20px;
     text-decoration: none;
 }
@@ -1182,9 +1183,9 @@ li>a:only-child:after {
     .toggle {
         text-align: end;
         display: block;
-        background-color: #254441;
+        background-color: #ffffff;
         padding: 14px 20px;
-        color: #FFF;
+        color: #00008B;
         font-size: 20px;
         text-decoration: none;
         border: none;
