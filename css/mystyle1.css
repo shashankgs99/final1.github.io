@@ -450,16 +450,22 @@
 
 .minihead {
     color:darkblue;
+    font-weight: bold;
     font-size: 20px;
     margin: 10px;
-    text-decoration: underline;
 }
 
 .minihead-1 {
     color:darkblue;
+    font-weight: bold;
     font-size: 20px;
     margin: 10px 10px 10px 30px;
-    text-decoration: underline;
+}
+
+.minihead-2 {
+    color:darkblue;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 #headrow1 {
@@ -587,7 +593,7 @@
     #index_pics {
       border: 3px solid #494B55;
       width: 90%;
-      height: 600px;
+      height: 700px;
       margin:  10px auto;
       background-size: cover;
       position: relative;
@@ -940,17 +946,23 @@
     .minihead {
         color:darkblue;
         margin: 50px 100px 10px 200px;
+        font-weight: bold;
         font-size: 30px;
         font-family: 'Raleway', sans-serif;
-        text-decoration: underline;
     }
 
     .minihead-1 {
         color:darkblue;
         margin: 30px 100px 10px 200px;
+        font-weight: bold;
         font-size: 30px;
         font-family: 'Raleway', sans-serif;
-        text-decoration: underline;
+    }
+
+    .minihead-2 {
+        color:darkblue;
+        font-weight: bold;
+        font-size: 20px;
     }
 
     .mainheading {
