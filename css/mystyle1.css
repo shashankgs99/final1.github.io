@@ -373,11 +373,14 @@
 
 .prod_types {
   font-size: 15px;
-  font-weight: bolder;
   color: #333;
   padding-left: 20px;
   line-height: 2;
   height: auto;
+}
+
+#prod-types {
+  font-weight: bolder;
 }
 
 .prod_pics {
@@ -925,6 +928,10 @@
       padding-left: 20px;
       line-height: 1.5;
       height: auto;
+    }
+
+    #prod-types {
+      font-weight: bolder;
     }
 
     #forged_img {
