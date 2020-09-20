@@ -921,6 +921,11 @@
       top: 50px;
     }
 
+    #prod-pics {
+      position: relative;
+      top: -200px;
+    }
+
     .prod_types {
       color: #333;
       font-size: 20px;
