@@ -1,31 +1,24 @@
-#abcde {
-  position: relative;
-  background-color: white;
-  left: 130px;
-}
-
-.zzz {
-  top: 0px;
-  left: 0px;
-}
-
-.vvv {
-  top: 0px;
-  left: -140px;
-}
-
-#cvb {
-  color: #00008B;
-  text-align: end;
-}
-
-
 #Sheet-Piles {
   height: 20px;
 }
 
 #Trench-Sheets {
   height: 20px;
+}
+
+.Sub-category {
+  left: -170px;
+}
+
+.sub {
+  left: 0px;
+}
+
+.sub-a {
+  text-align: end;
+  padding: 5px 10px;
+  color: #00008B;
+  font-size: 20px;
 }
 
 .tag_manager {
@@ -1032,7 +1025,6 @@ nav {
   padding: 8px;
 }
 
-
 nav:after {
     content: "";
     display: table;
@@ -1118,6 +1110,22 @@ nav ul ul li {
  * We move the 2nd and 3rd etc tier dropdowns to the left
  * by the amount of the width of the first tier.
 */
+
+
+.Sub-category {
+  left: -170px;
+}
+
+.sub {
+  left: 0px;
+}
+
+.sub-a {
+  text-align: end;
+  padding: 5px 10px;
+  color: #00008B;
+  font-size: 20px;
+}
 
 nav ul ul ul li {
     position: relative;
