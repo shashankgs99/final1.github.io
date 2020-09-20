@@ -360,6 +360,12 @@
   margin-right: 20px;
 }
 
+.QC_img {
+  width: 5%;
+  height: 5%;
+  margin-left: 20px;
+}
+
 .q_cal {
   color: #f7b432;
   font-size: larger;
@@ -367,6 +373,7 @@
 
 .prod_types {
   font-size: 15px;
+  font-weight: bolder;
   color: #333;
   padding-left: 20px;
   line-height: 2;
@@ -621,6 +628,12 @@
 
     .special_steel_img {
       margin-right: 20px;
+    }
+
+    .QC_img {
+      width: 5%;
+      height: 5%;
+      margin-left: 40px;
     }
 
     .q_cal {
@@ -908,6 +921,7 @@
     .prod_types {
       color: #333;
       font-size: 20px;
+      font-weight: bolder;
       padding-left: 20px;
       line-height: 1.5;
       height: auto;
