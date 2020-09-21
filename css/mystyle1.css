@@ -678,47 +678,38 @@
         padding: 10px;
         position: absolute;
         margin: 30px 150px ;
-
     }
-
     #slide_3_4 {
         left: 15%;
     }
-
     #slide_10 {
         left: 25%;
     }
-
     #row_pic1 {
       position:relative;
       background: url(images2/Products/Sheet_Piles.jpg);
       background-size: cover;
     }
-
     #row_pic2 {
       position:relative;
       background: url(images2/Products/Quardian.jpg);
       background-size: cover;
     }
-
     #row_pic3 {
       position:relative;
       background: url(images2/Products/Quardian_stock.jpg);
       background-size: cover;
     }
-
     #row_pic4 {
       position:relative;
       background: url(images2/Products/FRB01.jpg);
       background-size: cover;
     }
-
     .index_h1 {
       color:orangered;
       text-align:center;
       font-family: sans-serif;
     }
-
     .button {
         background-color: #f7b432;
         color: white;
