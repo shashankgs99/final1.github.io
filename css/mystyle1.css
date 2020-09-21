@@ -266,13 +266,9 @@
 }
 
 .index_h1 {
-  color:black;
+  color:orangered;
   text-align:center;
   font-family: sans-serif;
-}
-
-#index-h1 {
-  color: bisque
 }
 
 .button {
@@ -658,7 +654,7 @@
         color: #f7b432;
         font-size: 40px;
         font-weight: 1000;
-        padding: 10px;
+        padding: 0px 10px;
         margin: auto;
         text-align: center;
         line-height: 80px;
@@ -668,6 +664,7 @@
     #text {
         color:white;
         font-size: 20px;
+        font-weight: 700;
         padding: 10px;
         margin: auto;
         text-align: center;
@@ -676,26 +673,20 @@
         letter-spacing: 1px;
     }
     .box {
-        top: 30px;
+        top: 5px;
+        left: 20%;
         padding: 10px;
         position: absolute;
-        margin: 100px 150px ;
+        margin: 30px 150px ;
 
+    }
+
+    #slide_3_4 {
+        left: 15%;
     }
 
     #slide_10 {
-        left: 30px;
-        top:20px;
-    }
-
-    #slide_11 {
-        left: 50px;
-        top:30px;
-    }
-
-    #slide_12 {
-        left: 30px;
-        top:60px;
+        left: 25%;
     }
 
     #row_pic1 {
@@ -723,13 +714,9 @@
     }
 
     .index_h1 {
-      color:black;
+      color:orangered;
       text-align:center;
       font-family: sans-serif;
-    }
-
-    #index-h1 {
-      color: bisque
     }
 
     .button {
