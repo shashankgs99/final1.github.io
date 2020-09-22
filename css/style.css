@@ -86,7 +86,7 @@ body {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: #f7b432;
+    color: orangered;
 }
 
 a:hover,

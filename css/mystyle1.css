@@ -210,7 +210,8 @@
 }
 
 #text {
-    color:white;
+    color: black;
+    background-color: white;
     font-size: 15px;
     padding: 10px;
     margin: auto;
@@ -662,7 +663,8 @@
         letter-spacing: 1px;
     }
     #text {
-        color:white;
+        color: black;
+        background-color: white;
         font-size: 20px;
         font-weight: 700;
         padding: 10px;
