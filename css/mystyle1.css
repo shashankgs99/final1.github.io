@@ -1,3 +1,7 @@
+#index_links {
+  color: white;
+}
+
 #Sheet-Piles {
   height: 20px;
 }
@@ -211,7 +215,6 @@
 
 #text {
     color: black;
-    background-color: white;
     font-size: 15px;
     padding: 10px;
     margin: auto;
@@ -225,6 +228,7 @@
     top: 30px;
     padding: 10px;
     margin: 180px 10px;
+    background-color: orangered;
 }
 
 #slide_10 {
@@ -664,7 +668,6 @@
     }
     #text {
         color: black;
-        background-color: white;
         font-size: 20px;
         font-weight: 700;
         padding: 10px;
@@ -680,6 +683,7 @@
         padding: 10px;
         position: absolute;
         margin: 10px 150px ;
+        background-color: orangered;
     }
     #slide_3_4 {
         left: 15%;
