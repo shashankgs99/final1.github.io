@@ -678,7 +678,9 @@
         letter-spacing: 1px;
     }
     .box {
-        top: 5px;
+        height: 180px;
+        width: 480px;
+        top: 40%;
         left: 20%;
         padding: 10px;
         position: absolute;
@@ -686,7 +688,7 @@
         background-color: orangered;
     }
     #slide_3_4 {
-        left: 15%;
+        left: 20%;
     }
     #slide_10 {
         left: 25%;
