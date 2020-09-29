@@ -2,6 +2,14 @@
   color: white;
 }
 
+#linkedin {
+  color:#0073b1;
+}
+
+.hr {
+  border-top: 1px solid white;
+}
+
 #Sheet-Piles {
   height: 20px;
 }
